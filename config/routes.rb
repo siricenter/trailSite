@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :trail_types
+
+  #admin
+  scope :admin do
+    get '/', to: 'static#dashboard', as: :dashboard
+  end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
