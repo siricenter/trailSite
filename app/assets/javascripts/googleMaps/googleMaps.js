@@ -1,7 +1,15 @@
-
     /* globals */
 	var map;
 	var markerArray = [];
+	var PIN_COLOR = "FAD303";
+	var PIN_SIZE = new google.maps.Size(21, 34);
+	var PIN_POINT1 = new google.maps.Point(0,0);
+	var PIN_POINT2 = new google.maps.Point(10, 34);
+	var PIN_IMAGE = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + PIN_COLOR,
+    PIN_SIZE,
+    PIN_POINT1,
+    PIN_POINT2);
+	
 
 	/**
 	* inicialize starts the map
@@ -9,8 +17,8 @@
       function initialize() {
 
         var mapOptions = {
-        	center: { lat: 45, lng: -95},
-        	zoom: 3,
+        	center: { lat: 38, lng: -100},
+        	zoom: 4,
         	scrollwheel: false,
     		navigationControl: false,
     		mapTypeControl: false,
@@ -26,14 +34,10 @@
         map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
 
-        // this just addes test markers
-		for(var i = 0; i < 10; ++i) {
-			addMarker(45, -95+(i*11), "test "+(i+1));
-		}
-
+        // add a marker to the center
+		addMarker(mapOptions.center.lat, mapOptions.center.lng, "center");
       }
-      // listener starts the map after the window loads
-      google.maps.event.addDomListener(window, 'load', initialize);
+      
 
 	/**
 	* addMarker will add a single marker to the map with listener functions
@@ -45,7 +49,8 @@
 		var marker = new google.maps.Marker({
 			position: myLatlng,
 			map: map,
-			title: title
+			title: title,
+			icon: PIN_IMAGE
 		});
 		
 		// add a listener to the newly created marker
@@ -69,6 +74,6 @@
 			marker = markerArray.pop();
 		}
 		for(var i = 0; i < 10; ++i) {
-			addMarker(40, -95+(i*11), "added"+(i+1));
+			addMarker(38, -150+(i*11), "added"+(i+1));
 		}
 	}
