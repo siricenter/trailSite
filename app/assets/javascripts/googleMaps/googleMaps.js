@@ -1,14 +1,14 @@
     /* globals */
 	var map;
 	var markerArray = [];
-	var PIN_COLOR = "FAD303";
+
+	/*constants*/
+	var PIN_COLOR = "99CCFF";
 	var PIN_SIZE = new google.maps.Size(21, 34);
 	var PIN_POINT1 = new google.maps.Point(0,0);
 	var PIN_POINT2 = new google.maps.Point(10, 34);
-	var PIN_IMAGE = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + PIN_COLOR,
-    PIN_SIZE,
-    PIN_POINT1,
-    PIN_POINT2);
+	var PIN_RESOURCE = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|";
+	var PIN_IMAGE = new google.maps.MarkerImage(PIN_RESOURCE + PIN_COLOR, PIN_SIZE, PIN_POINT1, PIN_POINT2);
 	
 
 	/**
