@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-
+#testing
+gem 'rspec-rails', '~> 3.0.0'
+gem 'factory_girl_rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
