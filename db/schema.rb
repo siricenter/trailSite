@@ -11,10 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141016024246) do
+ActiveRecord::Schema.define(version: 20141023033849) do
+
+  create_table "regions", force: true do |t|
+    t.string   "name"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.integer  "zoom"
+    t.text     "history"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "trail_types", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "username"
+    t.string   "password"
+    t.string   "salt"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "permissions"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
