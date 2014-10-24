@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :states
+
   resources :regions
 
   resources :trail_types
