@@ -2,11 +2,11 @@
 
 FactoryGirl.define do
   factory :state do
-    region nil
-    name "MyString"
-    latitude "9.99"
-    longitude "9.99"
-    zoom 1
-    history "MyText"
+    region FactoryGirl.build(:region)
+    name Faker::Name.name
+    latitude Faker::Number.digit
+    longitude Faker::Number.digit
+    zoom Faker::Number.digit
+    history Faker::Lorem.paragraphs
   end
 end

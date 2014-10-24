@@ -24,11 +24,17 @@ RSpec.describe StatesController, :type => :controller do
   # State. As you add validations to State, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: Faker::Name.name,
+      region: FactoryGirl.build(:region),
+      latitude: 1,
+      longitude: 2,
+      zoom: 3
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { name:nil, region:nil, latitude:nil, longitude:nil, zoom: nil }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -46,7 +52,7 @@ RSpec.describe StatesController, :type => :controller do
 
   describe "GET show" do
     it "assigns the requested state as @state" do
-      state = State.create! valid_attributes
+      state = FactoryGirl.build(:state)
       get :show, {:id => state.to_param}, valid_session
       expect(assigns(:state)).to eq(state)
     end
