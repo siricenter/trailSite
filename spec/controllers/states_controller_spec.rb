@@ -20,43 +20,41 @@ require 'rails_helper'
 
 RSpec.describe StatesController, :type => :controller do
 
-  # This should return the minimal set of attributes required to create a valid
-  # State. As you add validations to State, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    {
-      name: Faker::Name.name,
-      region: FactoryGirl.build(:region),
-      latitude: 1,
-      longitude: 2,
-      zoom: 3
-    }
+
+  valid_params = {
+    name: (Faker::Name.name),
+    latitude: (Faker::Number.digit),
+    longitude: (Faker::Number.digit),
+    zoom: (Faker::Number.digit),
+    region: (FactoryGirl.build(:region))
   }
 
-  let(:invalid_attributes) {
-    { name:nil, region:nil, latitude:nil, longitude:nil, zoom: nil }
+  invalid_params = {
+    name: nil,
+    latitude: nil,
+    longitude: nil,
+    zoom: nil,
+    region: nil
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # StatesController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:valid_session) {{}}
 
   describe "GET index" do
-    it "assigns all states as @states" do
-      state = State.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:states)).to eq([state])
+      it "assigns all states as @states" do
+        state = State.create! valid_params
+        get :index, {}, valid_session
+        expect(assigns(:states)).to eq([state]) #eq() checks data, equal() checks data and data type
+      end
     end
-  end
 
-  describe "GET show" do
-    it "assigns the requested state as @state" do
-      state = FactoryGirl.build(:state)
-      get :show, {:id => state.to_param}, valid_session
-      expect(assigns(:state)).to eq(state)
+
+    describe "GET show" do
+      it "assigns the requested state as @state" do
+          state = State.create! valid_params
+          get :show, {:id => state.to_param}, valid_session
+          expect(assigns(:state)).to eq(state)
+      end
     end
-  end
 
   describe "GET new" do
     it "assigns a new state as @state" do
@@ -65,42 +63,43 @@ RSpec.describe StatesController, :type => :controller do
     end
   end
 
+
   describe "GET edit" do
     it "assigns the requested state as @state" do
-      state = State.create! valid_attributes
+      state = State.create! valid_params
       get :edit, {:id => state.to_param}, valid_session
       expect(assigns(:state)).to eq(state)
     end
   end
 
-  describe "POST create" do
+describe "POST create" do
     describe "with valid params" do
       it "creates a new State" do
         expect {
-          post :create, {:state => valid_attributes}, valid_session
+          post :create, {:state => valid_params}, valid_session
         }.to change(State, :count).by(1)
       end
 
       it "assigns a newly created state as @state" do
-        post :create, {:state => valid_attributes}, valid_session
+        post :create, {:state => valid_params}, valid_session
         expect(assigns(:state)).to be_a(State)
         expect(assigns(:state)).to be_persisted
       end
 
       it "redirects to the created state" do
-        post :create, {:state => valid_attributes}, valid_session
+        post :create, {:state => valid_params}, valid_session
         expect(response).to redirect_to(State.last)
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved state as @state" do
-        post :create, {:state => invalid_attributes}, valid_session
+        post :create, {:state => invalid_params}, valid_session
         expect(assigns(:state)).to be_a_new(State)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:state => invalid_attributes}, valid_session
+        post :create, {:state => invalid_params}, valid_session
         expect(response).to render_template("new")
       end
     end
@@ -108,40 +107,43 @@ RSpec.describe StatesController, :type => :controller do
 
   describe "PUT update" do
     describe "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+      new_attributes = {
+        name: (Faker::Name.name),
+        latitude: (Faker::Number.digit),
+        longitude: (Faker::Number.digit),
+        zoom: (Faker::Number.digit)
       }
 
       it "updates the requested state" do
-        state = State.create! valid_attributes
-        put :update, {:id => state.to_param, :state => new_attributes}, valid_session
-        state.reload
-        skip("Add assertions for updated state")
+        state1 = State.create! valid_params
+        put :update, {:id => state1.to_param, :state => new_attributes}, valid_session
+        state1.reload
+        expect(assigns(:state)).to eq(state1)
       end
 
       it "assigns the requested state as @state" do
-        state = State.create! valid_attributes
-        put :update, {:id => state.to_param, :state => valid_attributes}, valid_session
+        state = State.create! valid_params
+        put :update, {:id => state.to_param, :state => valid_params}, valid_session
         expect(assigns(:state)).to eq(state)
       end
 
       it "redirects to the state" do
-        state = State.create! valid_attributes
-        put :update, {:id => state.to_param, :state => valid_attributes}, valid_session
+        state = State.create! valid_params
+        put :update, {:id => state.to_param, :state => valid_params}, valid_session
         expect(response).to redirect_to(state)
       end
     end
 
     describe "with invalid params" do
       it "assigns the state as @state" do
-        state = State.create! valid_attributes
-        put :update, {:id => state.to_param, :state => invalid_attributes}, valid_session
+        state = State.create! valid_params
+        put :update, {:id => state.to_param, :state => invalid_params}, valid_session
         expect(assigns(:state)).to eq(state)
       end
 
       it "re-renders the 'edit' template" do
-        state = State.create! valid_attributes
-        put :update, {:id => state.to_param, :state => invalid_attributes}, valid_session
+        state = State.create! valid_params
+        put :update, {:id => state.to_param, :state => invalid_params}, valid_session
         expect(response).to render_template("edit")
       end
     end
@@ -149,14 +151,14 @@ RSpec.describe StatesController, :type => :controller do
 
   describe "DELETE destroy" do
     it "destroys the requested state" do
-      state = State.create! valid_attributes
+      state = State.create! valid_params
       expect {
         delete :destroy, {:id => state.to_param}, valid_session
       }.to change(State, :count).by(-1)
     end
 
     it "redirects to the states list" do
-      state = State.create! valid_attributes
+      state = State.create! valid_params
       delete :destroy, {:id => state.to_param}, valid_session
       expect(response).to redirect_to(states_url)
     end
