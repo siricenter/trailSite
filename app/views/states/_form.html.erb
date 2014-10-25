@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :region_id %><br>
-    
+    <%= select("state", "region_id", Region.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''}) %>
   </div>
   <div class="field">
     <%= f.label :name %><br>
