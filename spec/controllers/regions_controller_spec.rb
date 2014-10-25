@@ -20,7 +20,7 @@ RSpec.describe RegionsController, :type => :controller do
 
 	describe "GET index" do
     	it "assigns all regions as @regions" do
-    		region = Region.create! valid_params
+    		region = FactoryGirl.create(:region)
 		    get :index, {}, valid_session
 		    expect(assigns(:regions)).to eq([region]) #eq() checks data, equal() checks data and data type
     	end
@@ -29,7 +29,7 @@ RSpec.describe RegionsController, :type => :controller do
 
   	describe "GET show" do
 	    it "assigns the requested region as @region" do
-		      region = Region.create! valid_params
+		      region = FactoryGirl.create(:region)
 		      get :show, {:id => region.to_param}, valid_session
 		      expect(assigns(:region)).to eq(region)
 	    end

@@ -5,6 +5,6 @@ FactoryGirl.define do
 		latitude Faker::Number.digit
 		longitude Faker::Number.digit
 		zoom Faker::Number.digit
-		history Faker::Lorem.paragraphs
+		history Faker::Lorem.paragraph
 	end
 end

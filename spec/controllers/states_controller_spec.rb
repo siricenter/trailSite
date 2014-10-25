@@ -26,7 +26,7 @@ RSpec.describe StatesController, :type => :controller do
     latitude: (Faker::Number.digit),
     longitude: (Faker::Number.digit),
     zoom: (Faker::Number.digit),
-    region: (FactoryGirl.build(:region))
+    region: (FactoryGirl.create(:region))
   }
 
   invalid_params = {
@@ -75,8 +75,9 @@ RSpec.describe StatesController, :type => :controller do
 describe "POST create" do
     describe "with valid params" do
       it "creates a new State" do
+        puts FactoryGirl.attributes_for(:state)
         expect {
-          post :create, {:state => valid_params}, valid_session
+          post :create, {state: FactoryGirl.attributes_for(:state)}, valid_session
         }.to change(State, :count).by(1)
       end
 

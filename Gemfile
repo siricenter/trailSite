@@ -1,9 +1,13 @@
 source 'https://rubygems.org'
 
-#testing
-gem 'rspec-rails', '~> 3.0.0'
-gem 'factory_girl_rails'
-gem 'faker'
+gem 'rspec-rails', group: [:test, :development]
+group :test do
+	#testing
+	gem 'factory_girl_rails'
+	gem 'capybara'
+	gem 'guard-rspec'
+	gem 'faker'
+end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'

@@ -2,11 +2,11 @@
 
 FactoryGirl.define do
   factory :state do
-    region FactoryGirl.build(:region)
+    region FactoryGirl.create(:region)
     name Faker::Name.name
     latitude Faker::Number.digit
     longitude Faker::Number.digit
     zoom Faker::Number.digit
-    history Faker::Lorem.paragraphs
+    history Faker::Lorem.paragraph
   end
 end
