@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe RegionsController, :type => :controller do
 
+
 	valid_params = {
 		name: (Faker::Name.name),
 		latitude: (Faker::Number.digit),
@@ -18,9 +19,9 @@ RSpec.describe RegionsController, :type => :controller do
 
 	let(:valid_session) {{}}
 
-	describe "GET index" do
+  	describe "GET index" do
     	it "assigns all regions as @regions" do
-    		region = FactoryGirl.create(:region)
+    		region = FactoryGirl.create(:region, id:1)
 		    get :index, {}, valid_session
 		    expect(assigns(:regions)).to eq([region]) #eq() checks data, equal() checks data and data type
     	end

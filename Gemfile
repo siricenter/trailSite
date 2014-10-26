@@ -7,6 +7,7 @@ group :test do
 	gem 'capybara'
 	gem 'guard-rspec'
 	gem 'faker'
+	gem 'database_cleaner'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
