@@ -12,6 +12,10 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :state_id %><br>
+    <%= select("area", "state_id", State.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''}) %>
+  </div>
+  <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
