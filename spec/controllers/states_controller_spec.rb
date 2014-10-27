@@ -75,14 +75,15 @@ RSpec.describe StatesController, :type => :controller do
 describe "POST create" do
     describe "with valid params" do
       it "creates a new State" do
-        puts FactoryGirl.attributes_for(:state)
+        attributes = FactoryGirl.attributes_for(:state)
+        puts attributes
         expect {
-          post :create, {state: FactoryGirl.attributes_for(:state)}, valid_session
+          post :create, {state: attributes}, valid_session
         }.to change(State, :count).by(1)
       end
 
       it "assigns a newly created state as @state" do
-        post :create, {:state => valid_params}, valid_session
+        post :create, {:state => FactoryGirl.attributes_for(:state)}, valid_session
         expect(assigns(:state)).to be_a(State)
         expect(assigns(:state)).to be_persisted
       end
