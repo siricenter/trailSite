@@ -27,7 +27,7 @@ RSpec.describe StatesController, :type => :controller do
     latitude: (Faker::Number.digit),
     longitude: (Faker::Number.digit),
     zoom: (Faker::Number.digit),
-    region_id: (FactoryGirl.create(:region)).id
+    region: (FactoryGirl.create(:region))
   }
 
   invalid_params = {

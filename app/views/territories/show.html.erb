@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @territory.area %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @territory.name %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @territory.longitude %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @territory.latitude %>
+</p>
+
+<p>
+  <strong>Zoom:</strong>
+  <%= @territory.zoom %>
+</p>
+
+<p>
+  <strong>Directions:</strong>
+  <%= @territory.directions %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @territory.description %>
+</p>
+
+<p>
+  <strong>History:</strong>
+  <%= @territory.history %>
+</p>
+
+<%= link_to 'Edit', edit_territory_path(@territory) %> |
+<%= link_to 'Back', territories_path %>

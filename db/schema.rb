@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027205145) do
+ActiveRecord::Schema.define(version: 20141027233835) do
 
   create_table "areas", force: true do |t|
     t.string   "name"
@@ -52,6 +52,21 @@ ActiveRecord::Schema.define(version: 20141027205145) do
   end
 
   add_index "states", ["region_id"], name: "index_states_on_region_id"
+
+  create_table "territories", force: true do |t|
+    t.integer  "area_id"
+    t.string   "name"
+    t.decimal  "longitude"
+    t.decimal  "latitude"
+    t.integer  "zoom"
+    t.text     "directions"
+    t.text     "description"
+    t.text     "history"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "territories", ["area_id"], name: "index_territories_on_area_id"
 
   create_table "trail_types", force: true do |t|
     t.string   "name"
