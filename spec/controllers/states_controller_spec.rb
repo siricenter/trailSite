@@ -21,27 +21,21 @@ require 'rails_helper'
 RSpec.describe StatesController, :type => :controller do
 
 
-  valid_params = {
-    name: (Faker::Name.name),
-    latitude: (Faker::Number.digit),
-    longitude: (Faker::Number.digit),
-    zoom: (Faker::Number.digit),
-    region: (FactoryGirl.create(:region))
-  }
+
+  valid_params = FactoryGirl.attributes_for(:state)
 
   invalid_params = {
     name: nil,
     latitude: nil,
     longitude: nil,
-    zoom: nil,
-    region: nil
+    zoom: nil
   }
 
   let(:valid_session) {{}}
 
-  describe "GET index" do
+    describe "GET index" do
       it "assigns all states as @states" do
-        state = State.create! valid_params
+        state = FactoryGirl.create(:state, id:1)
         get :index, {}, valid_session
         expect(assigns(:states)).to eq([state]) #eq() checks data, equal() checks data and data type
       end
@@ -50,7 +44,7 @@ RSpec.describe StatesController, :type => :controller do
 
     describe "GET show" do
       it "assigns the requested state as @state" do
-          state = State.create! valid_params
+          state = FactoryGirl.create(:state)
           get :show, {:id => state.to_param}, valid_session
           expect(assigns(:state)).to eq(state)
       end
@@ -72,18 +66,17 @@ RSpec.describe StatesController, :type => :controller do
     end
   end
 
-describe "POST create" do
+  describe "POST create" do
+    
     describe "with valid params" do
       it "creates a new State" do
-        attributes = FactoryGirl.attributes_for(:state)
-        puts attributes
         expect {
-          post :create, {state: attributes}, valid_session
+          post :create, {:state => valid_params}, valid_session
         }.to change(State, :count).by(1)
       end
 
       it "assigns a newly created state as @state" do
-        post :create, {:state => FactoryGirl.attributes_for(:state)}, valid_session
+        post :create, {:state => valid_params}, valid_session
         expect(assigns(:state)).to be_a(State)
         expect(assigns(:state)).to be_persisted
       end
@@ -105,6 +98,7 @@ describe "POST create" do
         expect(response).to render_template("new")
       end
     end
+    
   end
 
   describe "PUT update" do
