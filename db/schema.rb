@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027234315) do
+ActiveRecord::Schema.define(version: 20141027234841) do
 
   create_table "areas", force: true do |t|
     t.string   "name"
@@ -100,5 +100,20 @@ ActiveRecord::Schema.define(version: 20141027234315) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "walls", force: true do |t|
+    t.integer  "crag_id"
+    t.string   "name"
+    t.decimal  "longitude"
+    t.decimal  "latitude"
+    t.integer  "zoom"
+    t.text     "directions"
+    t.text     "description"
+    t.text     "history"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "walls", ["crag_id"], name: "index_walls_on_crag_id"
 
 end
