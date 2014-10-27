@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141024025022) do
+ActiveRecord::Schema.define(version: 20141027154310) do
 
   create_table "regions", force: true do |t|
     t.string   "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20141024025022) do
     t.text     "history"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "descrition"
   end
 
   create_table "states", force: true do |t|
