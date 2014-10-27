@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :area do
-    association :state, factory: :state
+    state {FactoryGirl.create(:state)}
     name Faker::Name.name
     latitude Faker::Number.digit
     longitude Faker::Number.digit
