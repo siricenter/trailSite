@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :crags
+
   resources :territories
 
   resources :areas
