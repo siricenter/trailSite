@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20141027154310) do
     t.text     "history"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "descrition"
+    t.text     "description"
   end
 
   create_table "states", force: true do |t|
