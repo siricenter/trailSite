@@ -18,7 +18,7 @@
   <tbody>
     <% @territories.each do |territory| %>
       <tr>
-        <td><%= territory.area %></td>
+        <td><%= territory.area.name %></td>
         <td><%= territory.name %></td>
         <td><%= territory.longitude %></td>
         <td><%= territory.latitude %></td>
