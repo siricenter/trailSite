@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Crag:</strong>
+  <%= @wall.crag %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @wall.name %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @wall.longitude %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @wall.latitude %>
+</p>
+
+<p>
+  <strong>Zoom:</strong>
+  <%= @wall.zoom %>
+</p>
+
+<p>
+  <strong>Directions:</strong>
+  <%= @wall.directions %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @wall.description %>
+</p>
+
+<p>
+  <strong>History:</strong>
+  <%= @wall.history %>
+</p>
+
+<%= link_to 'Edit', edit_wall_path(@wall) %> |
+<%= link_to 'Back', walls_path %>

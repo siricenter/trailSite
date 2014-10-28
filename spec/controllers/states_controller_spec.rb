@@ -38,6 +38,9 @@ RSpec.describe StatesController, :type => :controller do
   }
 
   let(:valid_session) {{}}
+  valid_session = {
+
+  }
 
     describe "GET index" do
       it "assigns all states as @states" do
@@ -78,7 +81,7 @@ RSpec.describe StatesController, :type => :controller do
       it "creates a new State" do
         puts valid_params
         expect {
-          post(:create, {:state => valid_params}, valid_session)
+          post :create, {:state => valid_params}
         }.to change(State, :count).by(1)
       end
 

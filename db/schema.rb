@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027234841) do
+ActiveRecord::Schema.define(version: 20141028214226) do
 
   create_table "areas", force: true do |t|
     t.string   "name"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20141027234841) do
     t.text     "history"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "wall_type"
   end
 
   add_index "walls", ["crag_id"], name: "index_walls_on_crag_id"

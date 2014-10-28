@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Territory:</strong>
+  <%= @crag.territory %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @crag.name %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @crag.longitude %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @crag.latitude %>
+</p>
+
+<p>
+  <strong>Zoom:</strong>
+  <%= @crag.zoom %>
+</p>
+
+<p>
+  <strong>Directions:</strong>
+  <%= @crag.directions %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @crag.description %>
+</p>
+
+<p>
+  <strong>History:</strong>
+  <%= @crag.history %>
+</p>
+
+<%= link_to 'Edit', edit_crag_path(@crag) %> |
+<%= link_to 'Back', crags_path %>
