@@ -6,5 +6,6 @@ FactoryGirl.define do
 		longitude Faker::Number.digit
 		zoom Faker::Number.digit
 		history Faker::Lorem.paragraph
+		description Faker::Lorem.paragraph
 	end
 end
