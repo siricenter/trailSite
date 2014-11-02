@@ -10,8 +10,7 @@ Rails.application.routes.draw do
   resources :states
 
   resources :regions
-
-  resources :trail_types
+  get 'regions/getJson', to: 'regions#getJson'
 
   #admin
   scope :admin do

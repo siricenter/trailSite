@@ -19,6 +19,16 @@ RSpec.describe RegionsController, :type => :controller do
 
 	let(:valid_session) {{}}
 
+
+  describe "GET json" do
+    it "returns a valid json object" do
+      region = FactoryGirl.create(:region, id:1)
+      json = get :getJson, {}, valid_session
+      puts json;
+      expect(json).to_not be_nil;
+    end
+  end
+
   	describe "GET index" do
     	it "assigns all regions as @regions" do
     		region = FactoryGirl.create(:region, id:1)
