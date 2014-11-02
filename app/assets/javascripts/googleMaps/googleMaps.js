@@ -61,6 +61,11 @@
 
 		// add the marker to the end of the array
 		markerArray.push(marker);
+		return marker;
+	}
+
+	function addClickListenerToMarker(marker, onClickFunction) {
+		google.maps.event.addListener(marker, 'click', onClickFunction);
 	}
 
 	/**
