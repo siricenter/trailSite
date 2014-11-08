@@ -23,8 +23,7 @@ RSpec.describe RegionsController, :type => :controller do
   describe "GET json" do
     it "returns a valid json object" do
       region = FactoryGirl.create(:region, id:1)
-      json = get :getJson, {}, valid_session
-      puts json;
+      json = get(:getJson, {}, valid_session)
       expect(json).to_not be_nil;
     end
   end

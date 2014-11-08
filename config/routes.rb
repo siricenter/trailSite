@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :walls
+  
+  get 'regions/getJson', to: 'regions#getJson'
+
+  #admin
+  scope :admin do
+    get '/', to: 'static#dashboard', as: :dashboard
+    resources :walls
 
   resources :crags
 
@@ -10,11 +16,6 @@ Rails.application.routes.draw do
   resources :states
 
   resources :regions
-  get 'regions/getJson', to: 'regions#getJson'
-
-  #admin
-  scope :admin do
-    get '/', to: 'static#dashboard', as: :dashboard
   end
 
 

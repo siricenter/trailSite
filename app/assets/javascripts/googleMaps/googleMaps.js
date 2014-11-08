@@ -19,7 +19,7 @@
 
         mapOptions = {
         	center: { lat: 38, lng: -100},
-        	zoom: 4,
+        	zoom: 1,
         	scrollwheel: false,
     		navigationControl: false,
     		mapTypeControl: false,
