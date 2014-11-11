@@ -6,7 +6,7 @@ FactoryGirl.define do
     name Faker::Name.name
     latitude Faker::Number.digit
     longitude Faker::Number.digit
-    zoom Faker::Number.digit
+    zoom 3
     history Faker::Lorem.paragraph
     description Faker::Lorem.paragraph
     directions Faker::Lorem.paragraph
