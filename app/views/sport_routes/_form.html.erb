@@ -25,7 +25,11 @@
   </div>
   <div class="field">
     <%= f.label :zoom %><br>
-    <%= f.number_field :zoom %>
+    <select id="sport_route_zoom" name="sport_route[zoom]">
+      <%- 16.times do |i| %>
+        <option value='<%= i+1 %>'><%= i+1 %></option>
+      <%- end %>
+    </select>
   </div>
   <div class="field">
     <%= f.label :description %><br>
@@ -49,15 +53,16 @@
   </div>
   <div class="field">
     <%= f.label :stars %><br>
-    <%= f.number_field :stars %>
+    <%-5.times do |i|%>
+      <input type="radio" name="sport_route[stars]" value="<%=i+1%>"> <%=i+1%> 
+    <%-end%>
   </div>
   <div class="field">
     <%= f.label :pitches %><br>
     <%= f.number_field :pitches %>
   </div>
   <div class="field">
-    <%= f.label :yds_grade %><br>
-    <%= f.text_field :yds_grade %>
+    <%= render 'yds' %>
   </div>
   <div class="field">
     <%= f.label :anchor %><br>
