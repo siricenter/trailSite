@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :sport_routes
+
   resources :walls
 
   resources :crags

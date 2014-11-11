@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @sport_route.name %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @sport_route.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @sport_route.longitude %>
+</p>
+
+<p>
+  <strong>Zoom:</strong>
+  <%= @sport_route.zoom %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @sport_route.description %>
+</p>
+
+<p>
+  <strong>Directions:</strong>
+  <%= @sport_route.directions %>
+</p>
+
+<p>
+  <strong>Wall:</strong>
+  <%= @sport_route.wall %>
+</p>
+
+<p>
+  <strong>Danger rating:</strong>
+  <%= @sport_route.danger_rating %>
+</p>
+
+<p>
+  <strong>Bolts:</strong>
+  <%= @sport_route.bolts %>
+</p>
+
+<p>
+  <strong>Stars:</strong>
+  <%= @sport_route.stars %>
+</p>
+
+<p>
+  <strong>Pitches:</strong>
+  <%= @sport_route.pitches %>
+</p>
+
+<p>
+  <strong>Yds grade:</strong>
+  <%= @sport_route.yds_grade %>
+</p>
+
+<p>
+  <strong>Anchor:</strong>
+  <%= @sport_route.anchor %>
+</p>
+
+<%= link_to 'Edit', edit_sport_route_path(@sport_route) %> |
+<%= link_to 'Back', sport_routes_path %>
