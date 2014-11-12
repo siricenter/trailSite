@@ -10,7 +10,7 @@ FactoryGirl.define do
     description Faker::Lorem.paragraph
     directions Faker::Lorem.paragraph
     danger_rating {getDanger()}
-    bolts {getYDS()}
+    bolts {1 + rand(5)}
     stars {1 + rand(5)}
     pitches {1 + rand(5)}
     yds_grade {getYDS()}
