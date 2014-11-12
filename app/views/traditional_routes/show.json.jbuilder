@@ -1,0 +1,1 @@
+json.extract! @traditional_route, :id, :name, :latitude, :longitude, :zoom, :description, :directions, :wall_id, :danger_rating, :gear_needed, :stars, :pitches, :yds_grade, :length, :anchor, :created_at, :updated_at

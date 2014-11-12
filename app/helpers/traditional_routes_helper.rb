@@ -1,0 +1,2 @@
+module TraditionalRoutesHelper
+end
