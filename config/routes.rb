@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :traditional_routes
+
   resources :sport_routes
 
   resources :walls
