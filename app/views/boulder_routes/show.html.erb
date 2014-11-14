@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @boulder_route.name %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @boulder_route.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @boulder_route.longitude %>
+</p>
+
+<p>
+  <strong>Zoom:</strong>
+  <%= @boulder_route.zoom %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @boulder_route.description %>
+</p>
+
+<p>
+  <strong>Directions:</strong>
+  <%= @boulder_route.directions %>
+</p>
+
+<p>
+  <strong>Wall:</strong>
+  <%= @boulder_route.wall %>
+</p>
+
+<p>
+  <strong>Danger rating:</strong>
+  <%= @boulder_route.danger_rating %>
+</p>
+
+<p>
+  <strong>Stars:</strong>
+  <%= @boulder_route.stars %>
+</p>
+
+<p>
+  <strong>Pads:</strong>
+  <%= @boulder_route.pads %>
+</p>
+
+<p>
+  <strong>Hueco grade:</strong>
+  <%= @boulder_route.hueco_grade %>
+</p>
+
+<p>
+  <strong>Length:</strong>
+  <%= @boulder_route.length %>
+</p>
+
+<%= link_to 'Edit', edit_boulder_route_path(@boulder_route) %> |
+<%= link_to 'Back', boulder_routes_path %>

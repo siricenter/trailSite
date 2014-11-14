@@ -1,0 +1,65 @@
+<%= form_for(@boulder_route) do |f| %>
+  <% if @boulder_route.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@boulder_route.errors.count, "error") %> prohibited this boulder_route from being saved:</h2>
+
+      <ul>
+      <% @boulder_route.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :latitude %><br>
+    <%= f.text_field :latitude %>
+  </div>
+  <div class="field">
+    <%= f.label :longitude %><br>
+    <%= f.text_field :longitude %>
+  </div>
+  <div class="field">
+    <%= f.label :zoom %><br>
+    <%= f.number_field :zoom %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :directions %><br>
+    <%= f.text_area :directions %>
+  </div>
+  <div class="field">
+    <%= f.label :wall_id %><br>
+    <%= f.text_field :wall_id %>
+  </div>
+  <div class="field">
+    <%= f.label :danger_rating %><br>
+    <%= f.text_field :danger_rating %>
+  </div>
+  <div class="field">
+    <%= f.label :stars %><br>
+    <%= f.number_field :stars %>
+  </div>
+  <div class="field">
+    <%= f.label :pads %><br>
+    <%= f.number_field :pads %>
+  </div>
+  <div class="field">
+    <%= f.label :hueco_grade %><br>
+    <%= f.text_field :hueco_grade %>
+  </div>
+  <div class="field">
+    <%= f.label :length %><br>
+    <%= f.text_field :length %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
