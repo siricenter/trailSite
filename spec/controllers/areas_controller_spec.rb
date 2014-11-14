@@ -20,15 +20,17 @@ require 'rails_helper'
 
 RSpec.describe AreasController, :type => :controller do
 
-  # This should return the minimal set of attributes required to create a valid
-  # Area. As you add validations to Area, be sure to
-  # adjust the attributes here as well.
+
+  before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
   let(:valid_attributes) {
     FactoryGirl.attributes_for(:area)
   }
 
   let(:invalid_attributes) {
-    FactoryGirl.attributes_for(:area, state: nil, name:nil, latitude: nil, longitude: nil, zoom:nil, )
+    FactoryGirl.attributes_for(:area, name:nil, latitude: nil, longitude: nil, zoom:nil, )
   }
 
   # This should return the minimal set of values that should be in the session
@@ -36,55 +38,50 @@ RSpec.describe AreasController, :type => :controller do
   # AreasController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
-  end
-
-  describe "GET index" do
+  # GET
+  describe "GET" do
 
     before(:each) do
-      DatabaseCleaner.strategy = :transaction
+      DatabaseCleaner.strategy = :truncation
       DatabaseCleaner.start
-    end
-
-    after(:each) do
       DatabaseCleaner.clean
     end
 
-    it "assigns all areas as @areas" do
-      area = Area.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:areas)).to eq([area])
+    context "index" do
+      it "assigns all areas as @areas" do
+        area = Area.create! valid_attributes
+        get :index, {}, valid_session
+        expect(assigns(:areas)).to eq([area])
+      end
     end
-  end
 
-  describe "GET show" do
-    it "assigns the requested area as @area" do
-      area = Area.create! valid_attributes
-      get :show, {:id => area.to_param}, valid_session
-      expect(assigns(:area)).to eq(area)
+    describe "show" do
+      it "assigns the requested area as @area" do
+        area = Area.create! valid_attributes
+        get :show, {:id => area.to_param}, valid_session
+        expect(assigns(:area)).to eq(area)
+      end
     end
-  end
 
-  describe "GET new" do
-    it "assigns a new area as @area" do
-      get :new, {}, valid_session
-      expect(assigns(:area)).to be_a_new(Area)
+    describe "new" do
+      it "assigns a new area as @area" do
+        get :new, {}, valid_session
+        expect(assigns(:area)).to be_a_new(Area)
+      end
     end
-  end
 
-  describe "GET edit" do
-    it "assigns the requested area as @area" do
-      area = Area.create! valid_attributes
-      get :edit, {:id => area.to_param}, valid_session
-      expect(assigns(:area)).to eq(area)
+    describe "edit" do
+      it "assigns the requested area as @area" do
+        area = Area.create! valid_attributes
+        get :edit, {:id => area.to_param}, valid_session
+        expect(assigns(:area)).to eq(area)
+      end
     end
   end
 
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Area" do
-        puts Area.count
         expect {
           post :create, {:area => valid_attributes}, valid_session
         }.to change(Area, :count).by(1)

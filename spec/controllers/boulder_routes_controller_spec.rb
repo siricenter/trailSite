@@ -20,15 +20,17 @@ require 'rails_helper'
 
 RSpec.describe BoulderRoutesController, :type => :controller do
 
-  # This should return the minimal set of attributes required to create a valid
-  # BoulderRoute. As you add validations to BoulderRoute, be sure to
-  # adjust the attributes here as well.
+
+  before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryGirl.attributes_for(:boulder_route)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    FactoryGirl.attributes_for(:boulder_route, name:nil, latitude: nil, longitude: nil, zoom:nil, )
   }
 
   # This should return the minimal set of values that should be in the session
@@ -36,34 +38,44 @@ RSpec.describe BoulderRoutesController, :type => :controller do
   # BoulderRoutesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all boulder_routes as @boulder_routes" do
-      boulder_route = BoulderRoute.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:boulder_routes)).to eq([boulder_route])
-    end
-  end
+  # GET
+  describe "GET" do
 
-  describe "GET show" do
-    it "assigns the requested boulder_route as @boulder_route" do
-      boulder_route = BoulderRoute.create! valid_attributes
-      get :show, {:id => boulder_route.to_param}, valid_session
-      expect(assigns(:boulder_route)).to eq(boulder_route)
+    before(:each) do
+      DatabaseCleaner.strategy = :truncation
+      DatabaseCleaner.start
+      DatabaseCleaner.clean
     end
-  end
 
-  describe "GET new" do
-    it "assigns a new boulder_route as @boulder_route" do
-      get :new, {}, valid_session
-      expect(assigns(:boulder_route)).to be_a_new(BoulderRoute)
+    context "index" do
+      it "assigns all boulder_routes as @boulder_routes" do
+        boulder_route = BoulderRoute.create! valid_attributes
+        get :index, {}, valid_session
+        expect(assigns(:boulder_routes)).to eq([boulder_route])
+      end
     end
-  end
 
-  describe "GET edit" do
-    it "assigns the requested boulder_route as @boulder_route" do
-      boulder_route = BoulderRoute.create! valid_attributes
-      get :edit, {:id => boulder_route.to_param}, valid_session
-      expect(assigns(:boulder_route)).to eq(boulder_route)
+    describe "show" do
+      it "assigns the requested boulder_route as @boulder_route" do
+        boulder_route = BoulderRoute.create! valid_attributes
+        get :show, {:id => boulder_route.to_param}, valid_session
+        expect(assigns(:boulder_route)).to eq(boulder_route)
+      end
+    end
+
+    describe "new" do
+      it "assigns a new boulder_route as @boulder_route" do
+        get :new, {}, valid_session
+        expect(assigns(:boulder_route)).to be_a_new(BoulderRoute)
+      end
+    end
+
+    describe "edit" do
+      it "assigns the requested boulder_route as @boulder_route" do
+        boulder_route = BoulderRoute.create! valid_attributes
+        get :edit, {:id => boulder_route.to_param}, valid_session
+        expect(assigns(:boulder_route)).to eq(boulder_route)
+      end
     end
   end
 
@@ -103,14 +115,14 @@ RSpec.describe BoulderRoutesController, :type => :controller do
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        FactoryGirl.attributes_for(:boulder_route, name:"It's Jimmy!")
       }
 
       it "updates the requested boulder_route" do
         boulder_route = BoulderRoute.create! valid_attributes
         put :update, {:id => boulder_route.to_param, :boulder_route => new_attributes}, valid_session
         boulder_route.reload
-        skip("Add assertions for updated state")
+        expect(boulder_route.name).to eq("It's Jimmy!")
       end
 
       it "assigns the requested boulder_route as @boulder_route" do

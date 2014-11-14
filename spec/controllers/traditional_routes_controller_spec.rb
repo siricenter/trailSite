@@ -20,15 +20,17 @@ require 'rails_helper'
 
 RSpec.describe TraditionalRoutesController, :type => :controller do
 
-  # This should return the minimal set of attributes required to create a valid
-  # TraditionalRoute. As you add validations to TraditionalRoute, be sure to
-  # adjust the attributes here as well.
+
+  before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryGirl.attributes_for(:traditional_route)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    FactoryGirl.attributes_for(:traditional_route, name:nil, latitude: nil, longitude: nil, zoom:nil, )
   }
 
   # This should return the minimal set of values that should be in the session
@@ -36,34 +38,44 @@ RSpec.describe TraditionalRoutesController, :type => :controller do
   # TraditionalRoutesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all traditional_routes as @traditional_routes" do
-      traditional_route = TraditionalRoute.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:traditional_routes)).to eq([traditional_route])
-    end
-  end
+  # GET
+  describe "GET" do
 
-  describe "GET show" do
-    it "assigns the requested traditional_route as @traditional_route" do
-      traditional_route = TraditionalRoute.create! valid_attributes
-      get :show, {:id => traditional_route.to_param}, valid_session
-      expect(assigns(:traditional_route)).to eq(traditional_route)
+    before(:each) do
+      DatabaseCleaner.strategy = :truncation
+      DatabaseCleaner.start
+      DatabaseCleaner.clean
     end
-  end
 
-  describe "GET new" do
-    it "assigns a new traditional_route as @traditional_route" do
-      get :new, {}, valid_session
-      expect(assigns(:traditional_route)).to be_a_new(TraditionalRoute)
+    context "index" do
+      it "assigns all traditional_routes as @traditional_routes" do
+        traditional_route = TraditionalRoute.create! valid_attributes
+        get :index, {}, valid_session
+        expect(assigns(:traditional_routes)).to eq([traditional_route])
+      end
     end
-  end
 
-  describe "GET edit" do
-    it "assigns the requested traditional_route as @traditional_route" do
-      traditional_route = TraditionalRoute.create! valid_attributes
-      get :edit, {:id => traditional_route.to_param}, valid_session
-      expect(assigns(:traditional_route)).to eq(traditional_route)
+    describe "show" do
+      it "assigns the requested traditional_route as @traditional_route" do
+        traditional_route = TraditionalRoute.create! valid_attributes
+        get :show, {:id => traditional_route.to_param}, valid_session
+        expect(assigns(:traditional_route)).to eq(traditional_route)
+      end
+    end
+
+    describe "new" do
+      it "assigns a new traditional_route as @traditional_route" do
+        get :new, {}, valid_session
+        expect(assigns(:traditional_route)).to be_a_new(TraditionalRoute)
+      end
+    end
+
+    describe "edit" do
+      it "assigns the requested traditional_route as @traditional_route" do
+        traditional_route = TraditionalRoute.create! valid_attributes
+        get :edit, {:id => traditional_route.to_param}, valid_session
+        expect(assigns(:traditional_route)).to eq(traditional_route)
+      end
     end
   end
 
@@ -103,14 +115,14 @@ RSpec.describe TraditionalRoutesController, :type => :controller do
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        FactoryGirl.attributes_for(:traditional_route, name:"It's Jimmy!")
       }
 
       it "updates the requested traditional_route" do
         traditional_route = TraditionalRoute.create! valid_attributes
         put :update, {:id => traditional_route.to_param, :traditional_route => new_attributes}, valid_session
         traditional_route.reload
-        skip("Add assertions for updated state")
+        expect(traditional_route.name).to eq("It's Jimmy!")
       end
 
       it "assigns the requested traditional_route as @traditional_route" do

@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :wall do
-    crag {FactoryGirl.create(:crag)}
+    crag_id {FactoryGirl.create(:crag).id}
     name Faker::Name.name
     latitude Faker::Number.digit
     longitude Faker::Number.digit

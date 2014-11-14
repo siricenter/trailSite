@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :crag do
-    territory {FactoryGirl.create(:territory)}
+    territory_id {FactoryGirl.create(:territory).id}
     name Faker::Name.name
     latitude Faker::Number.digit
     longitude Faker::Number.digit

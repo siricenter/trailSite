@@ -20,15 +20,17 @@ require 'rails_helper'
 
 RSpec.describe SportRoutesController, :type => :controller do
 
-  # This should return the minimal set of attributes required to create a valid
-  # SportRoute. As you add validations to SportRoute, be sure to
-  # adjust the attributes here as well.
+
+  before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryGirl.attributes_for(:sport_route)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    FactoryGirl.attributes_for(:sport_route, name:nil, latitude: nil, longitude: nil, zoom:nil, )
   }
 
   # This should return the minimal set of values that should be in the session
@@ -36,34 +38,44 @@ RSpec.describe SportRoutesController, :type => :controller do
   # SportRoutesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all sport_routes as @sport_routes" do
-      sport_route = SportRoute.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:sport_routes)).to eq([sport_route])
-    end
-  end
+  # GET
+  describe "GET" do
 
-  describe "GET show" do
-    it "assigns the requested sport_route as @sport_route" do
-      sport_route = SportRoute.create! valid_attributes
-      get :show, {:id => sport_route.to_param}, valid_session
-      expect(assigns(:sport_route)).to eq(sport_route)
+    before(:each) do
+      DatabaseCleaner.strategy = :truncation
+      DatabaseCleaner.start
+      DatabaseCleaner.clean
     end
-  end
 
-  describe "GET new" do
-    it "assigns a new sport_route as @sport_route" do
-      get :new, {}, valid_session
-      expect(assigns(:sport_route)).to be_a_new(SportRoute)
+    context "index" do
+      it "assigns all sport_routes as @sport_routes" do
+        sport_route = SportRoute.create! valid_attributes
+        get :index, {}, valid_session
+        expect(assigns(:sport_routes)).to eq([sport_route])
+      end
     end
-  end
 
-  describe "GET edit" do
-    it "assigns the requested sport_route as @sport_route" do
-      sport_route = SportRoute.create! valid_attributes
-      get :edit, {:id => sport_route.to_param}, valid_session
-      expect(assigns(:sport_route)).to eq(sport_route)
+    describe "show" do
+      it "assigns the requested sport_route as @sport_route" do
+        sport_route = SportRoute.create! valid_attributes
+        get :show, {:id => sport_route.to_param}, valid_session
+        expect(assigns(:sport_route)).to eq(sport_route)
+      end
+    end
+
+    describe "new" do
+      it "assigns a new sport_route as @sport_route" do
+        get :new, {}, valid_session
+        expect(assigns(:sport_route)).to be_a_new(SportRoute)
+      end
+    end
+
+    describe "edit" do
+      it "assigns the requested sport_route as @sport_route" do
+        sport_route = SportRoute.create! valid_attributes
+        get :edit, {:id => sport_route.to_param}, valid_session
+        expect(assigns(:sport_route)).to eq(sport_route)
+      end
     end
   end
 
@@ -103,14 +115,14 @@ RSpec.describe SportRoutesController, :type => :controller do
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        FactoryGirl.attributes_for(:sport_route, name:"It's Jimmy!")
       }
 
       it "updates the requested sport_route" do
         sport_route = SportRoute.create! valid_attributes
         put :update, {:id => sport_route.to_param, :sport_route => new_attributes}, valid_session
         sport_route.reload
-        skip("Add assertions for updated state")
+        expect(sport_route.name).to eq("It's Jimmy!")
       end
 
       it "assigns the requested sport_route as @sport_route" do

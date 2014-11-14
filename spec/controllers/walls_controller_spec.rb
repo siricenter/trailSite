@@ -19,16 +19,18 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe WallsController, :type => :controller do
+ 
 
-  # This should return the minimal set of attributes required to create a valid
-  # Wall. As you add validations to Wall, be sure to
-  # adjust the attributes here as well.
+  before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryGirl.attributes_for(:wall)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    FactoryGirl.attributes_for(:wall, name:nil, latitude: nil, longitude: nil, zoom:nil, )
   }
 
   # This should return the minimal set of values that should be in the session
@@ -36,34 +38,44 @@ RSpec.describe WallsController, :type => :controller do
   # WallsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all walls as @walls" do
-      wall = Wall.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:walls)).to eq([wall])
-    end
-  end
+  # GET
+  describe "GET" do
 
-  describe "GET show" do
-    it "assigns the requested wall as @wall" do
-      wall = Wall.create! valid_attributes
-      get :show, {:id => wall.to_param}, valid_session
-      expect(assigns(:wall)).to eq(wall)
+    before(:each) do
+      DatabaseCleaner.strategy = :truncation
+      DatabaseCleaner.start
+      DatabaseCleaner.clean
     end
-  end
 
-  describe "GET new" do
-    it "assigns a new wall as @wall" do
-      get :new, {}, valid_session
-      expect(assigns(:wall)).to be_a_new(Wall)
+    context "index" do
+      it "assigns all walls as @walls" do
+        wall = Wall.create! valid_attributes
+        get :index, {}, valid_session
+        expect(assigns(:walls)).to eq([wall])
+      end
     end
-  end
 
-  describe "GET edit" do
-    it "assigns the requested wall as @wall" do
-      wall = Wall.create! valid_attributes
-      get :edit, {:id => wall.to_param}, valid_session
-      expect(assigns(:wall)).to eq(wall)
+    describe "show" do
+      it "assigns the requested wall as @wall" do
+        wall = Wall.create! valid_attributes
+        get :show, {:id => wall.to_param}, valid_session
+        expect(assigns(:wall)).to eq(wall)
+      end
+    end
+
+    describe "new" do
+      it "assigns a new wall as @wall" do
+        get :new, {}, valid_session
+        expect(assigns(:wall)).to be_a_new(Wall)
+      end
+    end
+
+    describe "edit" do
+      it "assigns the requested wall as @wall" do
+        wall = Wall.create! valid_attributes
+        get :edit, {:id => wall.to_param}, valid_session
+        expect(assigns(:wall)).to eq(wall)
+      end
     end
   end
 
@@ -103,14 +115,14 @@ RSpec.describe WallsController, :type => :controller do
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        FactoryGirl.attributes_for(:wall, name:"It's Jimmy!")
       }
 
       it "updates the requested wall" do
         wall = Wall.create! valid_attributes
         put :update, {:id => wall.to_param, :wall => new_attributes}, valid_session
         wall.reload
-        skip("Add assertions for updated state")
+        expect(wall.name).to eq("It's Jimmy!")
       end
 
       it "assigns the requested wall as @wall" do

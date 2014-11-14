@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :area do
-    state {FactoryGirl.create(:state)}
+    state_id {FactoryGirl.create(:state).id}
     name Faker::Name.name
     latitude Faker::Number.digit
     longitude Faker::Number.digit

@@ -20,15 +20,18 @@ require 'rails_helper'
 
 RSpec.describe CragsController, :type => :controller do
 
-  # This should return the minimal set of attributes required to create a valid
-  # Crag. As you add validations to Crag, be sure to
-  # adjust the attributes here as well.
+  
+
+  before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryGirl.attributes_for(:crag)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    FactoryGirl.attributes_for(:crag, name:nil, latitude: nil, longitude: nil, zoom:nil, )
   }
 
   # This should return the minimal set of values that should be in the session
@@ -36,34 +39,44 @@ RSpec.describe CragsController, :type => :controller do
   # CragsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all crags as @crags" do
-      crag = Crag.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:crags)).to eq([crag])
-    end
-  end
+  # GET
+  describe "GET" do
 
-  describe "GET show" do
-    it "assigns the requested crag as @crag" do
-      crag = Crag.create! valid_attributes
-      get :show, {:id => crag.to_param}, valid_session
-      expect(assigns(:crag)).to eq(crag)
+    before(:each) do
+      DatabaseCleaner.strategy = :truncation
+      DatabaseCleaner.start
+      DatabaseCleaner.clean
     end
-  end
 
-  describe "GET new" do
-    it "assigns a new crag as @crag" do
-      get :new, {}, valid_session
-      expect(assigns(:crag)).to be_a_new(Crag)
+    context "index" do
+      it "assigns all crags as @crags" do
+        crag = Crag.create! valid_attributes
+        get :index, {}, valid_session
+        expect(assigns(:crags)).to eq([crag])
+      end
     end
-  end
 
-  describe "GET edit" do
-    it "assigns the requested crag as @crag" do
-      crag = Crag.create! valid_attributes
-      get :edit, {:id => crag.to_param}, valid_session
-      expect(assigns(:crag)).to eq(crag)
+    describe "show" do
+      it "assigns the requested crag as @crag" do
+        crag = Crag.create! valid_attributes
+        get :show, {:id => crag.to_param}, valid_session
+        expect(assigns(:crag)).to eq(crag)
+      end
+    end
+
+    describe "new" do
+      it "assigns a new crag as @crag" do
+        get :new, {}, valid_session
+        expect(assigns(:crag)).to be_a_new(Crag)
+      end
+    end
+
+    describe "edit" do
+      it "assigns the requested crag as @crag" do
+        crag = Crag.create! valid_attributes
+        get :edit, {:id => crag.to_param}, valid_session
+        expect(assigns(:crag)).to eq(crag)
+      end
     end
   end
 
@@ -103,14 +116,14 @@ RSpec.describe CragsController, :type => :controller do
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        FactoryGirl.attributes_for(:crag, name:"It's Jimmy!")
       }
 
       it "updates the requested crag" do
         crag = Crag.create! valid_attributes
         put :update, {:id => crag.to_param, :crag => new_attributes}, valid_session
         crag.reload
-        skip("Add assertions for updated state")
+        expect(crag.name).to eq("It's Jimmy!")
       end
 
       it "assigns the requested crag as @crag" do
@@ -155,5 +168,4 @@ RSpec.describe CragsController, :type => :controller do
       expect(response).to redirect_to(crags_url)
     end
   end
-
 end

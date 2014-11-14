@@ -20,50 +20,63 @@ require 'rails_helper'
 
 RSpec.describe TerritoriesController, :type => :controller do
 
-  # This should return the minimal set of attributes required to create a valid
-  # Territory. As you add validations to Territory, be sure to
-  # adjust the attributes here as well.
+  
+
+  before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryGirl.attributes_for(:territory)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    FactoryGirl.attributes_for(:territory, name:nil, latitude: nil, longitude: nil, zoom:nil, )
   }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # TerritoriesController. Be sure to keep this updated too.
+  # TerritorysController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all territories as @territories" do
-      territory = Territory.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:territories)).to eq([territory])
-    end
-  end
+  # GET
+  describe "GET" do
 
-  describe "GET show" do
-    it "assigns the requested territory as @territory" do
-      territory = Territory.create! valid_attributes
-      get :show, {:id => territory.to_param}, valid_session
-      expect(assigns(:territory)).to eq(territory)
+    before(:each) do
+      DatabaseCleaner.strategy = :truncation
+      DatabaseCleaner.start
+      DatabaseCleaner.clean
     end
-  end
 
-  describe "GET new" do
-    it "assigns a new territory as @territory" do
-      get :new, {}, valid_session
-      expect(assigns(:territory)).to be_a_new(Territory)
+    context "index" do
+      it "assigns all territories as @territories" do
+        territory = Territory.create! valid_attributes
+        get :index, {}, valid_session
+        expect(assigns(:territories)).to eq([territory])
+      end
     end
-  end
 
-  describe "GET edit" do
-    it "assigns the requested territory as @territory" do
-      territory = Territory.create! valid_attributes
-      get :edit, {:id => territory.to_param}, valid_session
-      expect(assigns(:territory)).to eq(territory)
+    describe "show" do
+      it "assigns the requested territory as @territory" do
+        territory = Territory.create! valid_attributes
+        get :show, {:id => territory.to_param}, valid_session
+        expect(assigns(:territory)).to eq(territory)
+      end
+    end
+
+    describe "new" do
+      it "assigns a new territory as @territory" do
+        get :new, {}, valid_session
+        expect(assigns(:territory)).to be_a_new(Territory)
+      end
+    end
+
+    describe "edit" do
+      it "assigns the requested territory as @territory" do
+        territory = Territory.create! valid_attributes
+        get :edit, {:id => territory.to_param}, valid_session
+        expect(assigns(:territory)).to eq(territory)
+      end
     end
   end
 
@@ -103,14 +116,14 @@ RSpec.describe TerritoriesController, :type => :controller do
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        FactoryGirl.attributes_for(:territory, name:"It's Jimmy!")
       }
 
       it "updates the requested territory" do
         territory = Territory.create! valid_attributes
         put :update, {:id => territory.to_param, :territory => new_attributes}, valid_session
         territory.reload
-        skip("Add assertions for updated state")
+        expect(territory.name).to eq("It's Jimmy!")
       end
 
       it "assigns the requested territory as @territory" do
@@ -155,5 +168,4 @@ RSpec.describe TerritoriesController, :type => :controller do
       expect(response).to redirect_to(territories_url)
     end
   end
-
 end

@@ -5,7 +5,7 @@ require 'hueco_grade'
 
 FactoryGirl.define do
   factory :boulder_route do
-    wall {FactoryGirl.create(:wall)}
+    wall_id {FactoryGirl.create(:wall).id}
     name Faker::Name.name
     latitude Faker::Number.digit
     longitude Faker::Number.digit
