@@ -16,3 +16,4 @@
 //= require_tree .
 //= require bootstrap/bootstrap.min
 //= require googleMaps/googleMaps
+//= require googleMaps/googleTrailMarkers

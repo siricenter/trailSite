@@ -2,11 +2,12 @@ require 'rails_helper'
 
 RSpec.describe RegionsController, :type => :controller do
 
+
   before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
   end
 
-	let(:valid_attributes) {
+  let(:valid_attributes) {
     FactoryGirl.attributes_for(:region)
   }
 
@@ -57,6 +58,15 @@ RSpec.describe RegionsController, :type => :controller do
         get :edit, {:id => region.to_param}, valid_session
         expect(assigns(:region)).to eq(region)
       end
+
+    describe "json" do
+      it "returns a valid json object" do
+        region = FactoryGirl.create(:region, id:1)
+        json = get(:getJson, {}, valid_session)
+        expect(json).to_not be_nil;
+      end
+    end
+
     end
   end
 

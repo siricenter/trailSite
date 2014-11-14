@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  resources :boulder_routes
+  
+  get 'regions/getJson', to: 'regions#getJson'
 
-  resources :traditional_routes
-
-  resources :sport_routes
-
-  resources :walls
+  #admin
+  scope :admin do
+    
+  get '/', to: 'static#dashboard', as: :dashboard
 
   resources :crags
 
@@ -17,11 +17,14 @@ Rails.application.routes.draw do
 
   resources :regions
 
-  resources :trail_types
+  resources :boulder_routes
 
-  #admin
-  scope :admin do
-    get '/', to: 'static#dashboard', as: :dashboard
+  resources :traditional_routes
+
+  resources :sport_routes
+
+  resources :walls
+
   end
 
 

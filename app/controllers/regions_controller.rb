@@ -61,6 +61,11 @@ class RegionsController < ApplicationController
     end
   end
 
+  # get a json array of all regions
+  def getJson
+    render json: (Region.all)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_region
@@ -71,4 +76,5 @@ class RegionsController < ApplicationController
     def region_params
       params.require(:region).permit(:name, :latitude, :longitude, :zoom, :description, :history)
     end
+
 end
