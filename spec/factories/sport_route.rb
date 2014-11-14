@@ -20,8 +20,3 @@ FactoryGirl.define do
     anchor {AnchorType.getRand()}
   end
 end
-
-def getAnchor
-    anc = ["none", "Shuts", "Rings", "Chains", "Bolts"]
-    return anc[rand(5)]
-end
