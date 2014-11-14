@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112034216) do
+ActiveRecord::Schema.define(version: 20141114161710) do
 
   create_table "areas", force: true do |t|
     t.string   "name"
@@ -27,6 +27,25 @@ ActiveRecord::Schema.define(version: 20141112034216) do
   end
 
   add_index "areas", ["state_id"], name: "index_areas_on_state_id"
+
+  create_table "boulder_routes", force: true do |t|
+    t.string   "name"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.integer  "zoom"
+    t.text     "description"
+    t.text     "directions"
+    t.integer  "wall_id"
+    t.string   "danger_rating"
+    t.integer  "stars"
+    t.integer  "pads"
+    t.string   "hueco_grade"
+    t.decimal  "length"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "boulder_routes", ["wall_id"], name: "index_boulder_routes_on_wall_id"
 
   create_table "crags", force: true do |t|
     t.integer  "territory_id"
