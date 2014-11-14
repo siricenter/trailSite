@@ -1,6 +1,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 require 'yds_grade'
 require 'danger_rating'
+require 'anchor_type'
 
 FactoryGirl.define do
   factory :sport_route do
@@ -16,7 +17,7 @@ FactoryGirl.define do
     stars {1 + rand(5)}
     pitches {1 + rand(5)}
     yds_grade {YdsGrade.getRand()}
-    anchor {getAnchor()}
+    anchor {AnchorType.getRand()}
   end
 end
 
