@@ -77,6 +77,15 @@ RSpec.describe AreasController, :type => :controller do
         expect(assigns(:area)).to eq(area)
       end
     end
+
+    describe "json" do
+      it "returns a valid json object" do
+        region = FactoryGirl.create(:area, id:1)
+        json = get(:getJson, {}, valid_session)
+        expect(json).to_not be_nil;
+      end
+    end
+
   end
 
   describe "POST create" do

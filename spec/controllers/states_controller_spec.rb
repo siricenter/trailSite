@@ -78,6 +78,15 @@ RSpec.describe StatesController, :type => :controller do
         expect(assigns(:state)).to eq(state)
       end
     end
+
+    describe "json" do
+      it "returns a valid json object" do
+        subject = FactoryGirl.create(:state, id:1)
+        json = get(:getJson, {}, valid_session)
+        expect(json).to_not be_nil;
+      end
+    end
+
   end
 
   describe "POST create" do

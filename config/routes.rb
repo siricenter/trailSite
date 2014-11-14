@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
   
   get 'regions/getJson', to: 'regions#getJson'
+  get 'states/getJson', to: 'states#getJson'
+  get 'areas/getJson', to: 'areas#getJson'
+  get 'territories/getJson', to: 'territories#getJson'
+  get 'crags/getJson', to: 'crags#getJson'
+  get 'walls/getJson', to: 'walls#getJson'
 
-  #admin
-  scope :admin do
-    
-  get '/', to: 'static#dashboard', as: :dashboard
+  get 'sport_routes/getJson', to: 'sport_routes#getJson'
+  get 'boulder_routes/getJson', to: 'boulder_routes#getJson'
+  get 'traditional_routes/getJson', to: 'traditional_routes#getJson'
 
   resources :crags
 
@@ -24,6 +28,11 @@ Rails.application.routes.draw do
   resources :sport_routes
 
   resources :walls
+
+  #admin
+  scope :admin do
+    
+  get '/', to: 'static#dashboard', as: :dashboard
 
   end
 

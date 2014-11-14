@@ -61,6 +61,11 @@ class CragsController < ApplicationController
     end
   end
 
+  # get a json array
+  def getJson
+    render json: (Crag.all)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_crag

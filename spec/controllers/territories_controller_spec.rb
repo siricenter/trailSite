@@ -78,6 +78,15 @@ RSpec.describe TerritoriesController, :type => :controller do
         expect(assigns(:territory)).to eq(territory)
       end
     end
+
+    describe "json" do
+      it "returns a valid json object" do
+        subject = FactoryGirl.create(:territory, id:1)
+        json = get(:getJson, {}, valid_session)
+        expect(json).to_not be_nil;
+      end
+    end
+
   end
 
   describe "POST create" do

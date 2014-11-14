@@ -77,6 +77,15 @@ RSpec.describe SportRoutesController, :type => :controller do
         expect(assigns(:sport_route)).to eq(sport_route)
       end
     end
+
+    describe "json" do
+      it "returns a valid json object" do
+        subject = FactoryGirl.create(:sport_route, id:1)
+        json = get(:getJson, {}, valid_session)
+        expect(json).to_not be_nil;
+      end
+    end
+
   end
 
   describe "POST create" do

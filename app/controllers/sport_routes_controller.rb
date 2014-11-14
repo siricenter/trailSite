@@ -61,6 +61,11 @@ class SportRoutesController < ApplicationController
     end
   end
 
+  # get a json array
+  def getJson
+    render json: (SportRoute.all)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sport_route
