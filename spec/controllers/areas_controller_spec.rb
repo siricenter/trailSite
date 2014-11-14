@@ -24,11 +24,11 @@ RSpec.describe AreasController, :type => :controller do
   # Area. As you add validations to Area, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryGirl.attributes_for(:area)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    FactoryGirl.attributes_for(:area, state: nil, name:nil, latitude: nil, longitude: nil, zoom:nil, )
   }
 
   # This should return the minimal set of values that should be in the session
@@ -36,7 +36,21 @@ RSpec.describe AreasController, :type => :controller do
   # AreasController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
   describe "GET index" do
+
+    before(:each) do
+      DatabaseCleaner.strategy = :transaction
+      DatabaseCleaner.start
+    end
+
+    after(:each) do
+      DatabaseCleaner.clean
+    end
+
     it "assigns all areas as @areas" do
       area = Area.create! valid_attributes
       get :index, {}, valid_session
@@ -70,6 +84,7 @@ RSpec.describe AreasController, :type => :controller do
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Area" do
+        puts Area.count
         expect {
           post :create, {:area => valid_attributes}, valid_session
         }.to change(Area, :count).by(1)
@@ -103,14 +118,14 @@ RSpec.describe AreasController, :type => :controller do
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        FactoryGirl.attributes_for(:area, name:"It's Jimmy!")
       }
 
       it "updates the requested area" do
         area = Area.create! valid_attributes
         put :update, {:id => area.to_param, :area => new_attributes}, valid_session
         area.reload
-        skip("Add assertions for updated state")
+        expect(area.name).to eq("It's Jimmy!")
       end
 
       it "assigns the requested area as @area" do

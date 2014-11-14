@@ -92,7 +92,7 @@ RSpec.describe BoulderRoute, :type => :model do
   end
   
   it "is invalid without valid hueco_grade" do
-    subject = FactoryGirl.build(:boulder_route, heuco_grade: Faker::Name.name)
+    subject = FactoryGirl.build(:boulder_route, hueco_grade: Faker::Name.name)
     expect(subject).to_not be_valid
   end
 

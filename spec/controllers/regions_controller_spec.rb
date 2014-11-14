@@ -4,10 +4,7 @@ RSpec.describe RegionsController, :type => :controller do
 
 
 	valid_params = {
-		name: (Faker::Name.name),
-		latitude: (Faker::Number.digit),
-		longitude: (Faker::Number.digit),
-		zoom: (Faker::Number.digit)
+		FactoryGirl.attributes_for(:region)
 	}
 
 	invalid_params = {
@@ -20,6 +17,16 @@ RSpec.describe RegionsController, :type => :controller do
 	let(:valid_session) {{}}
 
   	describe "GET index" do
+
+      before(:each) do
+        DatabaseCleaner.strategy = :transaction
+        DatabaseCleaner.start
+      end
+
+      after(:each) do
+        DatabaseCleaner.clean
+      end
+
     	it "assigns all regions as @regions" do
     		region = FactoryGirl.create(:region, id:1)
 		    get :index, {}, valid_session

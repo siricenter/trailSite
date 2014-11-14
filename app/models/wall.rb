@@ -6,4 +6,5 @@ class Wall < ActiveRecord::Base
   	belongs_to :crag
   	has_many :sport_routes
   	has_many :traditional_routes
+    has_many :boulder_routes
 end
