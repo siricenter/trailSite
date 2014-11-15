@@ -1,0 +1,29 @@
+<h1>Listing wall_photos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Wall</th>
+      <th>Url</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @wall_photos.each do |wall_photo| %>
+      <tr>
+        <td><%= wall_photo.title %></td>
+        <td><%= wall_photo.wall %></td>
+        <td><%= wall_photo.url %></td>
+        <td><%= link_to 'Show', wall_photo %></td>
+        <td><%= link_to 'Edit', edit_wall_photo_path(wall_photo) %></td>
+        <td><%= link_to 'Destroy', wall_photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Wall photo', new_wall_photo_path %>
