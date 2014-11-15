@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @sport_route_photo.title %>
+</p>
+
+<p>
+  <strong>Sport route:</strong>
+  <%= @sport_route_photo.sport_route %>
+</p>
+
+<p>
+  <strong>Image:</strong></br>
+  <image class="image_thumbnail" src="<%= @sport_route_photo.url %>"/>
+</p>
+
+<%= link_to 'Edit', edit_sport_route_photo_path(@sport_route_photo) %> |
+<%= link_to 'Back', sport_route_photos_path %>

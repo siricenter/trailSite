@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :sport_route_photos
+
   resources :wall_photos
 
   get 'regions/getJson', to: 'regions#getJson'

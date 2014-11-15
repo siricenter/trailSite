@@ -1,0 +1,29 @@
+<%= form_for(@sport_route_photo) do |f| %>
+  <% if @sport_route_photo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sport_route_photo.errors.count, "error") %> prohibited this sport_route_photo from being saved:</h2>
+
+      <ul>
+      <% @sport_route_photo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :sport_route_id %><br>
+    <%= f.text_field :sport_route_id %>
+  </div>
+  <div class="field">
+    <%= f.label :url %><br>
+    <%= f.text_field :url %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
