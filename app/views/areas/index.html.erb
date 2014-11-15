@@ -1,8 +1,8 @@
-<h1>Listing areas</h1>
+<h2>Listing Areas</h2>
 
-<table>
+<table class="table table-condensed table-bordered table-hover table-responsive">
   <thead>
-    <tr>
+    <tr class="info">
       <th>Name</th>
       <th>Longitude</th>
       <th>Latitude</th>
@@ -16,7 +16,7 @@
 
   <tbody>
     <% @areas.each do |area| %>
-      <tr>
+      <tr class="success">
         <td><%= area.name %></td>
         <td><%= area.longitude %></td>
         <td><%= area.latitude %></td>
@@ -24,9 +24,9 @@
         <td><%= area.weather %></td>
         <td><%= area.description %></td>
         <td><%= area.history %></td>
-        <td><%= link_to 'Show', area %></td>
-        <td><%= link_to 'Edit', edit_area_path(area) %></td>
-        <td><%= link_to 'Destroy', area, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="danger"><%= link_to 'Show', area %></td>
+        <td class="danger"><%= link_to 'Edit', edit_area_path(area) %></td>
+        <td class="danger"><%= link_to 'Destroy', area, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
