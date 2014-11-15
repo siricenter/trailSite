@@ -1,4 +1,4 @@
-<%= form_for(@area, html: {role: "form"}) do |f| %>
+<%= form_for(@area, html: {role: "form", oninput: "x.value=parseInt(areas_zoom.value)"}) do |f| %>
   <% if @area.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@area.errors.count, "error") %> prohibited this area from being saved:</h2>
@@ -12,36 +12,38 @@
   <% end %>
 
   <div class="form-group">
-    <div class="field col-md-4">
+    <div class="field col-md-2 <%=if @area.errors[:name].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :name %><br>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="field col-md-2 <%=if @area.errors[:state].present? then 'has-error' else 'has-success' end %>">
       <%= f.label :state_id %><br>
       <%= select("area", "state_id", State.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''},
        class: "form-control" )  %>
     </div>
-    <div class="field col-md-4 <%=if @area.errors[:name].present? then 'has-error' else 'has-success' end %>">
-      <%= f.label :name %><br>
-      <%= f.text_field :name, class: "form-control" %>
-    </div>
-    <div class="field col-md-4">
+    
+    <div class="field col-md-2 <%=if @area.errors[:longitude].present? then 'has-error' else 'has-success' end %>">
       <%= f.label :longitude %><br>
       <%= f.text_field :longitude, class: "form-control" %>
     </div>
-    <div class="field col-md-4">
+    <div class="field col-md-2 <%=if @area.errors[:latitude].present? then 'has-error' else 'has-success' end %>">
       <%= f.label :latitude %><br>
       <%= f.text_field :latitude, class: "form-control" %>
     </div>
-    <div class="field col-md-4">
-      <%= f.label :zoom %><br>
-      <%= f.number_field :zoom, class: "form-control" %>
+    <div class="field col-md-2 <%=if @area.errors[:zoom].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :zoom %></br>
+      <input type="range" id="areas_zoom" name="area[zoom]" value="1" min="1" max="16"   class: "form-control" > 
+      <span style="float:left; margin-top:0.6em">zoom =</span><output name="x" for="areas_zoom"></output>
     </div>
-    <div class="field col-md-4">
+    <div class="field col-md-2 <%=if @area.errors[:weather].present? then 'has-error' end %>">
       <%= f.label :weather %><br>
       <%= f.text_field :weather, class: "form-control" %>
     </div>
-    <div class="field col-md-4">
+    <div class="field col-md-6  <%=if @area.errors[:description].present? then 'has-error' end %>">
       <%= f.label :description %><br>
       <%= f.text_area :description, class: "form-control" %>
     </div>
-    <div class="field col-md-4">
+    <div class="field col-md-6 <%=if @area.errors[:history].present? then 'has-error' end %>">
       <%= f.label :history %><br>
       <%= f.text_area :history, class: "form-control" %>
     </div>
