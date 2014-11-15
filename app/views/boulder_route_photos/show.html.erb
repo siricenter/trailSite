@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @boulder_route_photo.title %>
+</p>
+
+<p>
+  <strong>Boulder route:</strong>
+  <%= @boulder_route_photo.boulder_route %>
+</p>
+
+<p>
+  <strong>Image:</strong></br>
+  <image class="image_thumbnail" src="<%= @boulder_route_photo.url %>"/>
+</p>
+
+<%= link_to 'Edit', edit_boulder_route_photo_path(@boulder_route_photo) %> |
+<%= link_to 'Back', boulder_route_photos_path %>

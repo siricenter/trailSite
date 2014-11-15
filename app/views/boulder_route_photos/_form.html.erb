@@ -1,0 +1,29 @@
+<%= form_for(@boulder_route_photo) do |f| %>
+  <% if @boulder_route_photo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@boulder_route_photo.errors.count, "error") %> prohibited this boulder_route_photo from being saved:</h2>
+
+      <ul>
+      <% @boulder_route_photo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :boulder_route_id %><br>
+    <%= f.text_field :boulder_route_id %>
+  </div>
+  <div class="field">
+    <%= f.label :url %><br>
+    <%= f.text_field :url %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

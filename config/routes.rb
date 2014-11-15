@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :boulder_route_photos
+
   resources :traditional_route_photos
 
   resources :sport_route_photos

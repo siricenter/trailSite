@@ -1,0 +1,29 @@
+<h1>Listing boulder_route_photos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Boulder route</th>
+      <th>Url</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @boulder_route_photos.each do |boulder_route_photo| %>
+      <tr>
+        <td><%= boulder_route_photo.title %></td>
+        <td><%= boulder_route_photo.boulder_route %></td>
+        <td><%= boulder_route_photo.url %></td>
+        <td><%= link_to 'Show', boulder_route_photo %></td>
+        <td><%= link_to 'Edit', edit_boulder_route_photo_path(boulder_route_photo) %></td>
+        <td><%= link_to 'Destroy', boulder_route_photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Boulder route photo', new_boulder_route_photo_path %>

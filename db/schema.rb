@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141115150053) do
+ActiveRecord::Schema.define(version: 20141115150503) do
 
   create_table "areas", force: true do |t|
     t.string   "name"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 20141115150053) do
   end
 
   add_index "areas", ["state_id"], name: "index_areas_on_state_id"
+
+  create_table "boulder_route_photos", force: true do |t|
+    t.string   "title"
+    t.integer  "boulder_route_id"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "boulder_route_photos", ["boulder_route_id"], name: "index_boulder_route_photos_on_boulder_route_id"
 
   create_table "boulder_routes", force: true do |t|
     t.string   "name"
