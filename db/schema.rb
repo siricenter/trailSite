@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141115145632) do
+ActiveRecord::Schema.define(version: 20141115150053) do
 
   create_table "areas", force: true do |t|
     t.string   "name"
@@ -131,6 +131,16 @@ ActiveRecord::Schema.define(version: 20141115145632) do
   end
 
   add_index "territories", ["area_id"], name: "index_territories_on_area_id"
+
+  create_table "traditional_route_photos", force: true do |t|
+    t.string   "title"
+    t.integer  "traditional_route_id"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "traditional_route_photos", ["traditional_route_id"], name: "index_traditional_route_photos_on_traditional_route_id"
 
   create_table "traditional_routes", force: true do |t|
     t.string   "name"

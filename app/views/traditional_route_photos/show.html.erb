@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @traditional_route_photo.title %>
+</p>
+
+<p>
+  <strong>Traditional route:</strong>
+  <%= @traditional_route_photo.traditional_route %>
+</p>
+
+<p>
+  <strong>Image:</strong></br>
+  <image class="image_thumbnail" src="<%= @traditional_route_photo.url %>"/>
+</p>
+
+<%= link_to 'Edit', edit_traditional_route_photo_path(@traditional_route_photo) %> |
+<%= link_to 'Back', traditional_route_photos_path %>

@@ -1,0 +1,29 @@
+<h1>Listing traditional_route_photos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Traditional route</th>
+      <th>Url</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @traditional_route_photos.each do |traditional_route_photo| %>
+      <tr>
+        <td><%= traditional_route_photo.title %></td>
+        <td><%= traditional_route_photo.traditional_route %></td>
+        <td><%= traditional_route_photo.url %></td>
+        <td><%= link_to 'Show', traditional_route_photo %></td>
+        <td><%= link_to 'Edit', edit_traditional_route_photo_path(traditional_route_photo) %></td>
+        <td><%= link_to 'Destroy', traditional_route_photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Traditional route photo', new_traditional_route_photo_path %>
