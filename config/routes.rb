@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'boulder_routes/getJson', to: 'boulder_routes#getJson'
   get 'traditional_routes/getJson', to: 'traditional_routes#getJson'
 
+  get 'wall_photos/getJson', to: 'wall_photos#getJson'
   get 'sport_route_photos/getJson', to: 'sport_route_photos#getJson'
   get 'boulder_route_photos/getJson', to: 'boulder_route_photos#getJson'
   get 'traditional_route_photos/getJson', to: 'traditional_route_photos#getJson'

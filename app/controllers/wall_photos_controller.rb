@@ -61,6 +61,11 @@ class WallPhotosController < ApplicationController
     end
   end
 
+  # get a json array
+  def getJson
+    render json: (WallPhoto.all)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_wall_photo
