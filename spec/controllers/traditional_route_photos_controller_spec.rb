@@ -20,15 +20,16 @@ require 'rails_helper'
 
 RSpec.describe TraditionalRoutePhotosController, :type => :controller do
 
-  # This should return the minimal set of attributes required to create a valid
-  # TraditionalRoutePhoto. As you add validations to TraditionalRoutePhoto, be sure to
-  # adjust the attributes here as well.
+  before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryGirl.attributes_for(:traditional_route_photo)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    FactoryGirl.attributes_for(:traditional_route_photo, title:nil, url:nil, traditional_route_id: nil )
   }
 
   # This should return the minimal set of values that should be in the session
@@ -36,35 +37,54 @@ RSpec.describe TraditionalRoutePhotosController, :type => :controller do
   # TraditionalRoutePhotosController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all traditional_route_photos as @traditional_route_photos" do
-      traditional_route_photo = TraditionalRoutePhoto.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:traditional_route_photos)).to eq([traditional_route_photo])
-    end
-  end
+  # GET
+  describe "GET" do
 
-  describe "GET show" do
-    it "assigns the requested traditional_route_photo as @traditional_route_photo" do
-      traditional_route_photo = TraditionalRoutePhoto.create! valid_attributes
-      get :show, {:id => traditional_route_photo.to_param}, valid_session
-      expect(assigns(:traditional_route_photo)).to eq(traditional_route_photo)
+    before(:each) do
+      DatabaseCleaner.strategy = :truncation
+      DatabaseCleaner.start
+      DatabaseCleaner.clean
     end
-  end
 
-  describe "GET new" do
-    it "assigns a new traditional_route_photo as @traditional_route_photo" do
-      get :new, {}, valid_session
-      expect(assigns(:traditional_route_photo)).to be_a_new(TraditionalRoutePhoto)
+    context "index" do
+      it "assigns all traditional_route_photos as @traditional_route_photos" do
+        traditional_route_photo = TraditionalRoutePhoto.create! valid_attributes
+        get :index, {}, valid_session
+        expect(assigns(:traditional_route_photos)).to eq([traditional_route_photo])
+      end
     end
-  end
 
-  describe "GET edit" do
-    it "assigns the requested traditional_route_photo as @traditional_route_photo" do
-      traditional_route_photo = TraditionalRoutePhoto.create! valid_attributes
-      get :edit, {:id => traditional_route_photo.to_param}, valid_session
-      expect(assigns(:traditional_route_photo)).to eq(traditional_route_photo)
+    describe "show" do
+      it "assigns the requested traditional_route_photo as @traditional_route_photo" do
+        traditional_route_photo = TraditionalRoutePhoto.create! valid_attributes
+        get :show, {:id => traditional_route_photo.to_param}, valid_session
+        expect(assigns(:traditional_route_photo)).to eq(traditional_route_photo)
+      end
     end
+
+    describe "new" do
+      it "assigns a new traditional_route_photo as @traditional_route_photo" do
+        get :new, {}, valid_session
+        expect(assigns(:traditional_route_photo)).to be_a_new(TraditionalRoutePhoto)
+      end
+    end
+
+    describe "edit" do
+      it "assigns the requested traditional_route_photo as @traditional_route_photo" do
+        traditional_route_photo = TraditionalRoutePhoto.create! valid_attributes
+        get :edit, {:id => traditional_route_photo.to_param}, valid_session
+        expect(assigns(:traditional_route_photo)).to eq(traditional_route_photo)
+      end
+    end
+
+    describe "json" do
+      it "returns a valid json object" do
+        region = FactoryGirl.create(:traditional_route_photo, id:1)
+        json = get(:getJson, {}, valid_session)
+        expect(json).to_not be_nil;
+      end
+    end
+
   end
 
   describe "POST create" do
@@ -103,14 +123,14 @@ RSpec.describe TraditionalRoutePhotosController, :type => :controller do
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        FactoryGirl.attributes_for(:traditional_route_photo, title:"It's Jimmy!")
       }
 
       it "updates the requested traditional_route_photo" do
         traditional_route_photo = TraditionalRoutePhoto.create! valid_attributes
         put :update, {:id => traditional_route_photo.to_param, :traditional_route_photo => new_attributes}, valid_session
         traditional_route_photo.reload
-        skip("Add assertions for updated state")
+        expect(traditional_route_photo.title).to eq("It's Jimmy!")
       end
 
       it "assigns the requested traditional_route_photo as @traditional_route_photo" do
