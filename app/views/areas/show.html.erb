@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>State:</strong>
+  <%= if @area.state != nil then @area.state.name else "DELETED, PLEASE RE-SELECT A STATE FROM THEN 'EDIT' MENU" end %>
+</p>
+
+<p>
   <strong>Longitude:</strong>
   <%= @area.longitude %>
 </p>

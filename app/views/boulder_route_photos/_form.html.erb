@@ -11,19 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :boulder_route_id %><br>
-    <%= f.text_field :boulder_route_id %>
-  </div>
-  <div class="field">
-    <%= f.label :url %><br>
-    <%= f.text_field :url %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class="form-field <%=if @boulder_route_photo.errors[:title].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :title %><br>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div class="form-field <%=if @boulder_route_photo.errors[:boulder_route_id].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :boulder_route_id %><br>
+      <%= f.text_field :boulder_route_id, class: "form-control" %>
+    </div>
+    <div class="form-field <%=if @boulder_route_photo.errors[:url].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :url %><br>
+      <%= f.text_field :url, class: "form-control" %>
+    </div>
+    <div class="actions col-md-12">
+      <%= f.submit class: "form-button" %>
+    </div>
   </div>
 <% end %>
