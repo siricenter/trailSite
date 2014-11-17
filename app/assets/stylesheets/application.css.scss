@@ -10,11 +10,12 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require bootstrap/bootstrap
  *= require_tree .
  *= require_self
- *= require bootstrap/bootstrap-theme
  */
+
+@import "bootstrap/bootstrap";
+@import "bootstrap/bootstrap-theme";
 
 #map-canvas 
 { 
@@ -28,4 +29,44 @@
 .image_thumbnail
 {
   height: 300px;
+}
+
+.index-table
+{
+  @extend .table;
+  @extend .table-condensed;
+  @extend .table-bordered;
+}
+
+.index-th
+{
+  @extend .info;
+}
+
+.index-tr
+{
+  @extend .success;
+}
+
+.index-action
+{
+  @extend .danger;
+}
+
+.form-field
+{
+  @extend .field;
+  @extend .col-md-2;
+}
+
+.form-text
+{
+  @extend .field;
+  @extend .col-md-6;
+}
+
+.form-button
+{
+  @extend .btn;
+  @extend .btn-default;
 }
