@@ -2,7 +2,7 @@
 
 <p>
   <strong>Crag:</strong>
-  <%= @wall.crag %>
+  <%= @wall.crag.name %>
 </p>
 
 <p>
@@ -39,6 +39,8 @@
   <strong>History:</strong>
   <%= @wall.history %>
 </p>
+
+<%= render 'photos' %>
 
 <%= link_to 'Edit', edit_wall_path(@wall) %> |
 <%= link_to 'Back', walls_path %>

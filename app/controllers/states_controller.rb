@@ -51,6 +51,7 @@ class StatesController < ApplicationController
       end
     end
   end
+  
 
   # DELETE /states/1
   # DELETE /states/1.json

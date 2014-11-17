@@ -175,7 +175,7 @@ RSpec.describe StatesController, :type => :controller do
     it "redirects to the state list" do
       state = State.create! valid_attributes
       delete :destroy, {:id => state.to_param}, valid_session
-      expect(response).to redirect_to(state_url)
+      expect(response).to redirect_to(states_url)
     end
   end
 

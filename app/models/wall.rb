@@ -7,4 +7,5 @@ class Wall < ActiveRecord::Base
 	has_many :sport_routes
 	has_many :traditional_routes
   has_many :boulder_routes
+  has_many :wall_photos
 end

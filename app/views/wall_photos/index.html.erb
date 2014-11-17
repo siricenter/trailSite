@@ -14,7 +14,7 @@
     <% @wall_photos.each do |wall_photo| %>
       <tr>
         <td><%= wall_photo.title %></td>
-        <td><%= wall_photo.wall %></td>
+        <td><%= wall_photo.wall.name %></td>
         <td><%= wall_photo.url %></td>
         <td><%= link_to 'Show', wall_photo %></td>
         <td><%= link_to 'Edit', edit_wall_photo_path(wall_photo) %></td>
