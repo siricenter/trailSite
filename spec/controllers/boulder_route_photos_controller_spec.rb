@@ -20,15 +20,17 @@ require 'rails_helper'
 
 RSpec.describe BoulderRoutePhotosController, :type => :controller do
 
-  # This should return the minimal set of attributes required to create a valid
-  # BoulderRoutePhoto. As you add validations to BoulderRoutePhoto, be sure to
-  # adjust the attributes here as well.
+
+  before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryGirl.attributes_for(:boulder_route_photo)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    FactoryGirl.attributes_for(:boulder_route_photo, title:nil, url:nil, boudler_id:nil )
   }
 
   # This should return the minimal set of values that should be in the session
@@ -36,35 +38,54 @@ RSpec.describe BoulderRoutePhotosController, :type => :controller do
   # BoulderRoutePhotosController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all boulder_route_photos as @boulder_route_photos" do
-      boulder_route_photo = BoulderRoutePhoto.create! valid_attributes
-      get :index, {}, valid_session
-      expect(assigns(:boulder_route_photos)).to eq([boulder_route_photo])
-    end
-  end
+  # GET
+  describe "GET" do
 
-  describe "GET show" do
-    it "assigns the requested boulder_route_photo as @boulder_route_photo" do
-      boulder_route_photo = BoulderRoutePhoto.create! valid_attributes
-      get :show, {:id => boulder_route_photo.to_param}, valid_session
-      expect(assigns(:boulder_route_photo)).to eq(boulder_route_photo)
+    before(:each) do
+      DatabaseCleaner.strategy = :truncation
+      DatabaseCleaner.start
+      DatabaseCleaner.clean
     end
-  end
 
-  describe "GET new" do
-    it "assigns a new boulder_route_photo as @boulder_route_photo" do
-      get :new, {}, valid_session
-      expect(assigns(:boulder_route_photo)).to be_a_new(BoulderRoutePhoto)
+    context "index" do
+      it "assigns all boulder_route_photos as @boulder_route_photos" do
+        boulder_route_photo = BoulderRoutePhoto.create! valid_attributes
+        get :index, {}, valid_session
+        expect(assigns(:boulder_route_photos)).to eq([boulder_route_photo])
+      end
     end
-  end
 
-  describe "GET edit" do
-    it "assigns the requested boulder_route_photo as @boulder_route_photo" do
-      boulder_route_photo = BoulderRoutePhoto.create! valid_attributes
-      get :edit, {:id => boulder_route_photo.to_param}, valid_session
-      expect(assigns(:boulder_route_photo)).to eq(boulder_route_photo)
+    describe "show" do
+      it "assigns the requested boulder_route_photo as @boulder_route_photo" do
+        boulder_route_photo = BoulderRoutePhoto.create! valid_attributes
+        get :show, {:id => boulder_route_photo.to_param}, valid_session
+        expect(assigns(:boulder_route_photo)).to eq(boulder_route_photo)
+      end
     end
+
+    describe "new" do
+      it "assigns a new boulder_route_photo as @boulder_route_photo" do
+        get :new, {}, valid_session
+        expect(assigns(:boulder_route_photo)).to be_a_new(BoulderRoutePhoto)
+      end
+    end
+
+    describe "edit" do
+      it "assigns the requested boulder_route_photo as @boulder_route_photo" do
+        boulder_route_photo = BoulderRoutePhoto.create! valid_attributes
+        get :edit, {:id => boulder_route_photo.to_param}, valid_session
+        expect(assigns(:boulder_route_photo)).to eq(boulder_route_photo)
+      end
+    end
+
+    describe "json" do
+      it "returns a valid json object" do
+        region = FactoryGirl.create(:boulder_route_photo, id:1)
+        json = get(:getJson, {}, valid_session)
+        expect(json).to_not be_nil;
+      end
+    end
+
   end
 
   describe "POST create" do
@@ -103,14 +124,14 @@ RSpec.describe BoulderRoutePhotosController, :type => :controller do
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        FactoryGirl.attributes_for(:boulder_route_photo, title:"It's Jimmy!")
       }
 
       it "updates the requested boulder_route_photo" do
         boulder_route_photo = BoulderRoutePhoto.create! valid_attributes
         put :update, {:id => boulder_route_photo.to_param, :boulder_route_photo => new_attributes}, valid_session
         boulder_route_photo.reload
-        skip("Add assertions for updated state")
+        expect(boulder_route_photo.title).to eq("It's Jimmy!")
       end
 
       it "assigns the requested boulder_route_photo as @boulder_route_photo" do
