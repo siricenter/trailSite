@@ -1,3 +1,7 @@
+<%- require 'danger_rating' %>
+<%- require 'yds_grade' %>
+<%- require 'anchor_type' %>
+
 <%= form_for(@sport_route) do |f| %>
   <% if @sport_route.errors.any? %>
     <div id="error_explanation">
@@ -11,64 +15,82 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :latitude %><br>
-    <%= f.text_field :latitude %>
-  </div>
-  <div class="field">
-    <%= f.label :longitude %><br>
-    <%= f.text_field :longitude %>
-  </div>
-  <div class="field">
-    <%= f.label :zoom %><br>
-    <select id="sport_route_zoom" name="sport_route[zoom]">
-      <%- 16.times do |i| %>
-        <option value='<%= i+1 %>'><%= i+1 %></option>
-      <%- end %>
-    </select>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :directions %><br>
-    <%= f.text_area :directions %>
-  </div>
-  <div class="field">
-    <%= f.label :wall_id %><br>
-    <%= f.text_field :wall_id %>
-  </div>
-  <div class="field">
-    <%= f.label :danger_rating %><br>
-    <%= f.text_field :danger_rating %>
-  </div>
-  <div class="field">
-    <%= f.label :bolts %><br>
-    <%= f.number_field :bolts %>
-  </div>
-  <div class="field">
-    <%= f.label :stars %><br>
-    <%-5.times do |i|%>
-      <input type="radio" name="sport_route[stars]" value="<%=i+1%>"> <%=i+1%> 
-    <%-end%>
-  </div>
-  <div class="field">
-    <%= f.label :pitches %><br>
-    <%= f.number_field :pitches %>
-  </div>
-  <div class="field">
-    <%= render 'yds' %>
-  </div>
-  <div class="field">
-    <%= f.label :anchor %><br>
-    <%= f.text_field :anchor %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class="form-field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="form-field <%=if @sport_route.errors[:wall].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :wall_id %><br>
+      <%= select("sport_route", "wall_id", Wall.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''},
+       class: "form-control" )  %>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :longitude %><br>
+      <%= f.text_field :longitude, class: "form-control" %>
+    </div>
+    <div class="form-field">
+      <%= f.label :latitude %><br>
+      <%= f.text_field :latitude, class: "form-control" %>
+    </div>
+    <div class="form-field">
+      <%= f.label :zoom %><br>
+      <select id="sport_route_zoom" name="sport_route[zoom]", class="form-control">
+        <%- 16.times do |i| %>
+          <option value='<%= i+1 %>'><%= i+1 %></option>
+        <%- end %>
+      </select>
+    </div>
+    <div class="form-field">
+      <%= f.label :danger_rating %><br>
+      <select id="sport_route_danger_rating" name="sport_route[danger_rating]", class="form-control">
+        <%- DangerRating.getArray().each do |danger| %>
+          <option value="<%= danger %>" ><%= danger %> </option>
+        <%- end %>
+      </select>
+    </div>
+    <div class="form-field">
+      <%= f.label :bolts %><br>
+      <%= f.number_field :bolts, class: "form-control" %>
+    </div>
+    <div class="form-field">
+      <%= f.label :stars %><br>
+      <%-5.times do |i|%>
+        <input type="radio" name="sport_route[stars]" value="<%=i+1%>", class: "form-control"> <%=i+1%> 
+      <%-end%>
+    </div>
+    <div class="form-field">
+      <%= f.label :pitches %><br>
+      <%= f.number_field :pitches, class: "form-control" %>
+    </div>
+    <div class="form-field">
+    <%= f.label :yds_grade %><br>
+      <select id="sport_route_yds_grade" name="sport_route[yds_grade]", class="form-control">
+        <%- YdsGrade.getArray().each do |grade| %>
+          <option value="<%= grade %>" ><%= grade %> </option>
+        <%- end %>
+      </select>
+    </div>
+    <div class="form-field">
+      <%= f.label :anchor %><br>
+      <select id="sport_route_anchor" name="sport_route[anchor]", class="form-control">
+        <%- AnchorType.getArray().each do |type| %>
+          <option value="<%= type %>" ><%= type %> </option>
+        <%- end %>
+      </select>
+    </div>
+    <div class="form-text">
+      <%= f.label :description %><br>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+    <div class="form-text">
+      <%= f.label :directions %><br>
+      <%= f.text_area :directions, class: "form-control" %>
+    </div>
+    <div class="actions col-md-12">
+      <%= f.submit class: "form-button" %>
+    </div>
   </div>
 <% end %>
