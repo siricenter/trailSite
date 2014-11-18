@@ -1,8 +1,8 @@
 <h1>Listing wall_photos</h1>
 
-<table>
+<table class="index-table">
   <thead>
-    <tr>
+    <tr class="index-th">
       <th>Title</th>
       <th>Wall</th>
       <th>Url</th>
@@ -12,13 +12,13 @@
 
   <tbody>
     <% @wall_photos.each do |wall_photo| %>
-      <tr>
+      <tr class="index-tr">
         <td><%= wall_photo.title %></td>
-        <td><%= wall_photo.wall.name %></td>
-        <td><%= wall_photo.url %></td>
-        <td><%= link_to 'Show', wall_photo %></td>
-        <td><%= link_to 'Edit', edit_wall_photo_path(wall_photo) %></td>
-        <td><%= link_to 'Destroy', wall_photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= if wall_photo.wall != nil then wall_photo.wall.name else "DELETED WALL, PLEASE RE-SELECT A WALL" end %></td>
+        <td><image class="image_thumbnail" src="<%= wall_photo.url %>"/></td>
+        <td class="index-action"><%= link_to 'Show', wall_photo %></td>
+        <td class="index-action"><%= link_to 'Edit', edit_wall_photo_path(wall_photo) %></td>
+        <td class="index-action"><%= link_to 'Destroy', wall_photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

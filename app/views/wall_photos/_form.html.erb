@@ -11,19 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :wall_id %><br>
-    <%= f.text_field :wall_id %>
-  </div>
-  <div class="field">
-    <%= f.label :url %><br>
-    <%= f.text_field :url %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class="form-field <%=if @wall_photo.errors[:title].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :title %><br>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="form-field <%=if @wall_photo.errors[:wall_id].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :wall_id %><br>
+      <%= select("wall_photo", "wall_id", Wall.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''},
+       class: "form-control" )  %>
+    </div>
+
+    <div class="form-field <%=if @wall_photo.errors[:url].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :url %><br>
+      <%= f.text_field :url, class: "form-control" %>
+    </div>
+    <div class="actions col-md-12">
+      <%= f.submit class: "form-button" %>
+    </div>
   </div>
 <% end %>
