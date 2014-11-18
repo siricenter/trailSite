@@ -1,10 +1,10 @@
 <h2>Listing Territories</h2>
 
-<table>
+<table class="index-table">
   <thead>
-    <tr>
-      <th>Area</th>
+    <tr class="index-th">
       <th>Name</th>
+      <th>Area</th>
       <th>Longitude</th>
       <th>Latitude</th>
       <th>Zoom</th>
@@ -17,18 +17,18 @@
 
   <tbody>
     <% @territories.each do |territory| %>
-      <tr>
-        <td><%= territory.area.name %></td>
+      <tr class="index-tr">
         <td><%= territory.name %></td>
+        <td><%= if (territory.area != nil) then territory.area.name else "DELETED, PLEASE RE-SELECT A AREA" end %> </td>
         <td><%= territory.longitude %></td>
         <td><%= territory.latitude %></td>
         <td><%= territory.zoom %></td>
         <td><%= territory.directions %></td>
         <td><%= territory.description %></td>
         <td><%= territory.history %></td>
-        <td><%= link_to 'Show', territory %></td>
-        <td><%= link_to 'Edit', edit_territory_path(territory) %></td>
-        <td><%= link_to 'Destroy', territory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="index-action"><%= link_to 'Show', territory %></td>
+        <td class="index-action"><%= link_to 'Edit', edit_territory_path(territory) %></td>
+        <td class="index-action"><%= link_to 'Destroy', territory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
