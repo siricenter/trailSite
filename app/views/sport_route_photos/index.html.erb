@@ -1,24 +1,24 @@
 <h1>Listing sport_route_photos</h1>
 
-<table>
+<table class="index-table">
   <thead>
-    <tr>
+    <tr class="index-th">
       <th>Title</th>
       <th>Sport route</th>
-      <th>Url</th>
+      <th>Photo</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @sport_route_photos.each do |sport_route_photo| %>
-      <tr>
+      <tr class="index-tr">
         <td><%= sport_route_photo.title %></td>
         <td><%= sport_route_photo.sport_route %></td>
-        <td><%= sport_route_photo.url %></td>
-        <td><%= link_to 'Show', sport_route_photo %></td>
-        <td><%= link_to 'Edit', edit_sport_route_photo_path(sport_route_photo) %></td>
-        <td><%= link_to 'Destroy', sport_route_photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><image class="image_thumbnail" src="<%= sport_route_photo.url %>"/></td>
+        <td class="index-action"><%= link_to 'Show', sport_route_photo %></td>
+        <td class="index-action"><%= link_to 'Edit', edit_sport_route_photo_path(sport_route_photo) %></td>
+        <td class="index-action"><%= link_to 'Destroy', sport_route_photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
