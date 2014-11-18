@@ -1,8 +1,8 @@
 <h2>Listing Crags</h2>
 
-<table>
+<table class="index-table">
   <thead>
-    <tr>
+    <tr class="index-th">
       <th>Territory</th>
       <th>Name</th>
       <th>Longitude</th>
@@ -17,7 +17,7 @@
 
   <tbody>
     <% @crags.each do |crag| %>
-      <tr>
+      <tr class="index-tr">
         <td><%= crag.territory.name %></td>
         <td><%= crag.name %></td>
         <td><%= crag.longitude %></td>
@@ -26,9 +26,9 @@
         <td><%= crag.directions %></td>
         <td><%= crag.description %></td>
         <td><%= crag.history %></td>
-        <td><%= link_to 'Show', crag %></td>
-        <td><%= link_to 'Edit', edit_crag_path(crag) %></td>
-        <td><%= link_to 'Destroy', crag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="index-action"><%= link_to 'Show', crag %></td>
+        <td class="index-action"><%= link_to 'Edit', edit_crag_path(crag) %></td>
+        <td class="index-action"><%= link_to 'Destroy', crag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
