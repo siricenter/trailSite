@@ -18,7 +18,7 @@
     </div>
     <div class="form-field <%=if @state.errors[:region_id].present? then 'has-error' else 'has-success' end %>">
       <%= f.label :region_id %><br>
-      <%= select("state", "region_id", Region.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''}) %>
+      <%= select("state", "region_id", Region.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''}, class: "form-control") %>
     </div>
     <div class="form-field <%=if @state.errors[:latitude].present? then 'has-error' else 'has-success' end %>">
       <%= f.label :latitude %><br>

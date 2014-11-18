@@ -18,7 +18,7 @@
     </div>
     <div class="form-field <%=if @territory.errors[:area_id].present? then 'has-error' else 'has-success' end %>">
       <%= f.label :area_id %><br>
-      <%= select("territory", "area_id", Area.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''}) %>
+      <%= select("territory", "area_id", Area.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''}, class: "form-control") %>
     </div>
     <div class="form-field <%=if @territory.errors[:longitude].present? then 'has-error' else 'has-success' end %>">
       <%= f.label :longitude %><br>
