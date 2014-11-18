@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :area_id %><br>
-    <%= f.text_field :area_id %>
-  </div>
-  <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :area_id %><br>
+    <%= select("area", "area_id", Area.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''}) %>
   </div>
   <div class="field">
     <%= f.label :longitude %><br>
