@@ -18,7 +18,7 @@
   <tbody>
     <% @crags.each do |crag| %>
       <tr class="index-tr">
-        <td><%= crag.territory.name %></td>
+        <td><%= if crag.territory != nil then crag.territory.name else "DELETED, PLEASE RE-SELECT A TERRITORY" end%></td>
         <td><%= crag.name %></td>
         <td><%= crag.longitude %></td>
         <td><%= crag.latitude %></td>

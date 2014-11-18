@@ -1,10 +1,10 @@
 <h2>Listing Walls</h2>
 
-<table>
+<table class="index-table">
   <thead>
-    <tr>
-      <th>Crag</th>
+    <tr class="index-th">
       <th>Name</th>
+      <th>Crag</th>
       <th>Longitude</th>
       <th>Latitude</th>
       <th>Zoom</th>
@@ -17,18 +17,18 @@
 
   <tbody>
     <% @walls.each do |wall| %>
-      <tr>
-        <td><%= wall.crag.name %></td>
+      <tr class="index-tr">
         <td><%= wall.name %></td>
+        <td><%= if wall.crag != nil then wall.crag.name else "DELETED, PLEASE RE-SELECT A CRAG" end %></td>
         <td><%= wall.longitude %></td>
         <td><%= wall.latitude %></td>
         <td><%= wall.zoom %></td>
         <td><%= wall.directions %></td>
         <td><%= wall.description %></td>
         <td><%= wall.history %></td>
-        <td><%= link_to 'Show', wall %></td>
-        <td><%= link_to 'Edit', edit_wall_path(wall) %></td>
-        <td><%= link_to 'Destroy', wall, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="index-action"><%= link_to 'Show', wall %></td>
+        <td class="index-action"><%= link_to 'Edit', edit_wall_path(wall) %></td>
+        <td class="index-action"><%= link_to 'Destroy', wall, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

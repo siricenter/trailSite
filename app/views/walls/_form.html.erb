@@ -11,39 +11,43 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :crag_id %><br>
-    <%= f.text_field :crag_id %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :longitude %><br>
-    <%= f.text_field :longitude %>
-  </div>
-  <div class="field">
-    <%= f.label :latitude %><br>
-    <%= f.text_field :latitude %>
-  </div>
-  <div class="field">
-    <%= f.label :zoom %><br>
-    <%= f.number_field :zoom %>
-  </div>
-  <div class="field">
-    <%= f.label :directions %><br>
-    <%= f.text_area :directions %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :history %><br>
-    <%= f.text_area :history %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+
+      <div class="form-field <%=if @wall.errors[:crag_id].present? then 'has-error' else 'has-success' end %>">
+        <%= f.label :crag_id %><br>
+        <%= select("wall", "crag_id", Crag.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''},
+         class: "form-control" )  %>
+      </div>
+    <div class="form-field <%=if @wall.errors[:name].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :name %><br>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-field <%=if @wall.errors[:longitude].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :longitude %><br>
+      <%= f.text_field :longitude, class: "form-control" %>
+    </div>
+    <div class="form-field <%=if @wall.errors[:latitude].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :latitude %><br>
+      <%= f.text_field :latitude, class: "form-control" %>
+    </div>
+    <div class="form-field <%=if @wall.errors[:zoom].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :zoom %><br>
+      <%= f.number_field :zoom, class: "form-control" %>
+    </div>
+    <div class="form-text">
+      <%= f.label :directions %><br>
+      <%= f.text_area :directions, class: "form-control" %>
+    </div>
+    <div class="form-text">
+      <%= f.label :description %><br>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+    <div class="form-text">
+      <%= f.label :history %><br>
+      <%= f.text_area :history, class: "form-control" %>
+    </div>
+    <div class="actions col-md-12">
+      <%= f.submit class: "form-button" %>
+    </div>
   </div>
 <% end %>
