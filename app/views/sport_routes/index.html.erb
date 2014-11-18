@@ -1,15 +1,15 @@
 <h2>Listing Sport Routes</h2>
 
-<table>
+<table class="index-table">
   <thead>
-    <tr>
+    <tr class="index-th">
       <th>Name</th>
+      <th>Wall</th>
       <th>Latitude</th>
       <th>Longitude</th>
       <th>Zoom</th>
       <th>Description</th>
       <th>Directions</th>
-      <th>Wall</th>
       <th>Danger rating</th>
       <th>Bolts</th>
       <th>Stars</th>
@@ -22,23 +22,23 @@
 
   <tbody>
     <% @sport_routes.each do |sport_route| %>
-      <tr>
+      <tr class="index-tr">
         <td><%= sport_route.name %></td>
+        <td><%= if sport_route.wall != nil then sport_route.wall.name else "Wall deleted, please re-select a wall" end %></td>
         <td><%= sport_route.latitude %></td>
         <td><%= sport_route.longitude %></td>
         <td><%= sport_route.zoom %></td>
         <td><%= sport_route.description %></td>
         <td><%= sport_route.directions %></td>
-        <td><%= sport_route.wall %></td>
         <td><%= sport_route.danger_rating %></td>
         <td><%= sport_route.bolts %></td>
         <td><%= sport_route.stars %></td>
         <td><%= sport_route.pitches %></td>
         <td><%= sport_route.yds_grade %></td>
         <td><%= sport_route.anchor %></td>
-        <td><%= link_to 'Show', sport_route %></td>
-        <td><%= link_to 'Edit', edit_sport_route_path(sport_route) %></td>
-        <td><%= link_to 'Destroy', sport_route, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="index-action"><%= link_to 'Show', sport_route %></td>
+        <td class="index-action"><%= link_to 'Edit', edit_sport_route_path(sport_route) %></td>
+        <td class="index-action"><%= link_to 'Destroy', sport_route, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
