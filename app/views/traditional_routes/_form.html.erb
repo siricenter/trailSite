@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <div class="form-group">
+  <div class="form-group <%=if @traditional_route.errors[:name].present? then 'has-error' else 'has-success' end %> ">
     <div class="form-field">
       <%= f.label :name %><br>
       <%= f.text_field :name, class: "form-control" %>
@@ -47,7 +47,7 @@
       <%= f.number_field :zoom, class: "form-control" %>
     </div>
 
-    <div class="form-field">
+    <div class="form-field <%=if @traditional_route.errors[:yds_grade].present? then 'has-error' else 'has-success' end %> ">
     <%= f.label :yds_grade %><br>
       <select id="traditional_route_yds_grade" name="traditional_route[yds_grade]", class="form-control">
         <%- YdsGrade.getArray().each do |grade| %>
@@ -65,7 +65,7 @@
       </select>
     </div>
     
-    <div class="form-field">
+    <div class="form-field <%=if @traditional_route.errors[:stars].present? then 'has-error' else 'has-success' end %> ">
       <%= f.label :stars %><br>
       <%-5.times do |i|%>
         <input type="radio" name="traditional_route[stars]" value="<%=i+1%>", class: "form-control"> <%=i+1%> 
