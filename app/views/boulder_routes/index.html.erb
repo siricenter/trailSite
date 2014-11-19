@@ -1,15 +1,15 @@
 <h2>Listing Boulder Routes</h2>
 
-<table>
+<table class="index-table">
   <thead>
-    <tr>
+    <tr class="index-th">
       <th>Name</th>
+      <th>Wall</th>
       <th>Latitude</th>
       <th>Longitude</th>
       <th>Zoom</th>
       <th>Description</th>
       <th>Directions</th>
-      <th>Wall</th>
       <th>Danger rating</th>
       <th>Stars</th>
       <th>Pads</th>
@@ -21,22 +21,22 @@
 
   <tbody>
     <% @boulder_routes.each do |boulder_route| %>
-      <tr>
+      <tr class="index-tr">
         <td><%= boulder_route.name %></td>
+        <td><%= if boulder_route.wall != nil then boulder_route.wall.name else "boulder route deleted, please re-select a route" end %></td>
         <td><%= boulder_route.latitude %></td>
         <td><%= boulder_route.longitude %></td>
         <td><%= boulder_route.zoom %></td>
         <td><%= boulder_route.description %></td>
         <td><%= boulder_route.directions %></td>
-        <td><%= boulder_route.wall %></td>
         <td><%= boulder_route.danger_rating %></td>
         <td><%= boulder_route.stars %></td>
         <td><%= boulder_route.pads %></td>
         <td><%= boulder_route.hueco_grade %></td>
         <td><%= boulder_route.length %></td>
-        <td><%= link_to 'Show', boulder_route %></td>
-        <td><%= link_to 'Edit', edit_boulder_route_path(boulder_route) %></td>
-        <td><%= link_to 'Destroy', boulder_route, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="index-action"><%= link_to 'Show', boulder_route %></td>
+        <td class="index-action"><%= link_to 'Edit', edit_boulder_route_path(boulder_route) %></td>
+        <td class="index-action"><%= link_to 'Destroy', boulder_route, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

@@ -11,61 +11,63 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :latitude %><br>
-    <%= f.text_field :latitude %>
-  </div>
-  <div class="field">
-    <%= f.label :longitude %><br>
-    <%= f.text_field :longitude %>
-  </div>
-  <div class="field">
-    <%= f.label :zoom %><br>
-    <select id="sport_route_zoom" name="sport_route[zoom]">
-      <%- 16.times do |i| %>
-        <option value='<%= i+1 %>'><%= i+1 %></option>
-      <%- end %>
-    </select>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :directions %><br>
-    <%= f.text_area :directions %>
-  </div>
-  <div class="field">
-    <%= f.label :wall_id %><br>
-    <%= f.text_field :wall_id %>
-  </div>
-  <div class="field">
-    <%= f.label :danger_rating %><br>
-    <%= f.text_field :danger_rating %>
-  </div>
-  <div class="field">
-    <%= f.label :stars %><br>
-    <%-5.times do |i|%>
-      <input type="radio" name="sport_route[stars]" value="<%=i+1%>"> <%=i+1%> 
-    <%-end%>
-  </div>
-  <div class="field">
-    <%= f.label :pads %><br>
-    <%= f.number_field :pads %>
-  </div>
-  <div class="field">
-    <%= f.label :hueco_grade %><br>
-    <%= f.text_field :hueco_grade %>
-  </div>
-  <div class="field">
-    <%= f.label :length %><br>
-    <%= f.text_field :length %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class="form-field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-field">
+      <%= f.label :latitude %><br>
+      <%= f.text_field :latitude, class: "form-control" %>
+    </div>
+    <div class="form-field">
+      <%= f.label :longitude %><br>
+      <%= f.text_field :longitude, class: "form-control" %>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :zoom %><br>
+      <%= f.number_field :zoom, class: "form-control" %>
+    </div>
+    
+    <div class="form-field">
+      <%= f.label :wall_id %><br>
+      <%= f.text_field :wall_id, class: "form-control" %>
+    </div>
+    <div class="form-field">
+      <%= f.label :danger_rating %><br>
+      <%= f.text_field :danger_rating, class: "form-control" %>
+    </div>
+    <div class="form-field">
+      <%= f.label :stars %><br>
+      <%-5.times do |i|%>
+        <input type="radio" name="boulder_route[stars]" value="<%=i+1%>", class: "form-control"> <%=i+1%> 
+      <%-end%>
+    </div>
+    <div class="form-field">
+      <%= f.label :pads %><br>
+      <%= f.number_field :pads, class: "form-control" %>
+    </div>
+    <div class="form-field">
+      <%= f.label :hueco_grade %><br>
+      <%= f.text_field :hueco_grade, class: "form-control" %>
+    </div>
+    <div class="form-field">
+      <%= f.label :length %><br>
+      <%= f.text_field :length, class: "form-control" %>
+    </div>
+
+    <div class="form-text">
+      <%= f.label :description %><br>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+    <div class="form-text">
+      <%= f.label :directions %><br>
+      <%= f.text_area :directions, class: "form-control" %>
+    </div>
+
+    <div class="actions col-md-12">
+      <%= f.submit %>
+    </div>
   </div>
 <% end %>
