@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="">
 <head>
   <title>TrailSite</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUfsk2tJNor_94XT68dBaQjIMbzmpU0hw">
+  </script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js">
   </script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
