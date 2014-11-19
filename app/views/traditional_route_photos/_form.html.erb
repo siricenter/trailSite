@@ -18,7 +18,7 @@
 
     <div class="form-field <%=if @traditional_route_photo.errors[:traditional_route_id].present? then 'has-error' else 'has-success' end %>">
       <%= f.label :traditional_route_id %><br>
-      <%= select("traditional_route_photo", "traditional_route_id", SportRoute.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''},
+      <%= select("traditional_route_photo", "traditional_route_id", TraditionalRoute.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''},
        class: "form-control" )  %>
     </div>
 
