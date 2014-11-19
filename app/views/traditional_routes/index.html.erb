@@ -1,15 +1,15 @@
 <h2>Listing Traditional Routes</h2>
 
-<table>
+<table class="index-table">
   <thead>
-    <tr>
+    <tr class="index-th">
       <th>Name</th>
+      <th>Wall</th>
       <th>Latitude</th>
       <th>Longitude</th>
       <th>Zoom</th>
       <th>Description</th>
       <th>Directions</th>
-      <th>Wall</th>
       <th>Danger rating</th>
       <th>Gear needed</th>
       <th>Stars</th>
@@ -23,14 +23,14 @@
 
   <tbody>
     <% @traditional_routes.each do |traditional_route| %>
-      <tr>
+      <tr class="index-tr">
         <td><%= traditional_route.name %></td>
+        <td><%= if traditional_route.wall != nil then traditional_route.wall.name else "Wall has been deleted, please re-select" end%></td>
         <td><%= traditional_route.latitude %></td>
         <td><%= traditional_route.longitude %></td>
         <td><%= traditional_route.zoom %></td>
         <td><%= traditional_route.description %></td>
         <td><%= traditional_route.directions %></td>
-        <td><%= traditional_route.wall %></td>
         <td><%= traditional_route.danger_rating %></td>
         <td><%= traditional_route.gear_needed %></td>
         <td><%= traditional_route.stars %></td>
@@ -38,9 +38,9 @@
         <td><%= traditional_route.yds_grade %></td>
         <td><%= traditional_route.length %></td>
         <td><%= traditional_route.anchor %></td>
-        <td><%= link_to 'Show', traditional_route %></td>
-        <td><%= link_to 'Edit', edit_traditional_route_path(traditional_route) %></td>
-        <td><%= link_to 'Destroy', traditional_route, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="index-action"><%= link_to 'Show', traditional_route %></td>
+        <td class="index-action"><%= link_to 'Edit', edit_traditional_route_path(traditional_route) %></td>
+        <td class="index-action"><%= link_to 'Destroy', traditional_route, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
