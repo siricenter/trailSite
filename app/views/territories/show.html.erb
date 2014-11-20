@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Area:</strong>
-  <%= @territory.area %>
+  <strong>Name:</strong>
+  <%= @territory.name %>
 </p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @territory.name %>
+  <strong>Area:</strong>
+  <%= if @territory.area != nil then @territory.area.name end %>
 </p>
 
 <p>

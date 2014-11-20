@@ -5,8 +5,8 @@
     <tr class="index-th">
       <th>Territory</th>
       <th>Name</th>
-      <th>Longitude</th>
       <th>Latitude</th>
+      <th>Longitude</th>
       <th>Zoom</th>
       <th>Directions</th>
       <th>Description</th>
@@ -20,8 +20,8 @@
       <tr class="index-tr">
         <td><%= if crag.territory != nil then crag.territory.name else "DELETED, PLEASE RE-SELECT A TERRITORY" end%></td>
         <td><%= crag.name %></td>
-        <td><%= crag.longitude %></td>
         <td><%= crag.latitude %></td>
+        <td><%= crag.longitude %></td>
         <td><%= crag.zoom %></td>
         <td><%= crag.directions %></td>
         <td><%= crag.description %></td>

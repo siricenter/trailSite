@@ -1,4 +1,4 @@
-<%= form_for(@territory) do |f| %>
+<%= form_for(@territory, html: {role: "form", oninput: "x.value=parseInt(territory_zoom.value)"}) do |f| %>
   <% if @territory.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@territory.errors.count, "error") %> prohibited this territory from being saved:</h2>
@@ -20,18 +20,22 @@
       <%= f.label :area_id %><br>
       <%= select("territory", "area_id", Area.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''}, class: "form-control") %>
     </div>
-    <div class="form-field <%=if @territory.errors[:longitude].present? then 'has-error' else 'has-success' end %>">
-      <%= f.label :longitude %><br>
-      <%= f.text_field :longitude, class: "form-control" %>
-    </div>
+
     <div class="form-field <%=if @territory.errors[:latitude].present? then 'has-error' else 'has-success' end %>">
       <%= f.label :latitude %><br>
       <%= f.text_field :latitude, class: "form-control" %>
     </div>
-    <div class="form-field <%=if @territory.errors[:zoom].present? then 'has-error' else 'has-success' end %>">
-      <%= f.label :zoom %><br>
-      <%= f.number_field :zoom, class: "form-control" %>
+    <div class="form-field <%=if @territory.errors[:longitude].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :longitude %><br>
+      <%= f.text_field :longitude, class: "form-control" %>
     </div>
+
+    <div class="form-field <%=if @territory.errors[:zoom].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :zoom %></br>
+      <%= range_field(:territory, :zoom, options={min: 1, max: 16, value: @territory.zoom || 8}) %>
+      <output name="x" for="territory_zoom"><%= @territory.zoom || 8 %></output>
+    </div>
+
     <div class="form-text">
       <%= f.label :directions %><br>
       <%= f.text_area :directions, class: "form-control" %>

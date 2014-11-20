@@ -1,4 +1,4 @@
-<%= form_for(@crag) do |f| %>
+<%= form_for(@crag, html: {role: "form", oninput: "x.value=parseInt(crag_zoom.value)"}) do |f| %>
   <% if @crag.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@crag.errors.count, "error") %> prohibited this crag from being saved:</h2>
@@ -29,10 +29,13 @@
       <%= f.label :latitude %><br>
       <%= f.text_field :latitude, class: "form-control"  %>
     </div>
+
     <div class="form-field <%=if @crag.errors[:zoom].present? then 'has-error' else 'has-success' end %>">
-      <%= f.label :zoom %><br>
-      <%= f.number_field :zoom, class: "form-control"  %>
+      <%= f.label :zoom %></br>
+      <%= range_field(:crag, :zoom, options={min: 1, max: 16, value: @crag.zoom || 8}) %>
+      <output name="x" for="crag_zoom"><%= @crag.zoom || 8 %></output>
     </div>
+
     <div class="form-text">
       <%= f.label :directions %><br>
       <%= f.text_area :directions, class: "form-control"  %>

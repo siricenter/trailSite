@@ -1,23 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Territory:</strong>
-  <%= @crag.territory %>
-</p>
-
-<p>
   <strong>Name:</strong>
   <%= @crag.name %>
 </p>
 
 <p>
-  <strong>Longitude:</strong>
-  <%= @crag.longitude %>
+  <strong>Territory:</strong>
+  <%= if @crag.territory != nil then @crag.territory.name end %>
 </p>
 
 <p>
   <strong>Latitude:</strong>
   <%= @crag.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @crag.longitude %>
 </p>
 
 <p>

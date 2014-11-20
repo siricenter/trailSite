@@ -33,8 +33,8 @@
     
     <div class="form-field <%=if @area.errors[:zoom].present? then 'has-error' else 'has-success' end %>">
       <%= f.label :zoom %></br>
-      <%= range_field(:area, :zoom, options={min: 1, max: 16}) %>
-      <span style="float:left; margin-top:0.6em">zoom =</span><output name="x" for="areas_zoom"></output>
+      <%= range_field(:area, :zoom, options={min: 1, max: 16, value: @area.zoom || 8}) %>
+      <output name="x" for="area_zoom"><%= @area.zoom || 8 %></output>
     </div>
 
     <div class="form-field <%=if @area.errors[:weather].present? then 'has-error' end %>">
