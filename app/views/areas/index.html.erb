@@ -5,8 +5,8 @@
     <tr class="index-th">
       <th>Name</th>
       <th>State</th>
-      <th>Longitude</th>
       <th>Latitude</th>
+      <th>Longitude</th>
       <th>Zoom</th>
       <th>Weather</th>
       <th>Description</th>
@@ -20,8 +20,8 @@
       <tr class="index-tr">
         <td><%= area.name %></td>
         <td><%= if (area.state != nil) then area.state.name else "DELETED, PLEASE RE-SELECT A STATE" end %></td>
-        <td><%= area.longitude %></td>
         <td><%= area.latitude %></td>
+        <td><%= area.longitude %></td>
         <td><%= area.zoom %></td>
         <td><%= area.weather %></td>
         <td><%= area.description %></td>

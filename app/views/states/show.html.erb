@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Region:</strong>
-  <%= @state.region %>
+  <strong>Name:</strong>
+  <%= @state.name %>
 </p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @state.name %>
+  <strong>Region:</strong>
+  <%= if @state.region.present? then @state.region.name end %>
 </p>
 
 <p>

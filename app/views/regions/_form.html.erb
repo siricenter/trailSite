@@ -1,4 +1,4 @@
-<%= form_for(@region) do |f| %>
+<%= form_for(@region, html: {role: "form", oninput: "x.value=parseInt(region_zoom.value)"}) do |f| %>
   <% if @region.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@region.errors.count, "error") %> prohibited this region from being saved:</h2>
@@ -28,8 +28,8 @@
 
     <div class="form-field <%=if @region.errors[:zoom].present? then 'has-error' else 'has-success' end %>">
       <%= f.label :zoom %></br>
-      <input type="range" id="region_zoom" ng-init="angzoom=8" ng-model="angzoom" name="region[zoom]" value="8" min="1" max="16" class: "form-control" > 
-      {{ angzoom }}
+      <%= range_field(:region, :zoom, options={min: 1, max: 16, value: @region.zoom || 8 }) %>
+      <output name="x" for="areas_zoom"><%= @region.zoom || 8 %></output>
     </div>
 
     <div class="form-text">
