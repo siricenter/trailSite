@@ -10,4 +10,5 @@ class TraditionalRoute < ActiveRecord::Base
 	validates :yds_grade, inclusion: { in:  YdsGrade.getArray() }
 	validates :danger_rating, inclusion: { in: DangerRating.getArray() }
   belongs_to :wall
+  has_many :traditional_route_photos
 end

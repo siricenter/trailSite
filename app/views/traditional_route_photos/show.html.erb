@@ -7,7 +7,7 @@
 
 <p>
   <strong>Traditional route:</strong>
-  <%= @traditional_route_photo.traditional_route %>
+  <%= if @traditional_route_photo.traditional_route != nil then @traditional_route_photo.traditional_route.name else "Deleted, please re-select" end %>
 </p>
 
 <p>

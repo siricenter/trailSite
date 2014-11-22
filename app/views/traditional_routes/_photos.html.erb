@@ -1,0 +1,7 @@
+<div class="col-md-12">
+  <%- @traditional_route.traditional_route_photos.each do |photo| %>
+    <div class="col-md-3">
+      <image class="image_thumbnail" src="<%= photo.url %>"/>
+    </div>
+  <%- end %>
+</div>

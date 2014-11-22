@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Wall:</strong>
+  <%= if @sport_route.wall != nil then @sport_route.wall.name else "Deleted please re-select" end %>
+</p>
+
+<p>
   <strong>Latitude:</strong>
   <%= @sport_route.latitude %>
 </p>
@@ -18,21 +23,6 @@
 <p>
   <strong>Zoom:</strong>
   <%= @sport_route.zoom %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @sport_route.description %>
-</p>
-
-<p>
-  <strong>Directions:</strong>
-  <%= @sport_route.directions %>
-</p>
-
-<p>
-  <strong>Wall:</strong>
-  <%= @sport_route.wall %>
 </p>
 
 <p>
@@ -64,6 +54,19 @@
   <strong>Anchor:</strong>
   <%= @sport_route.anchor %>
 </p>
+
+
+<p>
+  <strong>Description:</strong>
+  <%= @sport_route.description %>
+</p>
+
+<p>
+  <strong>Directions:</strong>
+  <%= @sport_route.directions %>
+</p>
+
+<%= render "photos" %>
 
 <%= link_to 'Edit', edit_sport_route_path(@sport_route) %> |
 <%= link_to 'Back', sport_routes_path %>

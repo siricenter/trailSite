@@ -1,23 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Crag:</strong>
-  <%= @wall.crag.name %>
-</p>
-
-<p>
   <strong>Name:</strong>
   <%= @wall.name %>
 </p>
 
 <p>
-  <strong>Longitude:</strong>
-  <%= @wall.longitude %>
+  <strong>Crag:</strong>
+  <%= if @wall.crag != nil then @wall.crag.name else "Deleted, please re-select" end %>
 </p>
 
 <p>
   <strong>Latitude:</strong>
   <%= @wall.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @wall.longitude %>
 </p>
 
 <p>

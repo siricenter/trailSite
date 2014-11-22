@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Wall:</strong>
+  <%= if @traditional_route.wall then @traditional_route.wall.name else "Deleted, please re-select" end %>
+</p>
+
+<p>
   <strong>Latitude:</strong>
   <%= @traditional_route.latitude %>
 </p>
@@ -18,21 +23,6 @@
 <p>
   <strong>Zoom:</strong>
   <%= @traditional_route.zoom %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @traditional_route.description %>
-</p>
-
-<p>
-  <strong>Directions:</strong>
-  <%= @traditional_route.directions %>
-</p>
-
-<p>
-  <strong>Wall:</strong>
-  <%= @traditional_route.wall %>
 </p>
 
 <p>
@@ -69,6 +59,18 @@
   <strong>Anchor:</strong>
   <%= @traditional_route.anchor %>
 </p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @traditional_route.description %>
+</p>
+
+<p>
+  <strong>Directions:</strong>
+  <%= @traditional_route.directions %>
+</p>
+
+<%= render 'photos' %>
 
 <%= link_to 'Edit', edit_traditional_route_path(@traditional_route) %> |
 <%= link_to 'Back', traditional_routes_path %>

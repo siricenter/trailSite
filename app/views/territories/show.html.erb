@@ -7,7 +7,7 @@
 
 <p>
   <strong>Area:</strong>
-  <%= if @territory.area != nil then @territory.area.name end %>
+  <%= if @territory.area != nil then @territory.area.name else "Deleted, please re-select" end %>
 </p>
 
 <p>

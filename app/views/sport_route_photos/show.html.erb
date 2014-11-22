@@ -7,7 +7,7 @@
 
 <p>
   <strong>Sport route:</strong>
-  <%= @sport_route_photo.sport_route %>
+  <%= if @sport_route_photo.sport_route != nil then @sport_route_photo.sport_route.name else "Deleted, please re-select" end %>
 </p>
 
 <p>
