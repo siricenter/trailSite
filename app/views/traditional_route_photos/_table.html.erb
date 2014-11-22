@@ -1,0 +1,23 @@
+<table class="index-table">
+  <thead>
+    <tr class="index-th">
+      <th>Title</th>
+      <th>Traditional route</th>
+      <th>Url</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @traditional_route_photos.each do |traditional_route_photo| %>
+      <tr class="index-tr">
+        <td><%= traditional_route_photo.title %></td>
+        <td><%= if traditional_route_photo.traditional_route != nil then traditional_route_photo.traditional_route.name else "traditonal route has been deleted. please reselect a route" end %></td>
+        <td><image class="image_thumbnail" src="<%= traditional_route_photo.url %>"/></td>
+        <td class="index-action"><%= link_to 'Show', traditional_route_photo %></td>
+        <td class="index-action"><%= link_to 'Edit', edit_traditional_route_photo_path(traditional_route_photo) %></td>
+        <td class="index-action"><%= link_to 'Destroy', traditional_route_photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

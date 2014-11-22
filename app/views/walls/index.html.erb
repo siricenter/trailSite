@@ -1,38 +1,6 @@
 <h2>Listing Walls</h2>
 
-<table class="index-table">
-  <thead>
-    <tr class="index-th">
-      <th>Name</th>
-      <th>Crag</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>Zoom</th>
-      <th>Directions</th>
-      <th>Description</th>
-      <th>History</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @walls.each do |wall| %>
-      <tr class="index-tr">
-        <td><%= wall.name %></td>
-        <td><%= if wall.crag != nil then wall.crag.name else "DELETED, PLEASE RE-SELECT A CRAG" end %></td>
-        <td><%= wall.latitude %></td>
-        <td><%= wall.longitude %></td>
-        <td><%= wall.zoom %></td>
-        <td><%= wall.directions %></td>
-        <td><%= wall.description %></td>
-        <td><%= wall.history %></td>
-        <td class="index-action"><%= link_to 'Show', wall %></td>
-        <td class="index-action"><%= link_to 'Edit', edit_wall_path(wall) %></td>
-        <td class="index-action"><%= link_to 'Destroy', wall, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'table' %>
 
 <br>
 

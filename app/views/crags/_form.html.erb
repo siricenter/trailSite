@@ -21,13 +21,14 @@
       <%= select("crag", "territory_id", Territory.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''},
        class: "form-control" )  %>
     </div>
-    <div class="form-field <%=if @crag.errors[:longitude].present? then 'has-error' else 'has-success' end %>">
-      <%= f.label :longitude %><br>
-      <%= f.text_field :longitude, class: "form-control"  %>
-    </div>
+    
     <div class="form-field <%=if @crag.errors[:latitude].present? then 'has-error' else 'has-success' end %>">
       <%= f.label :latitude %><br>
       <%= f.text_field :latitude, class: "form-control"  %>
+    </div>
+    <div class="form-field <%=if @crag.errors[:longitude].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :longitude %><br>
+      <%= f.text_field :longitude, class: "form-control"  %>
     </div>
 
     <div class="form-field <%=if @crag.errors[:zoom].present? then 'has-error' else 'has-success' end %>">

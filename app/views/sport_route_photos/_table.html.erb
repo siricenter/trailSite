@@ -1,0 +1,23 @@
+<table class="index-table">
+  <thead>
+    <tr class="index-th">
+      <th>Title</th>
+      <th>Sport route</th>
+      <th>Photo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sport_route_photos.each do |sport_route_photo| %>
+      <tr class="index-tr">
+        <td><%= sport_route_photo.title %></td>
+        <td><%= if sport_route_photo.sport_route != nil then sport_route_photo.sport_route.name else "Route deleted, please re-select" end %></td>
+        <td><image class="image_thumbnail" src="<%= sport_route_photo.url %>"/></td>
+        <td class="index-action"><%= link_to 'Show', sport_route_photo %></td>
+        <td class="index-action"><%= link_to 'Edit', edit_sport_route_photo_path(sport_route_photo) %></td>
+        <td class="index-action"><%= link_to 'Destroy', sport_route_photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

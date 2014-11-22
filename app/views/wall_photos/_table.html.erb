@@ -1,0 +1,23 @@
+<table class="index-table">
+  <thead>
+    <tr class="index-th">
+      <th>Title</th>
+      <th>Wall</th>
+      <th>Url</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @wall_photos.each do |wall_photo| %>
+      <tr class="index-tr">
+        <td><%= wall_photo.title %></td>
+        <td><%= if wall_photo.wall != nil then wall_photo.wall.name else "DELETED WALL, PLEASE RE-SELECT A WALL" end %></td>
+        <td><image class="image_thumbnail" src="<%= wall_photo.url %>"/></td>
+        <td class="index-action"><%= link_to 'Show', wall_photo %></td>
+        <td class="index-action"><%= link_to 'Edit', edit_wall_photo_path(wall_photo) %></td>
+        <td class="index-action"><%= link_to 'Destroy', wall_photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
