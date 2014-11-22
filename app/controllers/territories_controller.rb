@@ -15,6 +15,7 @@ class TerritoriesController < ApplicationController
   # GET /territories/new
   def new
     @territory = Territory.new
+    @territory.area_id = params[:id]
   end
 
   # GET /territories/1/edit

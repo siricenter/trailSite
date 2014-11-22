@@ -15,6 +15,7 @@ class WallsController < ApplicationController
   # GET /walls/new
   def new
     @wall = Wall.new
+    @wall.crag_id = params[:id]
   end
 
   # GET /walls/1/edit

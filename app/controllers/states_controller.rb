@@ -16,6 +16,7 @@ class StatesController < ApplicationController
   def new
     #@regionMap = Region.select("name, id").map # .map method is needed to make array into a map and use @regions.name
     @state = State.new
+    @state.region_id = params[:id]
   end
 
   # GET /states/1/edit

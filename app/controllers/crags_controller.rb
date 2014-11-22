@@ -15,6 +15,7 @@ class CragsController < ApplicationController
   # GET /crags/new
   def new
     @crag = Crag.new
+    @crag.territory_id = params[:id]
   end
 
   # GET /crags/1/edit

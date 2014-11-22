@@ -40,4 +40,5 @@
 </p>
 
 <%= link_to 'Edit', edit_state_path(@state) %> |
+<%= link_to 'Add Area', new_area_path(id: @state.id.to_s) %> |
 <%= link_to 'Back', states_path %>

@@ -15,6 +15,7 @@ class AreasController < ApplicationController
   # GET /areas/new
   def new
     @area = Area.new
+    @area.state_id = params[:id]
   end
 
   # GET /areas/1/edit

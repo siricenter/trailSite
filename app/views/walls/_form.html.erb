@@ -13,15 +13,16 @@
 
   <div class="form-group">
 
-      <div class="form-field <%=if @wall.errors[:crag_id].present? then 'has-error' else 'has-success' end %>">
-        <%= f.label :crag_id %><br>
-        <%= select("wall", "crag_id", Crag.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''},
-         class: "form-control" )  %>
-      </div>
+      
     <div class="form-field <%=if @wall.errors[:name].present? then 'has-error' else 'has-success' end %>">
       <%= f.label :name %><br>
       <%= f.text_field :name, class: "form-control" %>
     </div>
+    <div class="form-field <%=if @wall.errors[:crag_id].present? then 'has-error' else 'has-success' end %>">
+        <%= f.label :crag_id %><br>
+        <%= select("wall", "crag_id", Crag.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''},
+         class: "form-control" )  %>
+      </div>
     <div class="form-field <%=if @wall.errors[:latitude].present? then 'has-error' else 'has-success' end %>">
       <%= f.label :latitude %><br>
       <%= f.text_field :latitude, class: "form-control" %>

@@ -31,4 +31,5 @@
 </p>
 
 <%= link_to 'Edit', edit_region_path(@region) %> |
+<%= link_to 'Add State', new_state_path(id: @region.id.to_s) %> |
 <%= link_to 'Back', regions_path %>

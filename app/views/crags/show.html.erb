@@ -45,4 +45,5 @@
 </p>
 
 <%= link_to 'Edit', edit_crag_path(@crag) %> |
+<%= link_to 'Add Wall', new_wall_path(id: @crag.id.to_s) %> |
 <%= link_to 'Back', crags_path %>
