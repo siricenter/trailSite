@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Wall:</strong>
+  <%= if @boulder_route.wall != nil then @boulder_route.wall.name else "Deleted, please re-select" end %>
+</p>
+
+<p>
   <strong>Latitude:</strong>
   <%= @boulder_route.latitude %>
 </p>
@@ -28,11 +33,6 @@
 <p>
   <strong>Directions:</strong>
   <%= @boulder_route.directions %>
-</p>
-
-<p>
-  <strong>Wall:</strong>
-  <%= @boulder_route.wall %>
 </p>
 
 <p>

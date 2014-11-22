@@ -7,7 +7,7 @@
 
 <p>
   <strong>Boulder route:</strong>
-  <%= @boulder_route_photo.boulder_route %>
+  <%= if @boulder_route_photo.boulder_route != nil then @boulder_route_photo.boulder_route.name else "Deleted, please re-select" end %>
 </p>
 
 <p>
