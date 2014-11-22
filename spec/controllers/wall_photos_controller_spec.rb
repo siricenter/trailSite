@@ -69,6 +69,13 @@ RSpec.describe WallPhotosController, :type => :controller do
       end
     end
 
+    describe "new/id" do
+      it "assigns wall_id as @wall_photo.wall_id" do
+        get :new, {}, valid_session
+        expect(assigns(:wall_photo.wall_id)).to == wall
+      end
+    end
+
     describe "edit" do
       it "assigns the requested wall_photo as @wall_photo" do
         wall_photo = WallPhoto.create! valid_attributes
