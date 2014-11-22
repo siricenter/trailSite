@@ -17,6 +17,11 @@ class WallPhotosController < ApplicationController
     @wall_photo = WallPhoto.new
   end
 
+  def add
+    @wall_photo = WallPhoto.new
+    @wall_photo.wall_id = params[:id]
+  end
+
   # GET /wall_photos/1/edit
   def edit
   end

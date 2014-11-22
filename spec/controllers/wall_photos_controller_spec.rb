@@ -69,10 +69,11 @@ RSpec.describe WallPhotosController, :type => :controller do
       end
     end
 
-    describe "new/id" do
-      it "assigns wall_id as @wall_photo.wall_id" do
-        get :new, {}, valid_session
-        expect(assigns(:wall_photo.wall_id)).to == wall
+    describe "addPhoto" do
+      it "assigns a new wall_photo as @wall_photo" do
+        wall = FactoryGirl.create(:wall)
+        get :add, {id: wall.id}, valid_session
+        expect(:wall_photo[:wall]).to_not be_nil
       end
     end
 

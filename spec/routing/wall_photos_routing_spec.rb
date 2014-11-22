@@ -11,6 +11,10 @@ RSpec.describe WallPhotosController, :type => :routing do
       expect(:get => "/wall_photos/new").to route_to("wall_photos#new")
     end
 
+    it "routes to #addPhoto" do
+      expect(:get => "/walls/addPhoto/1").to route_to("wall_photos#addPhoto", id: "1")
+    end
+
     it "routes to #show" do
       expect(:get => "/wall_photos/1").to route_to("wall_photos#show", :id => "1")
     end
