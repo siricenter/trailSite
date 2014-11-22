@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :sport_route_photos
 
   resources :wall_photos
+  get 'wall_photos/index/:id', to: 'wall_photos#index'
   get 'wall_photos/new/:id', to: 'wall_photos#new'
 
   get 'regions/getJson', to: 'regions#getJson'

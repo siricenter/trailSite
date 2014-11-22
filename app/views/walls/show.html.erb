@@ -44,4 +44,7 @@
 
 <%= link_to 'Edit', edit_wall_path(@wall) %> | 
 <%= link_to 'Add Photo', new_wall_photo_path(id: @wall.id.to_s) %> |
+<%= link_to 'Sport Route', new_sport_route_path(id: @wall.id.to_s) %> |
+<%= link_to 'Traditional Route', new_traditional_route_path(id: @wall.id.to_s) %> |
+<%= link_to 'Boulder Route', new_boulder_route_path(id: @wall.id.to_s) %> |
 <%= link_to 'Back', walls_path %>

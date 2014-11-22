@@ -19,6 +19,7 @@ class SportRoutesController < ApplicationController
   # GET /sport_routes/new
   def new
     @sport_route = SportRoute.new
+    @sport_route.wall_id = params[:id]
   end
 
   # GET /sport_routes/1/edit

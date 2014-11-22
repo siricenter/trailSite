@@ -4,7 +4,11 @@ class WallPhotosController < ApplicationController
   # GET /wall_photos
   # GET /wall_photos.json
   def index
-    @wall_photos = WallPhoto.all
+    if params[:id].present?
+      @wall_photos = WallPhoto.where(wall_id: params[:id].to_s)
+    else
+      @wall_photos = WallPhoto.all
+    end
   end
 
   # GET /wall_photos/1

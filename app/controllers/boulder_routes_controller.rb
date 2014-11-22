@@ -18,6 +18,7 @@ class BoulderRoutesController < ApplicationController
   # GET /boulder_routes/new
   def new
     @boulder_route = BoulderRoute.new
+    @boulder_route.wall_id = params[:id]
   end
 
   # GET /boulder_routes/1/edit

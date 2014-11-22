@@ -18,6 +18,7 @@ class TraditionalRoutesController < ApplicationController
   # GET /traditional_routes/new
   def new
     @traditional_route = TraditionalRoute.new
+    @traditional_route.wall_id = params[:id]
   end
 
   # GET /traditional_routes/1/edit
