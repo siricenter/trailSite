@@ -41,6 +41,16 @@
     </div>
 
     <div class="form-field">
+      <%= f.label :pitches %><br>
+      <%= f.number_field :pitches, class: "form-control" %>
+    </div>
+
+    <div class="form-field">
+      <%= f.label :bolts %><br>
+      <%= f.number_field :bolts, class: "form-control" %>
+    </div>
+
+    <div class="form-field">
       <%= f.label :danger_rating %><br>
       <select id="sport_route_danger_rating" name="sport_route[danger_rating]", class="form-control">
         <%- DangerRating.getArray().each do |danger| %>
@@ -49,22 +59,6 @@
       </select>
     </div>
 
-    <div class="form-field">
-      <%= f.label :bolts %><br>
-      <%= f.number_field :bolts, class: "form-control" %>
-    </div>
-    
-    <div class="form-field">
-      <%= f.label :stars %><br>
-      <%-5.times do |i|%>
-        <input type="radio" name="sport_route[stars]" value="<%=i+1%>", class: "form-control"> <%=i+1%> 
-      <%-end%>
-    </div>
-
-    <div class="form-field">
-      <%= f.label :pitches %><br>
-      <%= f.number_field :pitches, class: "form-control" %>
-    </div>
     <div class="form-field">
     <%= f.label :yds_grade %><br>
       <select id="sport_route_yds_grade" name="sport_route[yds_grade]", class="form-control">
@@ -81,6 +75,13 @@
         <%- end %>
       </select>
     </div>
+    <div class="form-field">
+      <%= f.label :stars %><br>
+      <%-5.times do |i|%>
+        <input type="radio" name="sport_route[stars]" value="<%=i+1%>", class: "form-control"> <%=i+1%> 
+      <%-end%>
+    </div>
+    
     <div class="form-text">
       <%= f.label :description %><br>
       <%= f.text_area :description, class: "form-control" %>

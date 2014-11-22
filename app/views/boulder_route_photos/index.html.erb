@@ -1,8 +1,8 @@
 <h1>Listing boulder_route_photos</h1>
 
-<table>
+<table class="index-table">
   <thead>
-    <tr>
+    <tr class="index-th">
       <th>Title</th>
       <th>Boulder route</th>
       <th>Url</th>
@@ -12,13 +12,13 @@
 
   <tbody>
     <% @boulder_route_photos.each do |boulder_route_photo| %>
-      <tr>
+      <tr class="index-tr">
         <td><%= boulder_route_photo.title %></td>
-        <td><%= boulder_route_photo.boulder_route %></td>
+        <td><%= if boulder_route_photo.boulder_route != nil then boulder_route_photo.boulder_route.name else "Boulder route deleted" end %></td>
         <td><%= boulder_route_photo.url %></td>
-        <td><%= link_to 'Show', boulder_route_photo %></td>
-        <td><%= link_to 'Edit', edit_boulder_route_photo_path(boulder_route_photo) %></td>
-        <td><%= link_to 'Destroy', boulder_route_photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="index-action"><%= link_to 'Show', boulder_route_photo %></td>
+        <td class="index-action"><%= link_to 'Edit', edit_boulder_route_photo_path(boulder_route_photo) %></td>
+        <td class="index-action"><%= link_to 'Destroy', boulder_route_photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

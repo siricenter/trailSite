@@ -70,3 +70,10 @@
   @extend .btn;
   @extend .btn-default;
 }
+
+
+.form-stars 
+{
+  @extend .form-field;
+  margin-bottom: 1em;
+}

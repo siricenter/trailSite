@@ -14,7 +14,7 @@
     <% @sport_route_photos.each do |sport_route_photo| %>
       <tr class="index-tr">
         <td><%= sport_route_photo.title %></td>
-        <td><%= sport_route_photo.sport_route %></td>
+        <td><%= if sport_route_photo.sport_route != nil then sport_route_photo.sport_route.name else "Route deleted, please re-select" end %></td>
         <td><image class="image_thumbnail" src="<%= sport_route_photo.url %>"/></td>
         <td class="index-action"><%= link_to 'Show', sport_route_photo %></td>
         <td class="index-action"><%= link_to 'Edit', edit_sport_route_photo_path(sport_route_photo) %></td>

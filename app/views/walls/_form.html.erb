@@ -22,14 +22,15 @@
       <%= f.label :name %><br>
       <%= f.text_field :name, class: "form-control" %>
     </div>
-    <div class="form-field <%=if @wall.errors[:longitude].present? then 'has-error' else 'has-success' end %>">
-      <%= f.label :longitude %><br>
-      <%= f.text_field :longitude, class: "form-control" %>
-    </div>
     <div class="form-field <%=if @wall.errors[:latitude].present? then 'has-error' else 'has-success' end %>">
       <%= f.label :latitude %><br>
       <%= f.text_field :latitude, class: "form-control" %>
     </div>
+    <div class="form-field <%=if @wall.errors[:longitude].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :longitude %><br>
+      <%= f.text_field :longitude, class: "form-control" %>
+    </div>
+    
     <div class="form-field <%=if @wall.errors[:zoom].present? then 'has-error' else 'has-success' end %>">
       <%= f.label :zoom %><br>
       <%= f.number_field :zoom, class: "form-control" %>

@@ -16,6 +16,13 @@
       <%= f.label :name %><br>
       <%= f.text_field :name, class: "form-control" %>
     </div>
+
+    <div class="form-field <%=if @boulder_route.errors[:wall].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :wall_id %><br>
+      <%= select("boulder_route", "wall_id", Wall.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''},
+       class: "form-control" )  %>
+    </div>
+
     <div class="form-field">
       <%= f.label :latitude %><br>
       <%= f.text_field :latitude, class: "form-control" %>
@@ -29,32 +36,41 @@
       <%= f.label :zoom %><br>
       <%= f.number_field :zoom, class: "form-control" %>
     </div>
-    
-    <div class="form-field">
-      <%= f.label :wall_id %><br>
-      <%= f.text_field :wall_id, class: "form-control" %>
-    </div>
-    <div class="form-field">
-      <%= f.label :danger_rating %><br>
-      <%= f.text_field :danger_rating, class: "form-control" %>
-    </div>
-    <div class="form-field">
-      <%= f.label :stars %><br>
-      <%-5.times do |i|%>
-        <input type="radio" name="boulder_route[stars]" value="<%=i+1%>", class: "form-control"> <%=i+1%> 
-      <%-end%>
-    </div>
+
     <div class="form-field">
       <%= f.label :pads %><br>
       <%= f.number_field :pads, class: "form-control" %>
     </div>
-    <div class="form-field">
-      <%= f.label :hueco_grade %><br>
-      <%= f.text_field :hueco_grade, class: "form-control" %>
-    </div>
+
     <div class="form-field">
       <%= f.label :length %><br>
       <%= f.text_field :length, class: "form-control" %>
+    </div>
+    
+    <div class="form-field">
+      <%= f.label :danger_rating %><br>
+      <select id="boulder_route_danger_rating" name="boulder_route[danger_rating]", class="form-control">
+        <%- DangerRating.getArray().each do |danger| %>
+          <option value="<%= danger %>" ><%= danger %> </option>
+        <%- end %>
+      </select>
+    </div>
+    
+
+    <div class="form-field">
+      <%= f.label :hueco_grade %><br>
+      <select id="boulder_route_hueco_grade" name="boulder_route[hueco_grade]", class="form-control">
+        <%- HuecoGrade.getArray().each do |grade| %>
+          <option value="<%= grade %>" ><%= grade %> </option>
+        <%- end %>
+      </select>
+    </div>
+
+    <div class="form-stars">
+      <%= f.label :stars %><br>
+      <%-5.times do |i|%>
+        <input type="radio" name="boulder_route[stars]" value="<%=i+1%>", class: "form-control"> <%=i+1%> 
+      <%-end%>
     </div>
 
     <div class="form-text">

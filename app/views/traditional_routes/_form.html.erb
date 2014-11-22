@@ -65,7 +65,7 @@
       </select>
     </div>
     
-    <div class="form-field <%=if @traditional_route.errors[:stars].present? then 'has-error' else 'has-success' end %> ">
+    <div class="form-stars <%=if @traditional_route.errors[:stars].present? then 'has-error' else 'has-success' end %> ">
       <%= f.label :stars %><br>
       <%-5.times do |i|%>
         <input type="radio" name="traditional_route[stars]" value="<%=i+1%>", class: "form-control"> <%=i+1%> 
