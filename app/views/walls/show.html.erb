@@ -43,5 +43,5 @@
 <%= render 'photos' %>
 
 <%= link_to 'Edit', edit_wall_path(@wall) %> | 
-<%= link_to 'Add Photo', "/wall_photos/add/" + @wall.id.to_s %> |
+<%= link_to 'Add Photo', new_wall_photo_path(id: @wall.id.to_s) %> |
 <%= link_to 'Back', walls_path %>
