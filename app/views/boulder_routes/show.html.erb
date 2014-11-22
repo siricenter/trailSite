@@ -7,7 +7,11 @@
 
 <p>
   <strong>Wall:</strong>
-  <%= if @boulder_route.wall != nil then @boulder_route.wall.name else "Deleted, please re-select" end %>
+  <%= if @boulder_route.wall
+        link_to @boulder_route.wall.name, wall_path(@boulder_route.wall) 
+      else 
+        "Deleted, please re-select" 
+      end %>
 </p>
 
 <p>

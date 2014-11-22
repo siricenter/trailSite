@@ -7,7 +7,11 @@
 
 <p>
   <strong>State:</strong>
-  <%= if @area.state != nil then @area.state.name else "DELETED, PLEASE RE-SELECT A STATE FROM THEN 'EDIT' MENU" end %>
+  <%= if @area.state
+        link_to @area.state.name, state_path(@area.state) 
+      else 
+        "Deleted, please re-select" 
+      end %>
 </p>
 
 <p>

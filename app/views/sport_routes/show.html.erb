@@ -7,7 +7,11 @@
 
 <p>
   <strong>Wall:</strong>
-  <%= if @sport_route.wall != nil then @sport_route.wall.name else "Deleted please re-select" end %>
+  <%= if @sport_route.wall
+        link_to @sport_route.wall.name, wall_path(@sport_route.wall) 
+      else 
+        "Deleted, please re-select" 
+      end %>
 </p>
 
 <p>

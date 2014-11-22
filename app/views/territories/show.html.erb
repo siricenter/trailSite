@@ -7,7 +7,11 @@
 
 <p>
   <strong>Area:</strong>
-  <%= if @territory.area != nil then @territory.area.name else "Deleted, please re-select" end %>
+  <%= if @territory.area
+        link_to @territory.area.name, area_path(@territory.area) 
+      else 
+        "Deleted, please re-select" 
+      end %>
 </p>
 
 <p>

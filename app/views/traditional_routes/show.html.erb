@@ -7,7 +7,11 @@
 
 <p>
   <strong>Wall:</strong>
-  <%= if @traditional_route.wall then @traditional_route.wall.name else "Deleted, please re-select" end %>
+  <%= if @traditional_route.wall
+        link_to @traditional_route.wall.name, wall_path(@traditional_route.wall) 
+      else 
+        "Deleted, please re-select" 
+      end %>
 </p>
 
 <p>

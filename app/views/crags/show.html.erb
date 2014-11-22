@@ -7,7 +7,11 @@
 
 <p>
   <strong>Territory:</strong>
-  <%= if @crag.territory != nil then @crag.territory.name end %>
+  <%= if @crag.territory
+        link_to @crag.territory.name, territory_path(@crag.territory) 
+      else 
+        "Deleted, please re-select" 
+      end %>
 </p>
 
 <p>

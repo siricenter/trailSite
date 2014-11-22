@@ -7,7 +7,11 @@
 
 <p>
   <strong>Crag:</strong>
-  <%= if @wall.crag != nil then @wall.crag.name else "Deleted, please re-select" end %>
+  <%= if @wall.crag
+        link_to @wall.crag.name, crag_path(@wall.crag) 
+      else 
+        "Deleted, please re-select" 
+      end %>
 </p>
 
 <p>
@@ -44,7 +48,7 @@
 
 <%= link_to 'Edit', edit_wall_path(@wall) %> | 
 <%= link_to 'Add Photo', new_wall_photo_path(id: @wall.id.to_s) %> |
-<%= link_to 'Sport Route', new_sport_route_path(id: @wall.id.to_s) %> |
-<%= link_to 'Traditional Route', new_traditional_route_path(id: @wall.id.to_s) %> |
-<%= link_to 'Boulder Route', new_boulder_route_path(id: @wall.id.to_s) %> |
+<%= link_to 'Add Sport Route', new_sport_route_path(id: @wall.id.to_s) %> |
+<%= link_to 'Add Traditional Route', new_traditional_route_path(id: @wall.id.to_s) %> |
+<%= link_to 'Add Boulder Route', new_boulder_route_path(id: @wall.id.to_s) %> |
 <%= link_to 'Back', walls_path %>

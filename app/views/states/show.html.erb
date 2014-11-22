@@ -7,7 +7,11 @@
 
 <p>
   <strong>Region:</strong>
-  <%= if @state.region.present? then @state.region.name end %>
+  <%= if @state.region
+        link_to @state.region.name, region_path(@state.region) 
+      else 
+        "Deleted, please re-select" 
+      end %>
 </p>
 
 <p>
