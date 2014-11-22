@@ -1,3 +1,6 @@
+require "danger_rating";
+require "yds_grade";
+
 class TraditionalRoutesController < ApplicationController
   before_action :set_traditional_route, only: [:show, :edit, :update, :destroy]
 

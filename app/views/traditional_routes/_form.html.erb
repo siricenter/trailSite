@@ -33,18 +33,18 @@
     </div>
 
     <div class="form-field">
+      <%= f.label :zoom %><br>
+      <%= f.number_field :zoom, class: "form-control" %>
+    </div>
+    
+
+    <div class="form-field">
       <%= f.label :length %><br>
       <%= f.text_field :length, class: "form-control" %>
     </div>
     <div class="form-field">
       <%= f.label :pitches %><br>
       <%= f.number_field :pitches, class: "form-control" %>
-    </div>
-
-
-    <div class="form-field">
-      <%= f.label :zoom %><br>
-      <%= f.number_field :zoom, class: "form-control" %>
     </div>
 
     <div class="form-field <%=if @traditional_route.errors[:yds_grade].present? then 'has-error' else 'has-success' end %> ">

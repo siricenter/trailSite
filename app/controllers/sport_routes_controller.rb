@@ -1,3 +1,7 @@
+require "anchor_type";
+require "danger_rating";
+require "yds_grade";
+
 class SportRoutesController < ApplicationController
   before_action :set_sport_route, only: [:show, :edit, :update, :destroy]
 

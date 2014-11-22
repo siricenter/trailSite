@@ -1,3 +1,6 @@
+require "danger_rating";
+require "hueco_grade";
+
 class BoulderRoutesController < ApplicationController
   before_action :set_boulder_route, only: [:show, :edit, :update, :destroy]
 

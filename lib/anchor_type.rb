@@ -6,7 +6,7 @@ class AnchorType
   end
   
   def self.getRand
-    @@anchor[rand(5)];
+    return @@anchor[rand(5)];
   end
 
 end
