@@ -44,7 +44,17 @@
   <%= @wall.history %>
 </p>
 
-<%= render 'photos' %>
+<strong>Sport Routes</strong>
+<%= render 'sport_routes/table' %>
+
+<strong>Traditional Routes</strong>
+<%= render 'traditional_routes/table' %>
+
+<strong>Boulder Routes</strong>
+<%= render 'boulder_routes/table' %>
+
+<strong>Wall Photos</strong>
+<%= render 'wall_photos/table' %>
 
 <%= link_to 'Edit', edit_wall_path(@wall) %> | 
 <%= link_to 'Add Photo', new_wall_photo_path(id: @wall.id.to_s) %> |

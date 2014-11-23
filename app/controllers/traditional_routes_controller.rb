@@ -13,6 +13,7 @@ class TraditionalRoutesController < ApplicationController
   # GET /traditional_routes/1
   # GET /traditional_routes/1.json
   def show
+    @traditional_route_photos = TraditionalRoutePhoto.where(traditional_route_id: params[:id])
   end
 
   # GET /traditional_routes/new

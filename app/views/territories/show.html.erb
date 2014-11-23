@@ -44,6 +44,9 @@
   <%= @territory.history %>
 </p>
 
+<strong>Crags</strong>
+<%= render "crags/table" %>
+
 <%= link_to 'Edit', edit_territory_path(@territory) %> |
 <%= link_to 'Add Crag', new_crag_path(id: @territory.id.to_s) %> |
 <%= link_to 'Back', territories_path %>

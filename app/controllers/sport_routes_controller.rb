@@ -14,6 +14,7 @@ class SportRoutesController < ApplicationController
   # GET /sport_routes/1
   # GET /sport_routes/1.json
   def show
+    @sport_route_photos = SportRoutePhoto.where(sport_route_id: params[:id])
   end
 
   # GET /sport_routes/new

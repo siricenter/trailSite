@@ -10,6 +10,7 @@ class RegionsController < ApplicationController
   # GET /regions/1
   # GET /regions/1.json
   def show
+    @states = State.where(region_id: params[:id])
   end
 
   # GET /regions/new

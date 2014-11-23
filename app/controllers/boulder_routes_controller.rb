@@ -13,6 +13,7 @@ class BoulderRoutesController < ApplicationController
   # GET /boulder_routes/1
   # GET /boulder_routes/1.json
   def show
+    @boulder_route_photos = BoulderRoutePhoto.where(boulder_route_id: params[:id])
   end
 
   # GET /boulder_routes/new

@@ -10,4 +10,5 @@ class BoulderRoute < ActiveRecord::Base
   validates :hueco_grade, inclusion: { in: HuecoGrade.getArray() }
   validates :danger_rating, inclusion: { in: DangerRating.getArray() }
   belongs_to :wall
+  has_many :boulder_route_photos
 end

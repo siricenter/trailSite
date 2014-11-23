@@ -10,6 +10,7 @@ class CragsController < ApplicationController
   # GET /crags/1
   # GET /crags/1.json
   def show
+    @walls = Wall.where(crag_id: params[:id])
   end
 
   # GET /crags/new

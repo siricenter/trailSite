@@ -10,6 +10,7 @@ class AreasController < ApplicationController
   # GET /areas/1
   # GET /areas/1.json
   def show
+    @territories = Territory.where(area_id: params[:id])
   end
 
   # GET /areas/new

@@ -10,6 +10,7 @@ class TerritoriesController < ApplicationController
   # GET /territories/1
   # GET /territories/1.json
   def show
+    @crags = Crag.where(territory_id = params[:id])
   end
 
   # GET /territories/new

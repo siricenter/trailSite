@@ -64,5 +64,8 @@
   <%= @boulder_route.length %>
 </p>
 
+<strong>Photos:</strong>
+<%= render 'boulder_route_photos/table' %>
+
 <%= link_to 'Edit', edit_boulder_route_path(@boulder_route) %> |
 <%= link_to 'Back', boulder_routes_path %>

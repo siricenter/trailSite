@@ -10,6 +10,11 @@ class WallsController < ApplicationController
   # GET /walls/1
   # GET /walls/1.json
   def show
+    @sport_routes = SportRoute.where( wall_id: params[:id] )
+    @traditional_routes = TraditionalRoute.where( wall_id: params[:id] )
+    @boulder_routes = BoulderRoute.where( wall_id: params[:id] )
+    @wall_photos = WallPhoto.where( wall_id: params[:id] )
+
   end
 
   # GET /walls/new
