@@ -15,6 +15,7 @@ class BoulderRoutePhotosController < ApplicationController
   # GET /boulder_route_photos/new
   def new
     @boulder_route_photo = BoulderRoutePhoto.new
+    @boulder_route_photo.boulder_route_id = params[:id]
   end
 
   # GET /boulder_route_photos/1/edit

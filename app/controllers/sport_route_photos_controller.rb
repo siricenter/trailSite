@@ -15,6 +15,7 @@ class SportRoutePhotosController < ApplicationController
   # GET /sport_route_photos/new
   def new
     @sport_route_photo = SportRoutePhoto.new
+    @sport_route_photo.sport_route_id = params[:id]
   end
 
   # GET /sport_route_photos/1/edit

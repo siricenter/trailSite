@@ -15,6 +15,7 @@ class TraditionalRoutePhotosController < ApplicationController
   # GET /traditional_route_photos/new
   def new
     @traditional_route_photo = TraditionalRoutePhoto.new
+    @traditional_route_photo.traditional_route_id = params[:id]
   end
 
   # GET /traditional_route_photos/1/edit
