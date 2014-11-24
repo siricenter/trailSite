@@ -64,7 +64,11 @@ class TraditionalRoutePhotosController < ApplicationController
 
   # get a json array
   def getJson
-    render json: (TraditionalRoutePhoto.all)
+    if params[:id].present?
+      render json: (TraditionalRoutePhoto.where(traditional_route_id: params[:id]))
+    else
+      render json: (TraditionalRoutePhoto.all)
+    end
   end
 
   private

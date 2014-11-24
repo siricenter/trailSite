@@ -68,7 +68,11 @@ class WallPhotosController < ApplicationController
 
   # get a json array
   def getJson
-    render json: (WallPhoto.all)
+    if params[:id].present?
+      render json: (WallPhoto.where(wall_id: params[:id]))
+    else
+      render json: (WallPhoto.all)
+    end
   end
 
   private

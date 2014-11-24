@@ -69,7 +69,11 @@ class WallsController < ApplicationController
 
   # get a json array
   def getJson
-    render json: (Wall.all)
+    if params[:id].present?
+      render json: (Wall.where(crag_id: params[:id]))
+    else
+      render json: (Wall.all)
+    end
   end
 
   private

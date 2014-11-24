@@ -68,7 +68,11 @@ class TraditionalRoutesController < ApplicationController
 
   # get a json array
   def getJson
-    render json: (TraditionalRoute.all)
+    if params[:id].present?
+      render json: (TraditionalRoute.where(wall_id: params[:id]))
+    else
+      render json: (TraditionalRoute.all)
+    end
   end
 
   private

@@ -65,7 +65,11 @@ class CragsController < ApplicationController
 
   # get a json array
   def getJson
-    render json: (Crag.all)
+    if params[:id].present?
+      render json: (Crag.where(territory_id: params[:id]))
+    else
+      render json: (Crag.all)
+    end
   end
 
   private

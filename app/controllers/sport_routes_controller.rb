@@ -69,7 +69,11 @@ class SportRoutesController < ApplicationController
 
   # get a json array
   def getJson
-    render json: (SportRoute.all)
+    if params[:id].present?
+      render json: (SportRoute.where(wall_id: params[:id]))
+    else
+      render json: (SportRoute.all)
+    end
   end
 
   private

@@ -68,7 +68,11 @@ class BoulderRoutesController < ApplicationController
 
   # get a json array
   def getJson
-    render json: (BoulderRoute.all)
+    if params[:id].present?
+      render json: (BoulderRoute.where(wall_id: params[:id]))
+    else
+      render json: (BoulderRoute.all)
+    end
   end
 
   private

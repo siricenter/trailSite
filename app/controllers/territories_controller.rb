@@ -65,7 +65,11 @@ class TerritoriesController < ApplicationController
 
   # get a json array
   def getJson
-    render json: (Territory.all)
+    if params[:id].present?
+      render json: (Territoy.where(area_id: params[:id]))
+    else
+      render json: (Territory.all)
+    end
   end
 
   private
