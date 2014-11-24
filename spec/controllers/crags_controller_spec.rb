@@ -85,6 +85,12 @@ RSpec.describe CragsController, :type => :controller do
         json = get(:getJson, {}, valid_session)
         expect(json).to_not be_nil;
       end
+
+      it "returns a valid json object when given an id" do
+        subject = FactoryGirl.create(:crag) 
+        json = get(:getJson, {id: subject.territory_id}, valid_session)
+        expect(json).to_not be_nil;
+      end
     end
 
   end

@@ -80,10 +80,17 @@ RSpec.describe SportRoutesController, :type => :controller do
 
     describe "json" do
       it "returns a valid json object" do
-        subject = FactoryGirl.create(:sport_route, id:1)
+        subject = FactoryGirl.create(:sport_route)
         json = get(:getJson, {}, valid_session)
         expect(json).to_not be_nil;
       end
+
+      it "returns a valid json object when given an id" do
+        subject = FactoryGirl.create(:sport_route) 
+        json = get(:getJson, {id: subject.wall_id}, valid_session)
+        expect(json).to_not be_nil;
+      end
+
     end
 
   end

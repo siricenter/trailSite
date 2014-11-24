@@ -84,6 +84,13 @@ RSpec.describe BoulderRoutePhotosController, :type => :controller do
         json = get(:getJson, {}, valid_session)
         expect(json).to_not be_nil;
       end
+
+      it "returns a valid json object when given an id" do
+        subject = FactoryGirl.create(:boulder_route_photo) 
+        json = get(:getJson, {id: subject.boulder_route_id}, valid_session)
+        expect(json).to_not be_nil;
+      end
+
     end
 
   end

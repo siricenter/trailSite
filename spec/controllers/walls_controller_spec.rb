@@ -80,8 +80,14 @@ RSpec.describe WallsController, :type => :controller do
 
     describe "json" do
       it "returns a valid json object" do
-        subject = FactoryGirl.create(:wall, id:1)
+        subject = FactoryGirl.create(:wall)
         json = get(:getJson, {}, valid_session)
+        expect(json).to_not be_nil;
+      end
+
+      it "returns a valid json object when given an id" do
+        subject = FactoryGirl.create(:wall) 
+        json = get(:getJson, {id: subject.crag_id}, valid_session)
         expect(json).to_not be_nil;
       end
     end
