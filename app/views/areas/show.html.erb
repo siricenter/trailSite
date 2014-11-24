@@ -48,11 +48,10 @@
 
 <br>
 
-<strong>Territories</strong>
+<strong>Territories</strong> | <%= link_to 'Add Territory', new_territory_path(id: @area.id.to_s) %>
 <%= render 'territories/table' %>
 
 <div class="col-md-12">
   <%= link_to 'Edit', edit_area_path(@area) %> |
-  <%= link_to 'Add Territory', new_territory_path(id: @area.id.to_s) %> |
   <%= link_to 'Back', areas_path %>
 </div>

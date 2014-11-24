@@ -67,7 +67,11 @@ class StatesController < ApplicationController
 
   # get a json array
   def getJson
-    render json: (State.all)
+    if params[:id].present?
+      render json: (State.where(region_id: params[:id]))
+    else
+      render json: (State.all)
+    end
   end
 
   private

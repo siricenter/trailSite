@@ -48,9 +48,8 @@
 
 <br>
 
-<strong>Crags</strong>
+<strong>Crags</strong> | <%= link_to 'Add Crag', new_crag_path(id: @territory.id.to_s) %>
 <%= render "crags/table" %>
 
 <%= link_to 'Edit', edit_territory_path(@territory) %> |
-<%= link_to 'Add Crag', new_crag_path(id: @territory.id.to_s) %> |
 <%= link_to 'Back', territories_path %>

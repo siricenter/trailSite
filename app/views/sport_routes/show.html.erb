@@ -72,9 +72,8 @@
   <%= @sport_route.directions %>
 </p>
 
-<strong>Photos</strong>
+<strong>Photos</strong> |<%= link_to 'Add Photo', new_sport_route_photo_path(id: @sport_route.id.to_s) %> |
 <%= render "sport_route_photos/table" %>
 
 <%= link_to 'Edit', edit_sport_route_path(@sport_route) %> |
-<%= link_to 'Add Photo', new_sport_route_photo_path(id: @sport_route.id.to_s) %> |
 <%= link_to 'Back', sport_routes_path %>

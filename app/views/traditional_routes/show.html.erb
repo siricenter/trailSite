@@ -78,9 +78,8 @@
 
 <br>
 
-<strong>Photos</strong>
+<strong>Photos</strong> | <%= link_to 'Add Photo', new_traditional_route_photo_path(id: @traditional_route.id.to_s) %>
 <%= render 'traditional_route_photos/table' %>
 
 <%= link_to 'Edit', edit_traditional_route_path(@traditional_route) %> |
-<%= link_to 'Add Photo', new_traditional_route_photo_path(id: @traditional_route.id.to_s) %> |
 <%= link_to 'Back', traditional_routes_path %>

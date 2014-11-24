@@ -48,21 +48,17 @@
 
 <br>
 
-<strong>Sport Routes</strong>
+<strong>Sport Routes</strong> | <%= link_to 'Add Sport Route', new_sport_route_path(id: @wall.id.to_s) %>
 <%= render 'sport_routes/table' %>
 
-<strong>Traditional Routes</strong>
+<strong>Traditional Routes</strong> | <%= link_to 'Add Traditional Route', new_traditional_route_path(id: @wall.id.to_s) %>
 <%= render 'traditional_routes/table' %>
 
-<strong>Boulder Routes</strong>
+<strong>Boulder Routes</strong> | <%= link_to 'Add Boulder Route', new_boulder_route_path(id: @wall.id.to_s) %>
 <%= render 'boulder_routes/table' %>
 
-<strong>Wall Photos</strong>
+<strong>Wall Photos</strong> | <%= link_to 'Add Photo', new_wall_photo_path(id: @wall.id.to_s) %>
 <%= render 'wall_photos/table' %>
 
 <%= link_to 'Edit', edit_wall_path(@wall) %> | 
-<%= link_to 'Add Photo', new_wall_photo_path(id: @wall.id.to_s) %> |
-<%= link_to 'Add Sport Route', new_sport_route_path(id: @wall.id.to_s) %> |
-<%= link_to 'Add Traditional Route', new_traditional_route_path(id: @wall.id.to_s) %> |
-<%= link_to 'Add Boulder Route', new_boulder_route_path(id: @wall.id.to_s) %> |
 <%= link_to 'Back', walls_path %>

@@ -65,7 +65,12 @@ class AreasController < ApplicationController
 
   # get a json array
   def getJson
-    render json: (Area.all)
+    if params[:id].present?
+      render json: (Area.where(state_id: params[:id]))
+    else
+      render json: (Area.all)
+    end
+
   end
 
   private

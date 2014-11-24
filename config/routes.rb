@@ -28,6 +28,24 @@ Rails.application.routes.draw do
   get 'boulder_route_photos/getJson', to: 'boulder_route_photos#getJson'
   get 'traditional_route_photos/getJson', to: 'traditional_route_photos#getJson'
 
+
+  
+  get 'states/getJson/:id', to: 'states#getJson'
+  get 'areas/getJson/:id', to: 'areas#getJson'
+  get 'territories/getJson/:id', to: 'territories#getJson'
+  get 'crags/getJson/:id', to: 'crags#getJson'
+  get 'walls/getJson/:id', to: 'walls#getJson'
+
+  get 'sport_routes/getJson/:id', to: 'sport_routes#getJson'
+  get 'boulder_routes/getJson/:id', to: 'boulder_routes#getJson'
+  get 'traditional_routes/getJson/:id', to: 'traditional_routes#getJson'
+
+  get 'wall_photos/getJson/:id', to: 'wall_photos#getJson'
+  get 'sport_route_photos/getJson/:id', to: 'sport_route_photos#getJson'
+  get 'boulder_route_photos/getJson/:id', to: 'boulder_route_photos#getJson'
+  get 'traditional_route_photos/getJson/:id', to: 'traditional_route_photos#getJson'
+
+
   resources :crags
 
   resources :territories

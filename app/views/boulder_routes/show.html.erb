@@ -68,9 +68,8 @@
 
 <br>
 
-<strong>Photos</strong>
+<strong>Photos</strong> | <%= link_to 'Add Photo', new_boulder_route_photo_path(id: @boulder_route.id.to_s) %>
 <%= render 'boulder_route_photos/table' %>
 
 <%= link_to 'Edit', edit_boulder_route_path(@boulder_route) %> |
-<%= link_to 'Add Photo', new_boulder_route_photo_path(id: @boulder_route.id.to_s) %> |
 <%= link_to 'Back', boulder_routes_path %>
