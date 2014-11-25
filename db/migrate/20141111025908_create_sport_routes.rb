@@ -2,8 +2,8 @@ class CreateSportRoutes < ActiveRecord::Migration
   def change
     create_table :sport_routes do |t|
       t.string :name
-      t.string :latitude
-      t.string :longitude
+      t.decimal :latitude
+      t.decimal :longitude
       t.integer :zoom
       t.text :description
       t.text :directions
