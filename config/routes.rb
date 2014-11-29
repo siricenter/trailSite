@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :users
+
   get '/photos', to: 'static#photos'
 
   resources :boulder_route_photos
