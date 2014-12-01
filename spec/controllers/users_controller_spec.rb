@@ -20,21 +20,31 @@ require 'rails_helper'
 
 RSpec.describe UsersController, :type => :controller do
 
+  before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
   # This should return the minimal set of attributes required to create a valid
   # User. As you add validations to User, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryGirl.attributes_for(:user)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    FactoryGirl.attributes_for(:user, username: nil)
   }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # UsersController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+
+  before(:each) do
+      DatabaseCleaner.strategy = :truncation
+      DatabaseCleaner.start
+      DatabaseCleaner.clean
+  end
 
   describe "GET index" do
     it "assigns all users as @users" do
@@ -103,14 +113,14 @@ RSpec.describe UsersController, :type => :controller do
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        FactoryGirl.attributes_for(:user)
       }
 
       it "updates the requested user" do
         user = User.create! valid_attributes
         put :update, {:id => user.to_param, :user => new_attributes}, valid_session
         user.reload
-        skip("Add assertions for updated state")
+        expect(user.username).to eq(new_attributes[:username])
       end
 
       it "assigns the requested user as @user" do
