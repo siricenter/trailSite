@@ -1,6 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
+
+  before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  before(:each) do
+      DatabaseCleaner.strategy = :truncation
+      DatabaseCleaner.start
+      DatabaseCleaner.clean
+  end
+
   context ".types" do
     it "is read accessable" do
       expect(User.types[0]).to eq("admin")
@@ -22,14 +33,21 @@ RSpec.describe User, :type => :model do
     expect(subject).to_not be_valid
   end
 
+  it "only allows unique usernames" do
+    user1 = FactoryGirl.create(:user)
+    user2 = FactoryGirl.build(:user, username: user1.username)
+    expect(user2).to_not be_valid
+  end
+
   it "is invalid without password" do
     subject = FactoryGirl.build(:user, password: nil)
     expect(subject).to_not be_valid
   end
 
-  it "is invalid without salt" do
-    subject = FactoryGirl.build(:user, salt: nil)
-    expect(subject).to_not be_valid
+  it ".salt is generated on save" do
+    subject = FactoryGirl.build(:user)
+    subject.save!
+    expect(subject.salt).to_not be_nil
   end
 
   it "is invalid without first name" do
@@ -59,10 +77,44 @@ RSpec.describe User, :type => :model do
     expect(subject).to_not be_valid
   end
 
+  it "is allows you to specify a valid user_type" do
+    type = User.types[rand(3)]
+    subject = FactoryGirl.build(:user, user_type: type)
+    expect(subject.user_type).to eq(type)
+  end
+
   it "without user type will set user tpye to default" do
     subject = FactoryGirl.build(:user, user_type: nil)
     subject.save!
     expect(subject.user_type).to eq("defualt")
+  end
+
+  context ".authenticate" do
+    it "with valid username and password is not nil" do
+      password = Faker::Internet.password
+      subject = FactoryGirl.create(:user, password: password)
+      expect(User.authenticate(subject.username, password)).to_not be_nil
+    end
+    it "with invalid username is nil" do
+      subject = FactoryGirl.build(:user)
+      subject.save!
+      expect(User.authenticate(Faker::Name.name, subject.password)).to be_nil
+    end
+    it "with invalid password is nil" do
+      subject = FactoryGirl.build(:user)
+      subject.save!
+      expect(User.authenticate(subject.username, Faker::Name.name)).to be_nil
+    end
+    it "with no username is nil" do
+      subject = FactoryGirl.build(:user)
+      subject.save!
+      expect(User.authenticate(nil, subject.password)).to be_nil
+    end
+    it "with no password is nil" do
+      subject = FactoryGirl.build(:user)
+      subject.save!
+      expect(User.authenticate(subject.username, nil)).to be_nil
+    end
   end
 
 end

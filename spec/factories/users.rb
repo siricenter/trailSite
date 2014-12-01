@@ -6,7 +6,7 @@ FactoryGirl.define do
     first_name Faker::Name.first_name
     last_name Faker::Name.last_name
     email Faker::Internet.email
-    user_type "admin"
+    user_type {User.types[rand(3)]}
   end
 
 end
