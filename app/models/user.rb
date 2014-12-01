@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   # this array defines valid user types
-  @@types = ["admin", "manager", "defualt"]
+  @@types = ["admin", "manager", "defualt"] 
 
   # validation
   validates :username, :password, :first_name, :last_name, :user_type, :email, presence: true
