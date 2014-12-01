@@ -44,6 +44,10 @@ RSpec.describe User, :type => :model do
     expect(subject).to_not be_valid
   end
 
+  it "is invalid with an unsecure password" do
+    
+  end
+
   it ".salt is generated on save" do
     subject = FactoryGirl.build(:user)
     subject.save!
