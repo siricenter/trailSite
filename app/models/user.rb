@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates :user_type,  inclusion: { in: @@types }
   validates :email, email_format: { message: "doesn't look like an email address" }
   validates :username, uniqueness: true
+  validates :password, length: { minimum: 2, maximum: 15 }
 
   # hooks
   before_validation {if self.user_type == nil then self.user_type = "defualt" end} # if no type is defined then use defualt
