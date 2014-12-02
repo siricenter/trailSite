@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user
       session[:user_name] = user.first_name
       session[:user_id] = user.id
-      session[:permissions] = user.user_type
+      session[:user_type] = user.user_type
       redirect_to admin_url
     else
       redirect_to login_url, alert: "Invalid user/password combination"
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_name] = nil
     session[:user_id] = nil
-    session[:permissions] = nil
+    session[:user_type] = nil
     redirect_to store_url, notice: "Logged out"
   end
 

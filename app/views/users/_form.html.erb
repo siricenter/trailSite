@@ -20,10 +20,6 @@
     <%= f.text_field :password %>
   </div>
   <div class="field">
-    <%= f.label :salt %><br>
-    <%= f.text_field :salt %>
-  </div>
-  <div class="field">
     <%= f.label :first_name %><br>
     <%= f.text_field :first_name %>
   </div>
@@ -35,10 +31,14 @@
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
-  <div class="field">
-    <%= f.label :user_type %><br>
-    <%= f.text_field :user_type %>
-  </div>
+
+  <%- if session[:user_id] && session[:user_type] == "admin" %>
+    <div class="field">
+      <%= f.label :user_type %><br>
+      <%= f.text_field :user_type %>
+    </div>
+  <%- end %>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

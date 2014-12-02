@@ -1,22 +1,25 @@
 Rails.application.routes.draw do
   
+  resources :users
+  resources :boulder_route_photos
+  resources :traditional_route_photos
+  resources :sport_route_photos
+  resources :wall_photos
+  resources :crags
+  resources :territories
+  resources :areas
+  resources :states
+  resources :regions
+  resources :boulder_routes
+  resources :traditional_routes
+  resources :sport_routes
+  resources :walls
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-  resources :users
-
-
-
+  
   get '/photos', to: 'static#photos'
-
-  resources :boulder_route_photos
-
-  resources :traditional_route_photos
-
-  resources :sport_route_photos
-
-  resources :wall_photos
   get 'wall_photos/index/:id', to: 'wall_photos#index'
   get 'wall_photos/new/:id', to: 'wall_photos#new'
 
@@ -35,8 +38,6 @@ Rails.application.routes.draw do
   get 'sport_route_photos/getJson', to: 'sport_route_photos#getJson'
   get 'boulder_route_photos/getJson', to: 'boulder_route_photos#getJson'
   get 'traditional_route_photos/getJson', to: 'traditional_route_photos#getJson'
-
-
   
   get 'states/getJson/:id', to: 'states#getJson'
   get 'areas/getJson/:id', to: 'areas#getJson'
@@ -52,25 +53,6 @@ Rails.application.routes.draw do
   get 'sport_route_photos/getJson/:id', to: 'sport_route_photos#getJson'
   get 'boulder_route_photos/getJson/:id', to: 'boulder_route_photos#getJson'
   get 'traditional_route_photos/getJson/:id', to: 'traditional_route_photos#getJson'
-
-
-  resources :crags
-
-  resources :territories
-
-  resources :areas
-
-  resources :states
-
-  resources :regions
-
-  resources :boulder_routes
-
-  resources :traditional_routes
-
-  resources :sport_routes
-
-  resources :walls
 
   #admin
   scope :admin do
