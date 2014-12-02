@@ -10,4 +10,7 @@ class StaticController < ApplicationController
     @boulder_route_photos = BoulderRoutePhoto.all
   end
 
+  def home
+  end
+
 end

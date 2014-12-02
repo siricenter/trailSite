@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
 
   def new
+    if session[:user_name] && session[:user_id] && session[:user_type]
+      redirect_to '/home'
+    end
   end
 
   def create
@@ -9,7 +12,11 @@ class SessionsController < ApplicationController
       session[:user_name] = user.first_name
       session[:user_id] = user.id
       session[:user_type] = user.user_type
-      redirect_to admin_url
+      if user.user_type == 'defualt'
+        redirect_to '/home'
+      else
+        redirect_to '/admin'
+      end
     else
       redirect_to login_url, alert: "Invalid user/password combination"
     end
@@ -19,7 +26,7 @@ class SessionsController < ApplicationController
     session[:user_name] = nil
     session[:user_id] = nil
     session[:user_type] = nil
-    redirect_to store_url, notice: "Logged out"
+    redirect_to '/home', notice: "Logged out"
   end
 
   # This defines what parameters are allowed in this controller
