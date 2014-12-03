@@ -1,5 +1,6 @@
 class StatesController < ApplicationController
   before_action :set_state, only: [:show, :edit, :update, :destroy]
+  before_action :authorizeManager, except: [:show, :getJson] # Manager level or higher priveleges are required
 
   # GET /states
   # GET /states.json
@@ -75,6 +76,19 @@ class StatesController < ApplicationController
   end
 
   private
+
+    def authorizeManager
+      if session[:user_id]
+        if session[:user_type] == 'admin' || session[:user_type] == 'manager'
+          return true;
+        else
+          redirect_to home_url
+        end
+      else
+        redirect_to login_url
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_state
       @state = State.find(params[:id])
