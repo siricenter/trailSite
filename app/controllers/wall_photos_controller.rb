@@ -1,5 +1,6 @@
 class WallPhotosController < ApplicationController
   before_action :set_wall_photo, only: [:show, :edit, :update, :destroy]
+  before_action :authorizeManager, except: [:show, :getJson] # Manager level or higher priveleges are required
 
   # GET /wall_photos
   # GET /wall_photos.json

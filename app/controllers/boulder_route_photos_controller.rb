@@ -1,5 +1,6 @@
 class BoulderRoutePhotosController < ApplicationController
   before_action :set_boulder_route_photo, only: [:show, :edit, :update, :destroy]
+  before_action :authorizeManager, except: [:show, :getJson] # Manager level or higher priveleges are required
 
   # GET /boulder_route_photos
   # GET /boulder_route_photos.json

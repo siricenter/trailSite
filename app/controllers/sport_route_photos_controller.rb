@@ -1,5 +1,6 @@
 class SportRoutePhotosController < ApplicationController
   before_action :set_sport_route_photo, only: [:show, :edit, :update, :destroy]
+  before_action :authorizeManager, except: [:show, :getJson] # Manager level or higher priveleges are required
 
   # GET /sport_route_photos
   # GET /sport_route_photos.json

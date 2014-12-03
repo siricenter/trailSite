@@ -3,6 +3,7 @@ require "hueco_grade";
 
 class BoulderRoutesController < ApplicationController
   before_action :set_boulder_route, only: [:show, :edit, :update, :destroy]
+  before_action :authorizeManager, except: [:show, :getJson] # Manager level or higher priveleges are required
 
   # GET /boulder_routes
   # GET /boulder_routes.json

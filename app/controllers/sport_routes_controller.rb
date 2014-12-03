@@ -4,6 +4,7 @@ require "yds_grade";
 
 class SportRoutesController < ApplicationController
   before_action :set_sport_route, only: [:show, :edit, :update, :destroy]
+  before_action :authorizeManager, except: [:show, :getJson] # Manager level or higher priveleges are required
 
   # GET /sport_routes
   # GET /sport_routes.json

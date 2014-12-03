@@ -1,5 +1,6 @@
 class CragsController < ApplicationController
   before_action :set_crag, only: [:show, :edit, :update, :destroy]
+  before_action :authorizeManager, except: [:show, :getJson] # Manager level or higher priveleges are required
 
   # GET /crags
   # GET /crags.json

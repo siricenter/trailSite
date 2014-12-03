@@ -1,5 +1,6 @@
 class TraditionalRoutePhotosController < ApplicationController
   before_action :set_traditional_route_photo, only: [:show, :edit, :update, :destroy]
+  before_action :authorizeManager, except: [:show, :getJson] # Manager level or higher priveleges are required
 
   # GET /traditional_route_photos
   # GET /traditional_route_photos.json

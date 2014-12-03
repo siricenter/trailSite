@@ -1,5 +1,6 @@
 class TerritoriesController < ApplicationController
   before_action :set_territory, only: [:show, :edit, :update, :destroy]
+  before_action :authorizeManager, except: [:show, :getJson] # Manager level or higher priveleges are required
 
   # GET /territories
   # GET /territories.json

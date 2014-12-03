@@ -1,5 +1,6 @@
 class WallsController < ApplicationController
   before_action :set_wall, only: [:show, :edit, :update, :destroy]
+  before_action :authorizeManager, except: [:show, :getJson] # Manager level or higher priveleges are required
 
   # GET /walls
   # GET /walls.json

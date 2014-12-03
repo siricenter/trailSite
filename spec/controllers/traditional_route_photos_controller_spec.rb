@@ -35,7 +35,7 @@ RSpec.describe TraditionalRoutePhotosController, :type => :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # TraditionalRoutePhotosController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:valid_session) { { username: "jimmy", user_type: 'admin', user_id: 1 } }
 
   # GET
   describe "GET" do

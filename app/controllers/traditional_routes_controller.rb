@@ -3,6 +3,7 @@ require "yds_grade";
 
 class TraditionalRoutesController < ApplicationController
   before_action :set_traditional_route, only: [:show, :edit, :update, :destroy]
+  before_action :authorizeManager, except: [:show, :getJson] # Manager level or higher priveleges are required
 
   # GET /traditional_routes
   # GET /traditional_routes.json
