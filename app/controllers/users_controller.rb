@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :authorizeAdmin, except: [:index, :show] # admin level or higher priveleges are required
+  before_action :authorizeAdmin, only: [:new, :edit, :create, :update, :destroy] # admin level or higher priveleges are required
   before_action :authorizeManager, only: [:index, :show] # Manager level or higher priveleges are required
 
   # GET /users
