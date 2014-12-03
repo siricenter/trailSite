@@ -1,6 +1,7 @@
 class StaticController < ApplicationController
+  before_action :authorizeManager, only: [:dashboard, :photos] # Manager level or higher priveleges are required
 
-	def admin_dashboard
+	def dashboard
 	end
 
   def photos

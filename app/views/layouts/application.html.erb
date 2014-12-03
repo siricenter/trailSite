@@ -12,7 +12,9 @@
 </head>
 <body>
 
-<%= render "static/adminToolbar" %>
+<%- if session[:user_type] == 'admin' || session[:user_type] == 'manager' %>
+  <%= render "static/adminToolbar" %>
+<%- end %>
 <%= render "static/login_box" %>
 
 <%= yield %>
