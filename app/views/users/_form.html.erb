@@ -40,7 +40,7 @@
   <%- if session[:user_id] && session[:user_type] == "admin" %>
     <div class="form-field  <%=if @user.errors[:name].present? then 'has-error' else 'has-success' end %>">
       <%= f.label :user_type %><br>
-      <select class: "form-control" name="user[user_type]" id="user_type">
+      <select class="form-control" name="user[user_type]" id="user_type">
         <option value="defualt"></option>
         <option value="defualt">defualt</option>
         <option value="manager">manager</option>
@@ -48,7 +48,8 @@
       </select>
     </div>
   <%- end %>
-  
+
+
   <div class="actions col-md-12">
     <%= f.submit class: "form-button" %>
   </div>
