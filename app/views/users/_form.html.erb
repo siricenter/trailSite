@@ -11,35 +11,46 @@
     </div>
   <% end %>
 
-  <div class="field">
+<div class="form-group">
+  <div class="form-field  <%=if @user.errors[:username].present? then 'has-error' else 'has-success' end %>">
     <%= f.label :username %><br>
-    <%= f.text_field :username %>
+    <%= f.text_field :username, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-field  <%=if @user.errors[:password].present? then 'has-error' else 'has-success' end %>">
     <%= f.label :password %><br>
-    <%= f.text_field :password %>
+    <%= f.password_field :password, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-field  <%=if @user.errors[:password].present? then 'has-error' else 'has-success' end %>">
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
+  </div>
+  <div class="form-field  <%=if @user.errors[:first_name].present? then 'has-error' else 'has-success' end %>">
     <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+    <%= f.text_field :first_name, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-field  <%=if @user.errors[:last_name].present? then 'has-error' else 'has-success' end %>">
     <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-field  <%=if @user.errors[:email].present? then 'has-error' else 'has-success' end %>">
     <%= f.label :email %><br>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, class: "form-control" %>
   </div>
 
   <%- if session[:user_id] && session[:user_type] == "admin" %>
-    <div class="field">
+    <div class="form-field  <%=if @user.errors[:name].present? then 'has-error' else 'has-success' end %>">
       <%= f.label :user_type %><br>
-      <%= f.text_field :user_type %>
+      <select class: "form-control" name="user[user_type]" id="user_type">
+        <option value="defualt"></option>
+        <option value="defualt">defualt</option>
+        <option value="manager">manager</option>
+        <option value="admin">administrator</option>
+      </select>
     </div>
   <%- end %>
   
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions col-md-12">
+    <%= f.submit class: "form-button" %>
   </div>
+</div>
 <% end %>
