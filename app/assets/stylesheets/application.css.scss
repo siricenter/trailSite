@@ -71,9 +71,35 @@
   @extend .btn-default;
 }
 
+.loginBox {
+  position: absolute;
+  margin-right: 1em;
+  right: 1em;
+  top: 0px;
+}
 
 .form-stars 
 {
   @extend .form-field;
   margin-bottom: 1em;
+}
+
+.navbar-button {
+  @extend .btn;
+  @extend .btn-default;
+}
+
+.admin-button {
+  @extend .navbar-button;
+  @extend .btn-sm;
+}
+
+.mini-button {
+  @extend .navbar-button;
+  @extend .btn-xs;
+}
+
+.login-button{
+  @extend .mini-button;
+  float: right;
 }
