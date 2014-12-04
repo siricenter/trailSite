@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get '/', to: 'static#home'
+
   resources :users
   resources :boulder_route_photos
   resources :traditional_route_photos
