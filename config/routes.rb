@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   resources :crags
   resources :territories
   resources :areas
-  resources :states
   resources :regions
+  resources :states
   resources :boulder_routes
   resources :traditional_routes
   resources :sport_routes

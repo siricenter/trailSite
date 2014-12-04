@@ -1,0 +1,2 @@
+Remember that before pushing to production we need to enter this to set the environment to production
+echo "RACK_ENV=production" >> .env
