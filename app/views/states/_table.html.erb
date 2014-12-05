@@ -16,7 +16,7 @@
     <% @states.each do |state| %>
       <tr class="index-tr">
         <td><%= state.name %></td>
-        <td><%= if (state.region.name != nil) then state.region.name else "DELETED, PLEASE RE-SELECT A REGION" end %></td>
+        <td><%= if (state.region != nil) then state.region.name else "DELETED, PLEASE RE-SELECT A REGION" end %></td>
         <td><%= state.latitude %></td>
         <td><%= state.longitude %></td>
         <td><%= state.zoom %></td>
