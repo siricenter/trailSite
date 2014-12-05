@@ -23,9 +23,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_name] = nil
-    session[:user_id] = nil
-    session[:user_type] = nil
+    #session[:user_name] = nil
+    #session[:user_id] = nil
+    #session[:user_type] = nil
+    reset_session
     redirect_to '/home', notice: "Logged out"
   end
 
