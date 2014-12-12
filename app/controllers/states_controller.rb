@@ -69,7 +69,11 @@ class StatesController < ApplicationController
   # get a json array
   def getJson
     if params[:id].present?
-      render json: (State.where(region_id: params[:id]))
+      hash = Hash.new
+      hash["parent"] = State.find(params[:id])
+      hash["children"] = Area.where(state_id: params[:id])
+      hash["child_url"] = areas_data_getJson_path;
+      render json: hash
     else
       render json: (State.all)
     end

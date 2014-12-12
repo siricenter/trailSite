@@ -67,8 +67,13 @@ class CragsController < ApplicationController
   # get a json array
   def getJson
     if params[:id].present?
-      render json: (Crag.where(territory_id: params[:id]))
+      hash = Hash.new
+      hash["parent"] = Crag.find(params[:id])
+      hash["children"] = Wall.where(crag_id: params[:id])
+      hash["child_url"] = walls_data_getJson_path;
+      render json: hash
     else
+      # all parents
       render json: (Crag.all)
     end
   end

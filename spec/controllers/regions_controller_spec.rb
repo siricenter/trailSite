@@ -60,6 +60,13 @@ RSpec.describe RegionsController, :type => :controller do
       end
 
     describe "json" do
+      it "with no param returns a valid json object" do
+        subject = FactoryGirl.create(:region, id:1)
+        response = get(regions_data_getJson_path, {}, valid_session)
+        expect(response.code).to eq('200')
+        json = JSON.parse response.body
+        expect(json.id).to_not be_nil;
+      end
       it "returns a valid json object" do
         subject = FactoryGirl.create(:region, id:1)
         json = get(:getJson, {}, valid_session)

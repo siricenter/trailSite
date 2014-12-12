@@ -65,7 +65,15 @@ class RegionsController < ApplicationController
 
   # get a json array of all regions
   def getJson
-    render json: (Region.all)
+    if params[:id].present?
+      hash = Hash.new
+      hash["parent"] = Region.find(params[:id])
+      hash["children"] = State.where(region_id: params[:id])
+      hash["child_url"] = regions_data_getJson_path;
+      render json: hash
+    else
+      render json: (Region.all)
+    end
   end
 
   private

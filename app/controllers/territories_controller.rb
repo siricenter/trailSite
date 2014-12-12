@@ -67,8 +67,13 @@ class TerritoriesController < ApplicationController
   # get a json array
   def getJson
     if params[:id].present?
-      render json: (Territory.where(area_id: params[:id]))
+      hash = Hash.new
+      hash["parent"] = Territory.find(params[:id])
+      hash["children"] = Crag.where(territory_id: params[:id])
+      hash["child_url"] = crags_data_getJson_path;
+      render json: hash
     else
+      # all parents
       render json: (Territory.all)
     end
   end

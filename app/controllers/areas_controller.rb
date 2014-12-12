@@ -67,11 +67,15 @@ class AreasController < ApplicationController
   # get a json array
   def getJson
     if params[:id].present?
-      render json: (Area.where(state_id: params[:id]))
+      hash = Hash.new
+      hash["parent"] = Area.find(params[:id])
+      hash["children"] = Territory.where(area_id: params[:id])
+      hash["child_url"] = territories_data_getJson_path;
+      render json: hash
     else
+      # all parents
       render json: (Area.all)
     end
-
   end
 
   private

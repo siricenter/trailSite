@@ -2,7 +2,7 @@
 
 var BASE_URL = "http://localhost:3000/";
 
-//function getRegions() {
+function getRegions() {
 	url = BASE_URL + "regions/getJson";
 	$.getJSON(url, function(response) {
 		console.log(response);
@@ -14,4 +14,4 @@ var BASE_URL = "http://localhost:3000/";
 			});
 		}
 	});
-//}
+}

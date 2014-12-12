@@ -21,14 +21,14 @@
         	center: { lat: 38, lng: -100},
         	zoom: 1,
         	scrollwheel: false,
-    		navigationControl: false,
-    		mapTypeControl: false,
-    		scaleControl: false,
-    		draggable: false,
-    		zoomControl: false,
-    		panControl: false,
-    		streetViewControl: true,
-    		mapTypeId: google.maps.MapTypeId.TERRAIN
+	    		navigationControl: false,
+	    		mapTypeControl: false,
+	    		scaleControl: false,
+	    		draggable: false,
+	    		zoomControl: false,
+	    		panControl: false,
+	    		streetViewControl: true,
+	    		mapTypeId: google.maps.MapTypeId.TERRAIN
         };
 
         // creates the map

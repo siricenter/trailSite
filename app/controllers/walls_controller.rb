@@ -71,9 +71,18 @@ class WallsController < ApplicationController
   # get a json array
   def getJson
     if params[:id].present?
-      render json: (Wall.where(crag_id: params[:id]))
+      hash = Hash.new
+      routeArray = []
+      hash["parent"] = Wall.find(params[:id])
+      routeArray.push SportRoute.where(wall_id: params[:id])
+      routeArray.push TraditionalRoute.where(wall_id: params[:id])
+      routeArray.push BoulderRoute.where(wall_id: params[:id])
+      hash["children"] = routeArray
+      hash["child_url"] = [sport_routes_path, traditional_routes_path, boulder_routes_path]
+      render json: hash
     else
-      render json: (Wall.all)
+      # all parents
+      render json: (Area.all)
     end
   end
 
