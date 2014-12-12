@@ -3,7 +3,7 @@
 var BASE_URL = "http://localhost:3000/";
 
 //function getRegions() {
-	/*url = BASE_URL + "regions/getJson";
+	url = BASE_URL + "regions/getJson";
 	$.getJSON(url, function(response) {
 		console.log(response);
 		for(var i = 0; i < response.length; ++i) {
@@ -13,5 +13,5 @@ var BASE_URL = "http://localhost:3000/";
 				alert(marker.title);
 			});
 		}
-	});*/
+	});
 //}
