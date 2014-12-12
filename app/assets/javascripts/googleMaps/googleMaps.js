@@ -51,10 +51,16 @@
 			title: title,
 			icon: PIN_IMAGE
 		});
-
 		// add the marker to the end of the array
 		markerArray.push(marker);
 		return marker;
+	}
+
+	function addLink(marker, link) {
+		marker.url = link;
+		google.maps.event.addListener(marker, 'click', function() {
+			window.location.href = this.url;
+		});
 	}
 
 	/**
@@ -77,14 +83,15 @@
 	function setMap(latitude, longitude, zoom) {
 		mapOptions.center.lat = latitude; 
 		mapOptions.center.lng = longitude;
-        mapOptions.zoom = zoom;
-        map.setOptions(mapOptions);
+    mapOptions.zoom = zoom;
+    map.setOptions(mapOptions);
 	}
 
 	/**
 	* resets the center of the map and its zoom level to the default possition
 	*/
 	function resetMap() {
+		removeAllMarkers();
 		setMap(38, -100, 4);
 	}	
 
@@ -120,7 +127,13 @@
 	function populate() {
 		for(var i = 0; i < 10; ++i) {
 			newMarker = addMarker(38, -150+(i*5), "added"+(i+1));
-			addClickListenerToMarker(newMarker, testSetMap);
+		}
+	}
+
+	function testMarkerLink() {
+		populate();
+		for(var i = 0; i < markerArray.length; ++i) {
+			addLink(markerArray[i], "https://www.google.com/#q=" + i.toString());
 		}
 	}
 
