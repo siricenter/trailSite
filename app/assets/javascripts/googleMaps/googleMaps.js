@@ -1,3 +1,10 @@
+
+/**
+* GoogleMapController is used to controller the google map for the rockClimbing project
+* ToDO: add a function that on marker hover will have a box appear to give more info about the location
+* 			add the ability to turn on and off the ability to drag to move markers
+*				add the ability to drag or change zoom on the the map and get the new parameters for use
+*/
 var GoogleMapController = function() {
 
 	/*constants*/
@@ -11,10 +18,9 @@ var GoogleMapController = function() {
 	/**
 	* inicialize the map
 	*/
-	/* globals */
 	this.markerArray = [];
 	var mapOptions = {
-		center: { lat: 38, lng: -100},
+		center: { lat: 38, lng: -100 },
 		zoom: 1,
 		scrollwheel: false,
 		navigationControl: false,
