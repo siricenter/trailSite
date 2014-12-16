@@ -11,7 +11,8 @@ class CragsController < ApplicationController
   # GET /crags/1
   # GET /crags/1.json
   def show
-    @walls = Wall.where(crag_id: params[:id])
+    @mapData = getData()
+    @walls = @mapData["children"]
   end
 
   # GET /crags/new
@@ -66,16 +67,7 @@ class CragsController < ApplicationController
 
   # get a json array
   def getJson
-    if params[:id].present?
-      hash = Hash.new
-      hash["parent"] = Crag.find(params[:id])
-      hash["children"] = Wall.where(crag_id: params[:id])
-      hash["child_url"] = walls_data_getJson_path;
-      render json: hash
-    else
-      # all parents
-      render json: (Crag.all)
-    end
+    render json: getData()
   end
 
   private
@@ -87,5 +79,18 @@ class CragsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def crag_params
       params.require(:crag).permit(:territory_id, :name, :longitude, :latitude, :zoom, :directions, :description, :history)
+    end
+
+    def getData
+      if params[:id].present?
+        hash = Hash.new
+        hash["parent"] = Crag.find(params[:id])
+        hash["children"] = Wall.where(crag_id: params[:id])
+        hash["child_url"] = walls_path;
+        return hash
+      else
+        # all parents
+        return (Crag.all)
+      end
     end
 end

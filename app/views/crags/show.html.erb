@@ -47,6 +47,8 @@
 </p>
 
 <br>
+<%= render 'static/googleMap' %>
+<br>
 
 <strong>Walls</strong> | <%= link_to 'Add Wall', new_wall_path(id: @crag.id.to_s) %>
 <%= render 'walls/table' %>
