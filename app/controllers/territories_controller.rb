@@ -11,7 +11,8 @@ class TerritoriesController < ApplicationController
   # GET /territories/1
   # GET /territories/1.json
   def show
-    @crags = Crag.where(territory_id = params[:id])
+    @mapData = getData()
+    @crags = @mapData["children"]
   end
 
   # GET /territories/new
@@ -66,16 +67,7 @@ class TerritoriesController < ApplicationController
 
   # get a json array
   def getJson
-    if params[:id].present?
-      hash = Hash.new
-      hash["parent"] = Territory.find(params[:id])
-      hash["children"] = Crag.where(territory_id: params[:id])
-      hash["child_url"] = crags_data_getJson_path;
-      render json: hash
-    else
-      # all parents
-      render json: (Territory.all)
-    end
+    render json: getData()
   end
 
   private
@@ -87,5 +79,18 @@ class TerritoriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def territory_params
       params.require(:territory).permit(:area_id, :name, :longitude, :latitude, :zoom, :directions, :description, :history)
+    end
+
+    def getData
+      if params[:id].present?
+        hash = Hash.new
+        hash["parent"] = Territory.find(params[:id])
+        hash["children"] = Crag.where(territory_id: params[:id])
+        hash["child_url"] = crags_path;
+        return hash
+      else
+        # all parents
+        return (Territory.all)
+      end
     end
 end

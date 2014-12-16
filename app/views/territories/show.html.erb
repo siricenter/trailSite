@@ -47,6 +47,8 @@
 </p>
 
 <br>
+<%= render 'static/googleMap' %>
+<br>
 
 <strong>Crags</strong> | <%= link_to 'Add Crag', new_crag_path(id: @territory.id.to_s) %>
 <%= render "crags/table" %>
