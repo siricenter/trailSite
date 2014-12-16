@@ -47,6 +47,9 @@
 </p>
 
 <br>
+<%= render 'static/googleMap' %>
+<br>
+
 
 <strong>Territories</strong> | <%= link_to 'Add Territory', new_territory_path(id: @area.id.to_s) %>
 <%= render 'territories/table' %>

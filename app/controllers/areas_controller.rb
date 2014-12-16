@@ -11,7 +11,8 @@ class AreasController < ApplicationController
   # GET /areas/1
   # GET /areas/1.json
   def show
-    @territories = Territory.where(area_id: params[:id])
+    @mapData = getData()
+    @territories = @mapData["children"]
   end
 
   # GET /areas/new
@@ -66,16 +67,7 @@ class AreasController < ApplicationController
 
   # get a json array
   def getJson
-    if params[:id].present?
-      hash = Hash.new
-      hash["parent"] = Area.find(params[:id])
-      hash["children"] = Territory.where(area_id: params[:id])
-      hash["child_url"] = territories_data_getJson_path;
-      render json: hash
-    else
-      # all parents
-      render json: (Area.all)
-    end
+    render json: getData()
   end
 
   private
@@ -87,5 +79,18 @@ class AreasController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def area_params
       params.require(:area).permit(:state_id, :name, :longitude, :latitude, :zoom, :weather, :description, :history)
+    end
+
+    def getData
+      if params[:id].present?
+        hash = Hash.new
+        hash["parent"] = Area.find(params[:id])
+        hash["children"] = Territory.where(area_id: params[:id])
+        hash["child_url"] = territories_path;
+        return hash
+      else
+        # all parents
+        return (Area.all)
+      end
     end
 end
