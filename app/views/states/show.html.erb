@@ -42,6 +42,8 @@
 </p>
 
 <br>
+<%= render 'static/googleMap' %>
+<br>
 
 <strong>Areas</strong> | <%= link_to 'Add Area', new_area_path(id: @state.id.to_s) %>
 <%= render "areas/table" %>

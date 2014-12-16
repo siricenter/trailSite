@@ -22,6 +22,7 @@ function initializeMap() {
       // add function to each marker to call the next url (url + id)
       map.addLink(marker, markerData["child_url"] + "/" + child.id);
     }
+    
   } else {
     var map = new GoogleMapController();
   }

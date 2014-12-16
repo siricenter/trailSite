@@ -11,7 +11,8 @@ class StatesController < ApplicationController
   # GET /states/1
   # GET /states/1.json
   def show
-    @areas = Area.where(state_id: params[:id])
+    @mapData = getData()
+    @areas = @mapData["children"]
   end
 
   # GET /states/new
@@ -68,15 +69,7 @@ class StatesController < ApplicationController
 
   # get a json array
   def getJson
-    if params[:id].present?
-      hash = Hash.new
-      hash["parent"] = State.find(params[:id])
-      hash["children"] = Area.where(state_id: params[:id])
-      hash["child_url"] = areas_data_getJson_path;
-      render json: hash
-    else
-      render json: (State.all)
-    end
+    render json: getData()
   end
 
   private
@@ -89,4 +82,17 @@ class StatesController < ApplicationController
     def state_params
       params.require(:state).permit(:region_id, :name, :latitude, :longitude, :zoom, :description, :history)
     end
+
+    def getData
+      if params[:id].present?
+        hash = Hash.new
+        hash["parent"] = State.find(params[:id])
+        hash["children"] = Area.where(state_id: params[:id])
+        hash["child_url"] = areas_path;
+        return hash
+      else
+        return (State.all)
+      end
+    end
+
 end
