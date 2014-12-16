@@ -11,7 +11,8 @@ class RegionsController < ApplicationController
   # GET /regions/1
   # GET /regions/1.json
   def show
-    @states = State.where(region_id: params[:id])
+    @mapData = getData()
+    @states = @mapData["children"] # 
   end
 
   # GET /regions/new
@@ -65,15 +66,7 @@ class RegionsController < ApplicationController
 
   # get a json array of all regions
   def getJson
-    if params[:id].present?
-      hash = Hash.new
-      hash["parent"] = Region.find(params[:id])
-      hash["children"] = State.where(region_id: params[:id])
-      hash["child_url"] = regions_data_getJson_path;
-      render json: hash
-    else
-      render json: (Region.all)
-    end
+    render json: getData
   end
 
   private
@@ -85,6 +78,18 @@ class RegionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def region_params
       params.require(:region).permit(:name, :latitude, :longitude, :zoom, :description, :history)
+    end
+
+    def getData
+      if params[:id].present?
+        hash = Hash.new
+        hash["parent"] = Region.find(params[:id])
+        hash["children"] = State.where(region_id: params[:id])
+        hash["child_url"] = states_path;
+        return hash
+      else
+        return (Region.all)
+      end
     end
 
 end

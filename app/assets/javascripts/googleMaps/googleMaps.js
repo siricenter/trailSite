@@ -34,8 +34,17 @@ var GoogleMapController = function(data) {
 	};
 
 	if(data != null && data != 'undefined') {
-		mapOptions.center.lat = data.latitude;
-		mapOptions.center.lng = data.longitude;
+
+		var latitude = data.latitude;
+		var longitude = data.longitude;
+		if( typeof latitude ===  typeof "string") {
+			latitude = Number(latitude);
+		}
+		if( typeof longitude === typeof "string") {
+			longitude = Number(longitude);
+		}
+		mapOptions.center.lat = latitude;
+		mapOptions.center.lng = longitude;
 		mapOptions.zoom = data.zoom;
 	}
 
@@ -51,6 +60,12 @@ var GoogleMapController = function(data) {
 	* returns the new marker
 	*/
 	this.addMarker = function(lat, lng, title) {
+		if( typeof lat ===  typeof "string") {
+			lat = Number(lat);
+		}
+		if( typeof lng === typeof "string") {
+			lng = Number(lng);
+		}
 		var myLatlng = new google.maps.LatLng(lat,lng);
 		// To add the marker to the map, use the 'map' property
 		var marker = new google.maps.Marker({
@@ -187,6 +202,7 @@ var GoogleMapController = function(data) {
 			var data = {
 				latitude: -40, longitude: -65, zoom: 5
 			}
+			controller.removeAllMarkers();
 			controller = new GoogleMapController(data);
 		});
 	}
