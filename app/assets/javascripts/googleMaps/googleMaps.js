@@ -5,7 +5,7 @@
 * 			add the ability to turn on and off the ability to drag to move markers
 *				add the ability to drag or change zoom on the the map and get the new parameters for use
 */
-var GoogleMapController = function() {
+var GoogleMapController = function(data) {
 
 	/*constants*/
 	var PIN_COLOR = "99CCFF";
@@ -32,6 +32,14 @@ var GoogleMapController = function() {
 		streetViewControl: true,
 		mapTypeId: google.maps.MapTypeId.TERRAIN
 	};
+
+	if(data != null && data != 'undefined') {
+		mapOptions.center.lat = data.latitude;
+		mapOptions.center.lng = data.longitude;
+		mapOptions.zoom = data.zoom;
+	}
+
+
   // creates the map itself
   var map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
@@ -122,6 +130,7 @@ var GoogleMapController = function() {
 		testAddFunction(controller);
 		testSetMap(controller);
 		testRemoveMarkers(controller);
+		testMapCreationWithData(controller);
 	}
 
 	function testObjectCreation() {
@@ -169,5 +178,15 @@ var GoogleMapController = function() {
 		var marker =  controller.addMarker(-20, -20, 'clear map');
 		controller.addFunction(marker, function() {
 			controller.removeAllMarkers();
+		});
+	}
+
+	function testMapCreationWithData(controller) {
+		var marker = controller.addMarker(-40, -65, 'make map with data');
+		controller.addFunction(marker, function() {
+			var data = {
+				latitude: -40, longitude: -65, zoom: 5
+			}
+			controller = new GoogleMapController(data);
 		});
 	}
