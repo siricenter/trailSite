@@ -4,10 +4,9 @@
   </div>
   <div class="map-control-box"></div>
 </div>
-  <script type="text/javascript">
-    // listener starts the map after the window loads
-    //google.maps.event.addDomListener(window, 'pageshow', initializeMap);
-    $(window).ready(function() {
-      initializeMap();
-    });
-  </script>
+<script type="text/javascript">
+  // watch for a possible map load bug here. If there is a problem switch window for document
+  $(window).ready(function() {
+    initializeMap();
+  });
+</script>
