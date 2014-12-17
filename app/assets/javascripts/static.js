@@ -38,23 +38,10 @@ function initializeAdminMap() {
   // bind input value to map
   map.zoomBind(document.getElementById("zoom"));  
     
+  // bind latitude and longitude to map movements
+  map.moveBind(document.getElementById('latitude'), document.getElementById('longitude'));
   // add possition bind to map
     /*map.addMoveListener(function() {
-      latitude = this.getCenter().k;
-      longitude = this.getCenter().D;
-
-      if(longitude < -180) {
-        var dif = longitude - -180;
-        longitude = 180 + dif;
-        var myLatLng = new google.maps.LatLng(latitude, longitude);
-        this.setCenter(myLatLng);
-      }
-
-      if(longitude > 180) {
-        var dif = longitude - 180;
-        longitude = -180 + dif;
-        var myLatLng = new google.maps.LatLng(latitude, longitude);
-        this.setCenter(myLatLng);
-      }
+      
     });*/
 }

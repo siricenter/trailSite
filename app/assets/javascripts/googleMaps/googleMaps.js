@@ -121,20 +121,47 @@ var GoogleMapController = function(data) {
 	}
 
 	/**
-	* addZoomListener will add a function to run on zoom change
+	* this will bind longitude and latitude inptus to map movements
 	*/
-	this.addZoomListener = function(func) {
-		// activate zoom control and add listener
-		mapOptions.zoomControl = true;
-    map.setOptions(mapOptions);
-    google.maps.event.addListener(map, 'zoom_changed', func);
-	};
+	this.moveBind = function(latitudeInput, longitudeInput) {
+		// get input values
+		var latitude = latitudeInput.value;
+		if(typeof latitude === typeof "String") {
+      latitude = parseInt(latitude);
+    }
+    if(latitude == null || latitude === "undefined" || isNaN(latitude)) {
+    	latitude = 0;
+    }
 
-	this.addMoveListener = function(func) {
+    //var longitude = longitudeInput.value;
+
+		// turn on map control and set option to input values
+		mapOptions.center.lat = latitude;
 		mapOptions.draggable = true;
 		mapOptions.panControl = true;
     map.setOptions(mapOptions);
-    google.maps.event.addListener(map, 'center_changed', func);
+
+    // add listener
+    google.maps.event.addListener(map, 'center_changed', function() {
+    	latitude = this.getCenter().k;
+      longitude = this.getCenter().D;
+
+      if(longitude < -180) {
+        var dif = longitude - -180;
+        longitude = 180 + dif;
+        var myLatLng = new google.maps.LatLng(latitude, longitude);
+        this.setCenter(myLatLng);
+      }
+
+      if(longitude > 180) {
+        var dif = longitude - 180;
+        longitude = -180 + dif;
+        var myLatLng = new google.maps.LatLng(latitude, longitude);
+        this.setCenter(myLatLng);
+      }
+      latitudeInput.value = latitude;
+      //longitudeInput.value = longitude;
+    });
 	};
 
 	/**

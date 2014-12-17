@@ -41,6 +41,11 @@
     </div>
 
 
+    <div class="form-field <%=if @region.errors[:latitude].present? then 'has-error' else 'has-success' end %> ">
+      <label for="region_latitude">Latitude</label>
+      <input class="form-control" id="latitude" name="region[latitude]" type="text">  
+    </div>
+
     <div>    
       <label for="zoom">Zoom</label><br>
       <input id="zoom" name="region[zoom]" type='number' 
