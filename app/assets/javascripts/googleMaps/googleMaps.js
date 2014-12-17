@@ -115,6 +115,9 @@ var GoogleMapController = function(data) {
   		if(typeof zoomValue === typeof "String") {
       	zoomValue = parseInt(zoomValue);
     	}
+    	if(zoomValue > 16 || zoomValue < 0 || zoomValue == null || zoomValue === "undefined" || isNaN(zoomValue)) {
+    		zoomValue = 2;
+    	}
     	console.log("input Zoom listener: " + zoomValue);
   		map.setZoom(zoomValue);
   	}, false);
@@ -132,7 +135,6 @@ var GoogleMapController = function(data) {
     if(latitude == null || latitude === "undefined" || isNaN(latitude)) {
     	latitude = 0;
     }
-
     var longitude = longitudeInput.value;
     if(typeof longitude === typeof "String") {
       longitude = parseInt(longitude);
@@ -148,7 +150,7 @@ var GoogleMapController = function(data) {
 		mapOptions.panControl = true;
     map.setOptions(mapOptions);
 
-    // add listener
+    // add listener to the map
     google.maps.event.addListener(map, 'center_changed', function() {
     	latitude = this.getCenter().k;
       longitude = this.getCenter().D;
@@ -166,9 +168,37 @@ var GoogleMapController = function(data) {
         var myLatLng = new google.maps.LatLng(latitude, longitude);
         this.setCenter(myLatLng);
       }
+
       latitudeInput.value = latitude;
       longitudeInput.value = longitude;
     });
+
+    // create a lat lng listener for the input fields
+    var latLngListener = function() {
+    	// getValues
+  		var lat = latitudeInput.value;
+  		if(typeof lat === typeof "String") {
+      	lat = parseInt(lat);
+    	}
+    	if(lat == null || lat === "undefined" || isNaN(lat)) {
+    		lat = 0;
+    	}
+    	var lng = longitudeInput.value;
+  		if(typeof lng === typeof "String") {
+      	lng = parseInt(lng);
+    	}
+    	if(lng == null || lng === "undefined" || isNaN(lng)) {
+    		lng = 0;
+    	}
+    	console.log("input latlng listener: " + lat + ", " + lng );
+  		var myLatLng = new google.maps.LatLng(lat, lng);
+      map.setCenter(myLatLng);
+  	}
+    
+    // add latLngListener to the inputs
+    latitudeInput.addEventListener('blur', latLngListener, false);
+    longitudeInput.addEventListener('blur', latLngListener, false);
+
 	};
 
 	/**
