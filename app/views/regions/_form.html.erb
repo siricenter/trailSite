@@ -1,4 +1,4 @@
-<%= form_for(@region, html: {role: "form", oninput: "x.value=parseInt(region_zoom.value)"}) do |f| %>
+<%= form_for(@region) do |f| %>
   <% if @region.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@region.errors.count, "error") %> prohibited this region from being saved:</h2>
@@ -16,6 +16,21 @@
       <%= f.label :name %><br>
       <%= f.text_field :name, class: "form-control"  %>
     </div>
+    
+
+    <div class="form-text">
+      <%= f.label :description %><br>
+      <%= f.text_area :description, class: "form-control"  %>
+    </div>
+    <div class="form-text">
+      <%= f.label :history %><br>
+      <%= f.text_area :history, class: "form-control"  %>
+    </div>
+
+
+    <br>
+    <%= render 'static/adminMap' %>
+    
     <div class="form-field <%=if @region.errors[:latitude].present? then 'has-error' else 'has-success' end %> ">
       <%= f.label :latitude %><br>
       <%= f.text_field :latitude, class: "form-control"  %>
@@ -26,22 +41,16 @@
     </div>
 
 
-    <div class="form-field <%=if @region.errors[:zoom].present? then 'has-error' else 'has-success' end %>">
-      <%= f.label :zoom %></br>
-      <%= range_field(:region, :zoom, options={min: 1, max: 16, value: @region.zoom || 8 }) %>
-      <output name="x" for="areas_zoom"><%= @region.zoom || 8 %></output>
+    <div>    
+      <label for="zoom">Zoom</label><br>
+      <input id="zoom" name="region[zoom]" type='number' 
+      value="<%= if @region.zoom then @region.zoom else 8 end %>" class="form-field" />
     </div>
 
-    <div class="form-text">
-      <%= f.label :description %><br>
-      <%= f.text_area :description, class: "form-control"  %>
-    </div>
-    <div class="form-text">
-      <%= f.label :history %><br>
-      <%= f.text_area :history, class: "form-control"  %>
-    </div>
     <div class="actions col-md-12">
       <%= f.submit class: "form-button" %>
     </div>
+
   </div>
+  
 <% end %>

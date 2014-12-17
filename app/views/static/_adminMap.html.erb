@@ -1,0 +1,12 @@
+
+<div id="app-box">
+  <div id="map-canvas" data-markers="<%= if @mapData != nil then @mapData.to_json end %>" >
+  </div>
+  <div class="map-control-box"></div>
+</div>
+<script type="text/javascript">
+  // watch for a possible map load bug here. If there is a problem switch window for document
+  $(window).ready(function() {
+    initializeAdminMap();  
+  });
+</script>

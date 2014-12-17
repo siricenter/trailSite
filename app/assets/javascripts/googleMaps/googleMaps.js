@@ -21,7 +21,7 @@ var GoogleMapController = function(data) {
 	this.markerArray = [];
 	var mapOptions = {
 		center: { lat: 38, lng: -100 },
-		zoom: 1,
+		zoom: 2,
 		scrollwheel: false,
 		navigationControl: false,
 		mapTypeControl: false,
@@ -47,8 +47,6 @@ var GoogleMapController = function(data) {
 		mapOptions.center.lng = longitude;
 		mapOptions.zoom = data.zoom;
 	}
-
-
   // creates the map itself
   var map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
@@ -87,11 +85,68 @@ var GoogleMapController = function(data) {
 	};
 
 	/**
+	* zoomBind will bind together an input and the google map zoom controls
+	*/
+	this.zoomBind = function(input) {
+		// save the current zoom level
+    var zoom = input.value;
+    if(typeof zoom === typeof "String") {
+      zoom = parseInt(zoom);
+    }
+    if(zoom > 16 || zoom < 0 || zoom == null || zoom === "undefined" || isNaN(zoom)) {
+    	zoom = 2;
+    }
+    console.log(typeof zoom + ": " + zoom);
+
+    // turn on zoom control
+    mapOptions.zoomControl = true;
+    // set zoom value
+    mapOptions.zoom = zoom;
+    map.setOptions(mapOptions);
+
+    // add listener
+    google.maps.event.addListener(map, 'zoom_changed', function() {
+      console.log("listener: " + this.getZoom());
+      document.getElementById("zoom").value = this.getZoom();
+    });
+  	
+  	input.addEventListener('blur', function() {
+  		var zoomValue = input.value;
+  		if(typeof zoomValue === typeof "String") {
+      	zoomValue = parseInt(zoomValue);
+    	}
+    	console.log("input Zoom listener: " + zoomValue);
+  		map.setZoom(zoomValue);
+  	}, false);
+	}
+
+	/**
+	* addZoomListener will add a function to run on zoom change
+	*/
+	this.addZoomListener = function(func) {
+		// activate zoom control and add listener
+		mapOptions.zoomControl = true;
+    map.setOptions(mapOptions);
+    google.maps.event.addListener(map, 'zoom_changed', func);
+	};
+
+	this.addMoveListener = function(func) {
+		mapOptions.draggable = true;
+		mapOptions.panControl = true;
+    map.setOptions(mapOptions);
+    google.maps.event.addListener(map, 'center_changed', func);
+	};
+
+	/**
 	* sets the map zoom to the specified value
 	*/
-	/*this.setZoom = function (zoomValue) {
+	this.setZoom = function (zoomValue) {
+		if(typeof zoomValue !== typeof 1) {
+      zoomValue = parseInt(zoomValue);
+    }
+    console.log("setZoom: " + zoomValue);
 		map.setZoom(zoomValue);
-	};*/
+	};
 
 	/**
 	* sets the map to a new center
@@ -137,72 +192,74 @@ var GoogleMapController = function(data) {
 	};
 };
 
-	/***test functions***/
-	function runMapTests() {
-		var controller = testObjectCreation();
-		testAddMarker(controller);
-		testMarkerLink(controller);
-		testAddFunction(controller);
-		testSetMap(controller);
-		testRemoveMarkers(controller);
-		testMapCreationWithData(controller);
-	}
 
-	function testObjectCreation() {
-		var controller = new GoogleMapController();
-		if(controller == null || controller == 'undefined') {
-			console.log('failed testObjectCreation');
-		}
-		return controller;
-	}
 
-	function testAddMarker(controller) {
-		for(var i = 0; i < 5; ++i) {
-			controller.addMarker(35, 20 + (i*10), 'marker: ' + i.toString());
-		}
-		if(controller.markerArray.length != 5) {
-			console.log('testAddMarker failed, only ' + controller.markerArray.length.toString() + ' markers added');
-		}
-	}
+/***test functions***/
+function runMapTests() {
+	var controller = testObjectCreation();
+	testAddMarker(controller);
+	testMarkerLink(controller);
+	testAddFunction(controller);
+	testSetMap(controller);
+	testRemoveMarkers(controller);
+	testMapCreationWithData(controller);
+}
 
-	function testMarkerLink(controller) {
-		for(var i = 0; i < controller.markerArray.length; ++i) {
-			controller.addLink(controller.markerArray[i], "https://www.google.com/#q=" + i.toString());
-		}
+function testObjectCreation() {
+	var controller = new GoogleMapController();
+	if(controller == null || controller == 'undefined') {
+		console.log('failed testObjectCreation');
 	}
+	return controller;
+}
 
-	function testAddFunction(controller) {
-		for(var i = 0; i < 3; ++i) {
-			var marker =  controller.addMarker(10 + i*10, 150, 'function: ' + i.toString());
-			controller.addFunction(marker, function() {
-				alert(this.title); // note 'this.' in this context will be the marker itself
-			});
-		}
+function testAddMarker(controller) {
+	for(var i = 0; i < 5; ++i) {
+		controller.addMarker(35, 20 + (i*10), 'marker: ' + i.toString());
 	}
-
-	function testSetMap(controller) {
-		for(var i = 0; i < 3; ++i) {
-			var marker =  controller.addMarker(1 + i*10, 10, 'zoom: ' + i.toString());
-			controller.addFunction(marker, function() {
-				controller.setMap(this.position.lat(), this.position.lng(), 10);
-			});
-		}
+	if(controller.markerArray.length != 5) {
+		console.log('testAddMarker failed, only ' + controller.markerArray.length.toString() + ' markers added');
 	}
+}
 
-	function testRemoveMarkers(controller) {
-		var marker =  controller.addMarker(-20, -20, 'clear map');
+function testMarkerLink(controller) {
+	for(var i = 0; i < controller.markerArray.length; ++i) {
+		controller.addLink(controller.markerArray[i], "https://www.google.com/#q=" + i.toString());
+	}
+}
+
+function testAddFunction(controller) {
+	for(var i = 0; i < 3; ++i) {
+		var marker =  controller.addMarker(10 + i*10, 150, 'function: ' + i.toString());
 		controller.addFunction(marker, function() {
-			controller.removeAllMarkers();
+			alert(this.title); // note 'this.' in this context will be the marker itself
 		});
 	}
+}
 
-	function testMapCreationWithData(controller) {
-		var marker = controller.addMarker(-40, -65, 'make map with data');
+function testSetMap(controller) {
+	for(var i = 0; i < 3; ++i) {
+		var marker =  controller.addMarker(1 + i*10, 10, 'zoom: ' + i.toString());
 		controller.addFunction(marker, function() {
-			var data = {
-				latitude: -40, longitude: -65, zoom: 5
-			}
-			controller.removeAllMarkers();
-			controller = new GoogleMapController(data);
+			controller.setMap(this.position.lat(), this.position.lng(), 10);
 		});
 	}
+}
+
+function testRemoveMarkers(controller) {
+	var marker =  controller.addMarker(-20, -20, 'clear map');
+	controller.addFunction(marker, function() {
+		controller.removeAllMarkers();
+	});
+}
+
+function testMapCreationWithData(controller) {
+	var marker = controller.addMarker(-40, -65, 'make map with data');
+	controller.addFunction(marker, function() {
+		var data = {
+			latitude: -40, longitude: -65, zoom: 5
+		}
+		controller.removeAllMarkers();
+		controller = new GoogleMapController(data);
+	});
+}
