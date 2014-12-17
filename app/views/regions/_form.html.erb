@@ -30,26 +30,21 @@
 
     <br>
     <%= render 'static/adminMap' %>
-    
-    <div class="form-field <%=if @region.errors[:latitude].present? then 'has-error' else 'has-success' end %> ">
-      <%= f.label :latitude %><br>
-      <%= f.text_field :latitude, class: "form-control"  %>
-    </div>
-    <div class="form-field <%=if @region.errors[:longitude].present? then 'has-error' else 'has-success' end %> ">
-      <%= f.label :longitude %><br>
-      <%= f.text_field :longitude, class: "form-control"  %>
-    </div>
-
 
     <div class="form-field <%=if @region.errors[:latitude].present? then 'has-error' else 'has-success' end %> ">
       <label for="region_latitude">Latitude</label>
-      <input class="form-control" id="latitude" name="region[latitude]" type="text">  
+      <input class="form-control" id="latitude" name="region[latitude]" type="text" value="<%= if @region.latitude then @region.latitude else 0.0 end %>" />
+    </div>
+
+    <div class="form-field <%=if @region.errors[:longitude].present? then 'has-error' else 'has-success' end %> ">
+      <label for="region_longitude">Longitude</label>
+      <input class="form-control" id="longitude" name="region[longitude]" type="text" value="<%= if @region.longitude then @region.longitude else 0.0 end %>" />
     </div>
 
     <div>    
       <label for="zoom">Zoom</label><br>
       <input id="zoom" name="region[zoom]" type='number' 
-      value="<%= if @region.zoom then @region.zoom else 8 end %>" class="form-field" />
+      value="<%= if @region.zoom then @region.zoom else 2 end %>" class="form-field" />
     </div>
 
     <div class="actions col-md-12">

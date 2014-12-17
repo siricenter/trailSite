@@ -133,10 +133,17 @@ var GoogleMapController = function(data) {
     	latitude = 0;
     }
 
-    //var longitude = longitudeInput.value;
+    var longitude = longitudeInput.value;
+    if(typeof longitude === typeof "String") {
+      longitude = parseInt(longitude);
+    }
+    if(longitude == null || longitude === "undefined" || isNaN(longitude)) {
+    	longitude = 0;
+    }
 
 		// turn on map control and set option to input values
 		mapOptions.center.lat = latitude;
+		mapOptions.center.lng = longitude;
 		mapOptions.draggable = true;
 		mapOptions.panControl = true;
     map.setOptions(mapOptions);
@@ -160,7 +167,7 @@ var GoogleMapController = function(data) {
         this.setCenter(myLatLng);
       }
       latitudeInput.value = latitude;
-      //longitudeInput.value = longitude;
+      longitudeInput.value = longitude;
     });
 	};
 
