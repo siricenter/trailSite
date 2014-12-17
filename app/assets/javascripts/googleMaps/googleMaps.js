@@ -130,14 +130,14 @@ var GoogleMapController = function(data) {
 		// get input values
 		var latitude = latitudeInput.value;
 		if(typeof latitude === typeof "String") {
-      latitude = parseInt(latitude);
+      latitude = parseFloat(latitude);
     }
     if(latitude == null || latitude === "undefined" || isNaN(latitude)) {
     	latitude = 0;
     }
     var longitude = longitudeInput.value;
     if(typeof longitude === typeof "String") {
-      longitude = parseInt(longitude);
+      longitude = parseFloat(longitude);
     }
     if(longitude == null || longitude === "undefined" || isNaN(longitude)) {
     	longitude = 0;
@@ -178,14 +178,14 @@ var GoogleMapController = function(data) {
     	// getValues
   		var lat = latitudeInput.value;
   		if(typeof lat === typeof "String") {
-      	lat = parseInt(lat);
+      	lat = parseFloat(lat);
     	}
     	if(lat == null || lat === "undefined" || isNaN(lat)) {
     		lat = 0;
     	}
     	var lng = longitudeInput.value;
   		if(typeof lng === typeof "String") {
-      	lng = parseInt(lng);
+      	lng = parseFloat(lng);
     	}
     	if(lng == null || lng === "undefined" || isNaN(lng)) {
     		lng = 0;
