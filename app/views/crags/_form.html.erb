@@ -22,21 +22,6 @@
        class: "form-control" )  %>
     </div>
     
-    <div class="form-field <%=if @crag.errors[:latitude].present? then 'has-error' else 'has-success' end %>">
-      <%= f.label :latitude %><br>
-      <%= f.text_field :latitude, class: "form-control"  %>
-    </div>
-    <div class="form-field <%=if @crag.errors[:longitude].present? then 'has-error' else 'has-success' end %>">
-      <%= f.label :longitude %><br>
-      <%= f.text_field :longitude, class: "form-control"  %>
-    </div>
-
-    <div class="form-field <%=if @crag.errors[:zoom].present? then 'has-error' else 'has-success' end %>">
-      <%= f.label :zoom %></br>
-      <%= range_field(:crag, :zoom, options={min: 1, max: 16, value: @crag.zoom || 8}) %>
-      <output name="x" for="crag_zoom"><%= @crag.zoom || 8 %></output>
-    </div>
-
     <div class="form-text">
       <%= f.label :directions %><br>
       <%= f.text_area :directions, class: "form-control"  %>
@@ -49,6 +34,27 @@
       <%= f.label :history %><br>
       <%= f.text_area :history, class: "form-control"  %>
     </div>
+
+
+    <br>
+    <%= render 'static/adminMap' %>
+        <div class="form-field <%=if @crag.errors[:latitude].present? then 'has-error' else 'has-success' end %> ">
+      <label for="latitude">Latitude</label>
+      <input class="form-control" id="latitude" name="crag[latitude]" type="text" value="<%= if @crag.latitude then @crag.latitude else 0.0 end %>" />
+    </div>
+
+    <div class="form-field <%=if @crag.errors[:longitude].present? then 'has-error' else 'has-success' end %> ">
+      <label for="longitude">Longitude</label>
+      <input class="form-control" id="longitude" name="crag[longitude]" type="text" value="<%= if @crag.longitude then @crag.longitude else 0.0 end %>" />
+    </div>
+
+    <div>    
+      <label for="zoom">Zoom</label><br>
+      <input id="zoom" name="crag[zoom]" type='number' 
+      value="<%= if @crag.zoom then @crag.zoom else 2 end %>" class="form-field" />
+    </div>
+
+
     <div class="actions col-md-12">
       <%= f.submit class: "form-button" %>
     </div>
