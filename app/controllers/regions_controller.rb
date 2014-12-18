@@ -17,11 +17,13 @@ class RegionsController < ApplicationController
 
   # GET /regions/new
   def new
+    @mapData = getData()
     @region = Region.new
   end
 
   # GET /regions/1/edit
   def edit
+    @mapData = getData()
   end
 
   # POST /regions
