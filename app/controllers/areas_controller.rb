@@ -23,6 +23,7 @@ class AreasController < ApplicationController
 
   # GET /areas/1/edit
   def edit
+    @mapData = getData()
   end
 
   # POST /areas

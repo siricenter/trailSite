@@ -17,7 +17,6 @@ class RegionsController < ApplicationController
 
   # GET /regions/new
   def new
-    @mapData = getData()
     @region = Region.new
   end
 

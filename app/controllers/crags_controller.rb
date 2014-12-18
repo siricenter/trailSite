@@ -23,6 +23,7 @@ class CragsController < ApplicationController
 
   # GET /crags/1/edit
   def edit
+    @mapData = getData()
   end
 
   # POST /crags
