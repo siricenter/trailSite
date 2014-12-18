@@ -21,21 +21,6 @@
       <%= select("territory", "area_id", Area.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''}, class: "form-control") %>
     </div>
 
-    <div class="form-field <%=if @territory.errors[:latitude].present? then 'has-error' else 'has-success' end %>">
-      <%= f.label :latitude %><br>
-      <%= f.text_field :latitude, class: "form-control" %>
-    </div>
-    <div class="form-field <%=if @territory.errors[:longitude].present? then 'has-error' else 'has-success' end %>">
-      <%= f.label :longitude %><br>
-      <%= f.text_field :longitude, class: "form-control" %>
-    </div>
-
-    <div class="form-field <%=if @territory.errors[:zoom].present? then 'has-error' else 'has-success' end %>">
-      <%= f.label :zoom %></br>
-      <%= range_field(:territory, :zoom, options={min: 1, max: 16, value: @territory.zoom || 8}) %>
-      <output name="x" for="territory_zoom"><%= @territory.zoom || 8 %></output>
-    </div>
-
     <div class="form-text">
       <%= f.label :directions %><br>
       <%= f.text_area :directions, class: "form-control" %>
@@ -48,6 +33,25 @@
       <%= f.label :history %><br>
       <%= f.text_area :history, class: "form-control" %>
     </div>
+
+    <br>
+    <%= render 'static/adminMap' %>
+        <div class="form-field <%=if @territory.errors[:latitude].present? then 'has-error' else 'has-success' end %> ">
+      <label for="latitude">Latitude</label>
+      <input class="form-control" id="latitude" name="territory[latitude]" type="text" value="<%= if @territory.latitude then @territory.latitude else 0.0 end %>" />
+    </div>
+
+    <div class="form-field <%=if @territory.errors[:longitude].present? then 'has-error' else 'has-success' end %> ">
+      <label for="longitude">Longitude</label>
+      <input class="form-control" id="longitude" name="territory[longitude]" type="text" value="<%= if @territory.longitude then @territory.longitude else 0.0 end %>" />
+    </div>
+
+    <div>    
+      <label for="zoom">Zoom</label><br>
+      <input id="zoom" name="territory[zoom]" type='number' 
+      value="<%= if @territory.zoom then @territory.zoom else 2 end %>" class="form-field" />
+    </div>
+
     <div class="actions col-md-12">
       <%= f.submit class: "form-button" %>
     </div>
