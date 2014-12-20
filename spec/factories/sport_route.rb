@@ -18,5 +18,6 @@ FactoryGirl.define do
     pitches {1 + rand(5)}
     yds_grade {YdsGrade.getRand()}
     anchor {AnchorType.getRand()}
+    length {1 + rand(5000)}
   end
 end

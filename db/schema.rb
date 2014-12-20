@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141129195441) do
+ActiveRecord::Schema.define(version: 20141220214437) do
 
   create_table "areas", force: true do |t|
     t.string   "name"
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 20141129195441) do
     t.string   "anchor"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "length"
   end
 
   add_index "sport_routes", ["wall_id"], name: "index_sport_routes_on_wall_id"
