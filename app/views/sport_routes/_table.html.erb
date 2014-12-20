@@ -3,6 +3,7 @@
     <tr class="index-th">
       <th>Name</th>
       <th>Wall</th>
+      <th>Length</th>
       <th>Latitude</th>
       <th>Longitude</th>
       <th>Zoom</th>
@@ -23,6 +24,7 @@
       <tr class="index-tr">
         <td><%= sport_route.name %></td>
         <td><%= if sport_route.wall != nil then sport_route.wall.name else "Wall deleted, please re-select a wall" end %></td>
+        <td><%= sport_route.length %></td>
         <td><%= sport_route.latitude %></td>
         <td><%= sport_route.longitude %></td>
         <td><%= sport_route.zoom %></td>

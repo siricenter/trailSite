@@ -85,6 +85,6 @@ class SportRoutesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sport_route_params
-      params.require(:sport_route).permit(:name, :latitude, :longitude, :zoom, :description, :directions, :wall_id, :danger_rating, :bolts, :stars, :pitches, :yds_grade, :anchor)
+      params.require(:sport_route).permit(:name, :latitude, :longitude, :zoom, :description, :directions, :wall_id, :danger_rating, :bolts, :stars, :pitches, :yds_grade, :anchor, :length)
     end
 end

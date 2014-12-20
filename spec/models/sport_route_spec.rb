@@ -130,4 +130,10 @@ RSpec.describe SportRoute, :type => :model do
     expect(subject).to_not be_valid
   end
 
+  # length
+  it "is invalid without length" do
+    subject = FactoryGirl.build(:sport_route, length: nil)
+    expect(subject).to_not be_valid
+  end
+
 end
