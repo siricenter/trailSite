@@ -24,20 +24,10 @@
     </div>
 
     <div class="form-field">
-      <%= f.label :longitude %><br>
-      <%= f.text_field :longitude, class: "form-control" %>
-    </div>
-    <div class="form-field">
-      <%= f.label :latitude %><br>
-      <%= f.text_field :latitude, class: "form-control" %>
-    </div>
-    <div class="form-field">
-      <%= f.label :zoom %><br>
-      <select id="sport_route_zoom" name="sport_route[zoom]", class="form-control">
-        <%- 16.times do |i| %>
-          <option value='<%= i+1 %>'><%= i+1 %></option>
-        <%- end %>
-      </select>
+      <%= f.label :stars %><br>
+      <%-5.times do |i|%>
+        <input type="radio" name="sport_route[stars]" value="<%=i+1%>", class: "form-control"> <%=i+1%> 
+      <%-end%>
     </div>
 
     <div class="form-field">
@@ -75,11 +65,20 @@
         <%- end %>
       </select>
     </div>
+    
     <div class="form-field">
-      <%= f.label :stars %><br>
-      <%-5.times do |i|%>
-        <input type="radio" name="sport_route[stars]" value="<%=i+1%>", class: "form-control"> <%=i+1%> 
-      <%-end%>
+      <%= f.label :latitude %><br>
+      <%= f.text_field :latitude, class: "form-control" %>
+    </div>
+    <div class="form-field">
+      <%= f.label :longitude %><br>
+      <%= f.text_field :longitude, class: "form-control" %>
+    </div>
+    
+
+    <div class="form-field">
+      <%= f.label :zoom %><br>
+      <%= f.number_field :zoom, class: "form-control" %>
     </div>
     
     <div class="form-text">

@@ -30,6 +30,11 @@ RSpec.describe BoulderRoute, :type => :model do
   	expect(subject).to_not be_valid
   end
 
+  it "is valid with zoom of nil" do
+    subject = FactoryGirl.build(:boulder_route, zoom: nil)
+    expect(subject).to be_valid
+  end
+
   # latitude tests #
   it "is invalid with latitude less than -90" do
   	subject = FactoryGirl.build(:boulder_route, latitude: -91)
@@ -41,6 +46,11 @@ RSpec.describe BoulderRoute, :type => :model do
   	expect(subject).to_not be_valid
   end
 
+  it "is valid with latitude of nil" do
+    subject = FactoryGirl.build(:boulder_route, latitude: nil)
+    expect(subject).to be_valid
+  end
+
   # longitude tests #
   it "is invalid with longitude less than -180" do
   	subject = FactoryGirl.build(:boulder_route, longitude: -181)
@@ -50,6 +60,11 @@ RSpec.describe BoulderRoute, :type => :model do
   it "is invalid with longitude greater than 180" do
   	subject = FactoryGirl.build(:boulder_route, longitude: 181)
   	expect(subject).to_not be_valid
+  end
+
+  it "is valid with longitude of nil" do
+    subject = FactoryGirl.build(:boulder_route, longitude: nil)
+    expect(subject).to be_valid
   end
   
   #danger rating
