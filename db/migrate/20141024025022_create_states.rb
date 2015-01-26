@@ -1,7 +1,7 @@
 class CreateStates < ActiveRecord::Migration
   def change
     create_table :states do |t|
-      t.references :region, index: true
+      t.references :region
       t.string :name
       t.decimal :latitude
       t.decimal :longitude

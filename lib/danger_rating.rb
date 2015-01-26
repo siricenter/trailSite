@@ -1,5 +1,5 @@
 class DangerRating
-  @@danger = ["none", "PG", "PG-13", "R", "X"];
+  @@danger = ["none", "PG", "PG-13", "R", "X", "Project"];
   
   def self.getArray
     return @@danger;

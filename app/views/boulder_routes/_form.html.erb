@@ -29,7 +29,8 @@
         <div class="form-stars">
           <%= f.label :stars %><br>
           <%-5.times do |i|%>
-            <input type="radio" name="boulder_route[stars]" value="<%=i+1%>", class: "form-control"> <%=i+1%> 
+            <input type="radio" name="boulder_route[stars]" value="<%=i+1%>", class: "form-control", 
+                checked: "<%= if boulder_route.stars == (i + 1) then 'true' else 'false' end %>"> <%=i+1%> 
           <%-end%>
         </div>
 
