@@ -11,14 +11,37 @@ User.create(username: 'admin', password: 'overlord', user_type: 'admin', email: 
 User.create(username: 'admin2', password: 'overlord', user_type: 'admin', email: 'change@this.com', first_name: 'Chad', last_name: 'Carey')
 
 Region.delete_all
-Region.create(name: 'North America', latitude: 56.746, longitude: -105.605469, zoom: 3, description: 'North America', history: 'Foo')
+NA = Region.create(name: 'North America', latitude: 56.746, longitude: -105.605469, zoom: 3, description: 'North America', history: 'Foo')
 Region.create(name: 'South America', latitude: -4.429765, longitude: -55.722656, zoom: 3, description: 'South America', history: 'Foo')
 Region.create(name: 'Central America', latitude: 13.442528, longitude: -85.571878, zoom: 5, description: 'Central America', history: 'Foo')
 
 State.delete_all
-#State.create(name: 'Nevada', region: 'North America', latitude: 39.07890809706477, longitude: -116.103515625, zoom: 6, description: 'foo', history: 'foo')
-#State.create(name: 'California', region: 'North America', latitude: 37.2827946491104, longitude: -121.5087890625, zoom: 6, description: 'foo', history: 'foo')
-#State.create(name: 'Arizona', region: 'North America', latitude: 34.19817309627723, longitude: -111.214599609375, zoom: 6, description: 'foo', history: 'foo')
+State.create(name: 'Nevada', region: NA, latitude: 39.07890809706477, longitude: -116.103515625, zoom: 6, description: 'foo', history: 'foo')
+CA = State.create(name: 'California', region: NA, latitude: 37.2827946491104, longitude: -121.5087890625, zoom: 6, description: 'foo', history: 'foo')
+State.create(name: 'Arizona', region: NA, latitude: 34.19817309627723, longitude: -111.214599609375, zoom: 6, description: 'foo', history: 'foo')
 
 Area.delete_all
-#Area.create(name: 'Riverside Quarry', state: 'California', latitude: 34.014052318360534, longitude: -117.41145027923585, zoom: 15)
+RQ = Area.create(name: 'Riverside Quarry', state: CA, latitude: 34.014052318360534, longitude: -117.41145027923585, zoom: 15)
+Area.create(name: 'New Jack City', state: CA, latitude: 34.66904088374378, longitude: -116.98752880096436, zoom: 15)
+B = Area.create(name: 'Bishop', state: CA, latitude: 37.3685200710562, longitude: -118.49201202392578, zoom: 12)
+
+Territory.delete_all
+Q = Territory.create(name: 'The Quarry', area: RQ, latitude: 34.014052318360534, longitude: -117.41145027923585, zoom: 15)
+BK = Territory.create(name: 'Buttermilks', area: B, latitude: 37.32887739478305, longitude: -118.57998847961426, zoom: 14)
+Territory.create(name: 'The Happys', area: B, latitude: 37.41601592725032, longitude: -118.4540319442749, zoom: 15)
+Territory.create(name: 'The Sads', area: B, latitude: 37.421980615354, longitude: -118.43321800231934, zoom: 15)
+
+Crag.delete_all
+CQ = Crag.create(name: 'The Quarry', territory: Q, latitude: 34.014052318360534, longitude: -117.41145027923585, zoom: 15)
+CB = Crag.create(name: 'Checkerboard', territory: BK, latitude: 37.32440689902122, longitude: -118.5820484161377, zoom: 15)
+Crag.create(name: 'Dale\'s Camp', territory: BK, latitude: 37.31874161393784, longitude: -118.58084678649902, zoom: 15)
+Crag.create(name: 'Secrets of the Beehive Area', territory: BK, latitude: 37.33321113293153, longitude: -118.57479572296143, zoom: 15)
+
+Wall.delete_all
+Wall.create(name: 'The Pawn', crag: CB, latitude: 37.325303, longitude: -118.57966899999997, zoom: 15)
+Wall.create(name: 'High and Mighty Boulder', crag: CB, latitude: 37.325495, longitude: -118.57976500000001, zoom: 15)
+Wall.create(name: 'Green Slab Boulder', crag: CB, latitude: 37.325564, longitude: -118.57986499999998, zoom: 15)
+TA = Wall.create(name: 'The Alcove', crag: CQ, latitude: 1.0, longitude: 1.0, zoom: 8)
+
+SportRoute.delete_all
+SportRoute.create(name: 'Procrastination', wall: TA, length: 1, latitude: 1.0, longitude: 1.0, zoom: 1, danger_rating: 'none', bolts: 15, stars: 3, pitches: 1, yds_grade: "5.12c", anchor: "Rings", description: "", directions: "")
