@@ -26,13 +26,14 @@
     <div class="form-field">
       <%= f.label :stars %><br>
       <%-5.times do |i|%>
-        <input type="radio" name="sport_route[stars]" value="<%=i+1%>", class: "form-control"> <%=i+1%> 
+				<%= f.radio_button :stars, i %>
+				<%= f.label :stars, i+1 %>
       <%-end%>
     </div>
 
     <div class="form-field">
-          <%= f.label :length %><br>
-          <%= f.text_field :length, class: "form-control" %>
+      <%= f.label :length %><br>
+      <%= f.text_field :length, class: "form-control" %>
     </div>
 
     <div class="form-field">
@@ -47,28 +48,16 @@
 
     <div class="form-field">
       <%= f.label :danger_rating %><br>
-      <select id="sport_route_danger_rating" name="sport_route[danger_rating]", class="form-control">
-        <%- DangerRating.getArray().each do |danger| %>
-          <option value="<%= danger %>" ><%= danger %> </option>
-        <%- end %>
-      </select>
+			<%= f.select :danger_rating, DangerRating.getArray, {}, class: "form-control" %>
     </div>
 
     <div class="form-field">
     <%= f.label :yds_grade %><br>
-      <select id="sport_route_yds_grade" name="sport_route[yds_grade]", class="form-control">
-        <%- YdsGrade.getArray().each do |grade| %>
-          <option value="<%= grade %>" ><%= grade %> </option>
-        <%- end %>
-      </select>
+    <%= f.select :yds_grade, YdsGrade.getArray, {}, class: "form-control" %>
     </div>
     <div class="form-field">
       <%= f.label :anchor %><br>
-      <select id="sport_route_anchor" name="sport_route[anchor]", class="form-control">
-        <%- AnchorType.getArray().each do |type| %>
-          <option value="<%= type %>" ><%= type %> </option>
-        <%- end %>
-      </select>
+      <%= f.select :anchor, AnchorType.getArray, {}, class: "form-control" %>
     </div>
     
     <div class="form-field">

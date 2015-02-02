@@ -126,8 +126,6 @@ ActiveRecord::Schema.define(version: 20141220214437) do
     t.text     "description"
   end
 
-  add_index "states", ["region_id"], name: "index_states_on_region_id"
-
   create_table "territories", force: true do |t|
     t.integer  "area_id"
     t.string   "name"
