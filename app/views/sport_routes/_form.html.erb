@@ -26,7 +26,7 @@
     <div class="form-field">
       <%= f.label :stars %><br>
       <%-5.times do |i|%>
-				<%= f.radio_button :stars, i %>
+				<%= f.radio_button :stars, i+1 %>
 				<%= f.label :stars, i+1 %>
       <%-end%>
     </div>
