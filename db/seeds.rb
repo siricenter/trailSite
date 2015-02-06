@@ -48,10 +48,10 @@ SportRoute.create(name: 'Procrastination', wall: TA, length: 1, latitude: 1.0, l
 SportRoute.create(name: 'Rock Canyon', wall: TA, length: 1, latitude: 40.2693045, longitude: -111.64208, zoom: 15, danger_rating: 'none', bolts: 15, stars: 3, pitches: 1, anchor: "Rings", description: "", directions: "")
 
 TraditionalRoute.delete_all
-TraditionalRoute.create(name: 'Procrastination', wall: TA, length: 1, latitude: 1.0, longitude: 1.0, zoom: 1, danger_rating: 'none', bolts: 15, stars: 3, pitches: 1, anchor: "Rings", description: "", directions: "")
+TraditionalRoute.create(name: 'Easte Arete', wall: TA, latitude: 1.0, longitude: 1.0, zoom: 1)
 
 BoulderRoute.delete_all
-BoulderRoute.create(name: 'Procrastination', wall: TA, length: 1, latitude: 1.0, longitude: 1.0, zoom: 1, danger_rating: 'none', bolts: 15, stars: 3, pitches: 1, anchor: "Rings", description: "", directions: "")
+BoulderRoute.create(name: 'Procrastination', wall: TA, latitude: 1.0, longitude: 1.0, zoom: 1)
 
 Grade.delete_all
 Grade.create(french: '1',      uk: 'HVD',      australia: '8',     uiaa: 'I',      usa: '5.2',     hueco: '-',     ukb: '-',   fontainebleau: '-')
