@@ -14,7 +14,7 @@ RSpec.describe "traditional_routes/new", :type => :view do
       :gear_needed => "MyText",
       :stars => 1,
       :pitches => 1,
-      :yds_grade => "MyString",
+      : => "MyString",
       :length => "9.99",
       :anchor => "MyText"
     ))
@@ -47,7 +47,7 @@ RSpec.describe "traditional_routes/new", :type => :view do
 
       assert_select "input#traditional_route_pitches[name=?]", "traditional_route[pitches]"
 
-      assert_select "input#traditional_route_yds_grade[name=?]", "traditional_route[yds_grade]"
+      assert_select "input#traditional_route_[name=?]", "traditional_route[]"
 
       assert_select "input#traditional_route_length[name=?]", "traditional_route[length]"
 

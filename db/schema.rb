@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141220214437) do
+ActiveRecord::Schema.define(version: 20150203211955) do
 
   create_table "areas", force: true do |t|
     t.string   "name"
@@ -72,6 +72,19 @@ ActiveRecord::Schema.define(version: 20141220214437) do
 
   add_index "crags", ["territory_id"], name: "index_crags_on_territory_id"
 
+  create_table "grades", force: true do |t|
+    t.string   "french"
+    t.string   "uk"
+    t.string   "australia"
+    t.string   "uiaa"
+    t.string   "usa"
+    t.string   "hueco"
+    t.string   "ukb"
+    t.string   "fontainebleau"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "regions", force: true do |t|
     t.string   "name"
     t.decimal  "latitude"
@@ -105,13 +118,16 @@ ActiveRecord::Schema.define(version: 20141220214437) do
     t.integer  "bolts"
     t.integer  "stars"
     t.integer  "pitches"
-    t.string   "yds_grade"
     t.string   "anchor"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "length"
+    t.integer  "grade_id"
+    t.integer  "next_route"
+    t.integer  "prev_route"
   end
 
+  add_index "sport_routes", ["grade_id"], name: "index_sport_routes_on_grade_id"
   add_index "sport_routes", ["wall_id"], name: "index_sport_routes_on_wall_id"
 
   create_table "states", force: true do |t|
@@ -163,7 +179,7 @@ ActiveRecord::Schema.define(version: 20141220214437) do
     t.text     "gear_needed"
     t.integer  "stars"
     t.integer  "pitches"
-    t.string   "yds_grade"
+    t.string   ""
     t.decimal  "length"
     t.text     "anchor"
     t.datetime "created_at"

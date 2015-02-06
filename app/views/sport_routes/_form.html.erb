@@ -19,7 +19,7 @@
 
     <div class="form-field <%=if @sport_route.errors[:wall].present? then 'has-error' else 'has-success' end %>">
       <%= f.label :wall_id %><br>
-      <%= select("sport_route", "wall_id", Wall.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''},
+      <%= f.select("wall_id", Wall.all.collect {|r| [ r.name, r.id ] }, {include_blank: true},
        class: "form-control" )  %>
     </div>
 
@@ -51,10 +51,12 @@
 			<%= f.select :danger_rating, DangerRating.getArray, {}, class: "form-control" %>
     </div>
 
-    <div class="form-field">
-    <%= f.label :yds_grade %><br>
-    <%= f.select :yds_grade, YdsGrade.getArray, {}, class: "form-control" %>
+     <div class="form-field <%=if @sport_route.errors[:grade].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label "Grade Fr|UK|Au|UIAA|USA" %><br>
+      <%= f.select("grade_id", Grade.all.collect {|r| [ r.french + "\t | \t" + r.uk + "\t | \t" + r.australia + "\t | \t" + r.uiaa + "\t | \t" + r.usa, r.id ] }, {include_blank: true},
+       class: "form-control" )  %>
     </div>
+      
     <div class="form-field">
       <%= f.label :anchor %><br>
       <%= f.select :anchor, AnchorType.getArray, {}, class: "form-control" %>
@@ -79,10 +81,22 @@
       <%= f.label :description %><br>
       <%= f.text_area :description, class: "form-control" %>
     </div>
+      
     <div class="form-text">
       <%= f.label :directions %><br>
       <%= f.text_area :directions, class: "form-control" %>
     </div>
+      
+      <div>
+          <%= f.label :previous_route %><br>
+          <%= f.select(:prev_route, SportRoute.all.collect {|r| [ r.name, r.id ] }, {include_blank: true}, class: "form-control" )  %>
+      </div>
+      
+      <div>
+          <%= f.label :next_route %><br>
+          <%= f.select(:next_route, SportRoute.all.collect {|r| [ r.name, r.id ] }, {include_blank: true}, class: "form-control" )  %>
+      </div>
+      
     <div class="actions col-md-12">
       <%= f.submit class: "form-button" %>
     </div>

@@ -14,7 +14,7 @@ RSpec.describe "sport_routes/show", :type => :view do
       :bolts => 2,
       :stars => 3,
       :pitches => 4,
-      :yds_grade => "Yds Grade",
+      : => "Yds Grade",
       :anchor => "Anchor"
     ))
   end

@@ -57,8 +57,12 @@
 </p>
 
 <p>
-  <strong>Yds grade:</strong>
-  <%= @sport_route.yds_grade %>
+  <strong>Grade:</strong>
+  <%= if @sport_route.grade
+        @sport_route.grade.usa
+      else 
+        "Deleted, please re-select" 
+      end %>
 </p>
 
 <p>
@@ -76,6 +80,15 @@
   <strong>Directions:</strong>
   <%= @sport_route.directions %>
 </p>
+
+<br>
+<%= render 'static/googleMap' %>
+<br>
+
+<button onclick="calcRoute()">
+    Get Directions
+</button>
+<br>
 
 <strong>Photos</strong> |<%= link_to 'Add Photo', new_sport_route_photo_path(id: @sport_route.id.to_s) %> |
 <%= render "sport_route_photos/table" %>

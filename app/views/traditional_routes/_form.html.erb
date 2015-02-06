@@ -46,9 +46,9 @@
 
       <div class="row">
 
-        <div class="form-field <%=if @traditional_route.errors[:yds_grade].present? then 'has-error' else 'has-success' end %> ">
-        <%= f.label :yds_grade %><br>
-          <select id="traditional_route_yds_grade" name="traditional_route[yds_grade]", class="form-control">
+        <div class="form-field <%=if @traditional_route.errors[:].present? then 'has-error' else 'has-success' end %> ">
+        <%= f.label : %><br>
+          <select id="traditional_route_" name="traditional_route[]", class="form-control">
             <%- YdsGrade.getArray().each do |grade| %>
               <option value="<%= grade %>" ><%= grade %> </option>
             <%- end %>

@@ -48,6 +48,10 @@
 
 <br>
 
+<br>
+<%= render 'static/googleMap' %>
+<br>
+
 <strong>Sport Routes</strong> | <%= link_to 'Add Sport Route', new_sport_route_path(id: @wall.id.to_s) %>
 <%= render 'sport_routes/table' %>
 

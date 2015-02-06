@@ -1,6 +1,5 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
-require 'yds_grade'
 require 'danger_rating'
 
 FactoryGirl.define do
@@ -15,7 +14,6 @@ FactoryGirl.define do
     danger_rating {DangerRating.getRand()}
     stars {1 + rand(5)}
     pitches {1 + rand(5)}
-    yds_grade {YdsGrade.getRand()}
     anchor Faker::Lorem.paragraph
     gear_needed Faker::Lorem.paragraph
     length {1 + rand(5000)}

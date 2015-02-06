@@ -41,7 +41,51 @@ Wall.delete_all
 Wall.create(name: 'The Pawn', crag: CB, latitude: 37.325303, longitude: -118.57966899999997, zoom: 15)
 Wall.create(name: 'High and Mighty Boulder', crag: CB, latitude: 37.325495, longitude: -118.57976500000001, zoom: 15)
 Wall.create(name: 'Green Slab Boulder', crag: CB, latitude: 37.325564, longitude: -118.57986499999998, zoom: 15)
-TA = Wall.create(name: 'The Alcove', crag: CQ, latitude: 1.0, longitude: 1.0, zoom: 8)
+TA = Wall.create(name: 'The Alcove', crag: CQ, latitude: 34.0140523183605, longitude: -117.411450279236, zoom: 15)
 
 SportRoute.delete_all
-SportRoute.create(name: 'Procrastination', wall: TA, length: 1, latitude: 1.0, longitude: 1.0, zoom: 1, danger_rating: 'none', bolts: 15, stars: 3, pitches: 1, yds_grade: "5.12c", anchor: "Rings", description: "", directions: "")
+SportRoute.create(name: 'Procrastination', wall: TA, length: 1, latitude: 1.0, longitude: 1.0, zoom: 1, danger_rating: 'none', bolts: 15, stars: 3, pitches: 1, anchor: "Rings", description: "", directions: "")
+SportRoute.create(name: 'Rock Canyon', wall: TA, length: 1, latitude: 40.2693045, longitude: -111.64208, zoom: 15, danger_rating: 'none', bolts: 15, stars: 3, pitches: 1, anchor: "Rings", description: "", directions: "")
+
+TraditionalRoute.delete_all
+
+BoulderRoute.delete_all
+
+Grade.delete_all
+Grade.create(french: '1',      uk: 'HVD',      australia: '8',     uiaa: 'I',      usa: '5.2',     hueco: '-',     ukb: '-',   fontainebleau: '-')
+Grade.create(french: '2',      uk: 'HVD',      australia: '9',     uiaa: 'II',     usa: '5.3',     hueco: '-',     ukb: '-',   fontainebleau: '-')
+Grade.create(french: '2',      uk: '-',        australia: '10',    uiaa: 'III',    usa: '5.4',     hueco: '-',     ukb: '-',   fontainebleau: '-')
+Grade.create(french: '3',      uk: '-',        australia: '11',    uiaa: 'III',    usa: '5.4',     hueco: '-',     ukb: '-',   fontainebleau: '-')
+Grade.create(french: '3',      uk: 'MS',       australia: '12',    uiaa: 'III',    usa: '5.5',     hueco: '-',     ukb: '-',   fontainebleau: '-')
+Grade.create(french: '4',      uk: 'S',        australia: '13-',   uiaa: 'IV',     usa: '5.6',     hueco: '-',     ukb: '-',   fontainebleau: '-')
+Grade.create(french: '4+',     uk: 'VS',       australia: '13+',   uiaa: 'V-',     usa: '5.7',     hueco: '-',     ukb: '-',   fontainebleau: '-')
+Grade.create(french: '5a',     uk: '-',        australia: '14',    uiaa: 'V',      usa: '5.8',     hueco: '-',     ukb: '-',   fontainebleau: '-')
+Grade.create(french: '5b',     uk: 'HVS',      australia: '15',    uiaa: 'V+',     usa: '5.9',     hueco: 'V0',    ukb: 'B1',  fontainebleau: '4')
+Grade.create(french: '6a',     uk: 'E1 5b',    australia: '19',    uiaa: 'VI+',    usa: '5.10a',   hueco: 'V0+',   ukb: 'B2',  fontainebleau: '4+')
+Grade.create(french: '6a+',    uk: 'E2 5c',    australia: '19',    uiaa: 'VI+',    usa: '5.10b',   hueco: 'V0+',   ukb: 'B2',  fontainebleau: '4+')
+Grade.create(french: '6a+',    uk: 'E2 5c',    australia: '20',    uiaa: 'VII-',   usa: '5.10b',   hueco: 'V0+',   ukb: 'B2',  fontainebleau: '4+')
+Grade.create(french: '6b',     uk: '-',        australia: '20',    uiaa: 'VII',    usa: '5.10c',   hueco: 'V1',    ukb: 'B3',  fontainebleau: '5')
+Grade.create(french: '6b+',    uk: 'E3 5c',    australia: '21',    uiaa: 'VII+',   usa: '5.10d',   hueco: 'V1',    ukb: 'B3',  fontainebleau: '5')
+Grade.create(french: '6c',     uk: '-',        australia: '21',    uiaa: 'VII+',   usa: '5.11a',   hueco: 'V2',    ukb: 'B4',  fontainebleau: '6a')
+Grade.create(french: '6c',     uk: '-',        australia: '22',    uiaa: 'VIII-',  usa: '5.11a',   hueco: 'V2',    ukb: 'B4',  fontainebleau: '6a')
+Grade.create(french: '6c+',    uk: 'E4 5a',    australia: '22',    uiaa: 'VIII-',  usa: '5.11b',   hueco: 'V3',    ukb: 'B5',  fontainebleau: '6a+')
+Grade.create(french: '6c+',    uk: 'E4 5a',    australia: '22',    uiaa: 'VIII-',  usa: '5.11b',   hueco: 'V3',    ukb: 'B6',  fontainebleau: '6a+')
+Grade.create(french: '7a',     uk: '-',        australia: '23',    uiaa: 'VIII',   usa: '5.11c',   hueco: 'V4',    ukb: 'B5',  fontainebleau: '6b')
+Grade.create(french: '7a',     uk: '-',        australia: '23',    uiaa: 'VIII',   usa: '5.11d',   hueco: 'V4',    ukb: 'B6',  fontainebleau: '6b')
+Grade.create(french: '7a+',    uk: 'E5 6b',    australia: '24',    uiaa: 'VIII',   usa: '5.12a',   hueco: 'V4',    ukb: 'B5',  fontainebleau: '6c')
+Grade.create(french: '7a+',    uk: 'E5 6b',    australia: '24',    uiaa: 'VIII+',  usa: '5.12a',   hueco: 'V4',    ukb: 'B6',  fontainebleau: '6c')
+Grade.create(french: '7b',     uk: '-',        australia: '25',    uiaa: 'VIII+',  usa: '5.12b',   hueco: 'V5',    ukb: 'B6',  fontainebleau: '6c+')
+Grade.create(french: '7b+',    uk: 'E6 6b',    australia: '26',    uiaa: 'IX-',    usa: '5.12c',   hueco: 'V6',    ukb: 'B7',  fontainebleau: '7a')
+Grade.create(french: '7c',     uk: '-',        australia: '27',    uiaa: 'IX',     usa: '5.12d',   hueco: 'V6',    ukb: 'B7',  fontainebleau: '7a')
+Grade.create(french: '7c+',    uk: '-',        australia: '28',    uiaa: 'IX',     usa: '5.13a',   hueco: 'V7',    ukb: 'B8',  fontainebleau: '7a+')
+Grade.create(french: '7c+',    uk: '-',        australia: '28',    uiaa: 'IX+',    usa: '5.13a',   hueco: 'V7',    ukb: 'B8',  fontainebleau: '7a+')
+Grade.create(french: '8a',     uk: 'E7 6c',    australia: '29',    uiaa: 'IX+',    usa: '5.13b',   hueco: 'V8',    ukb: 'B9',  fontainebleau: '7b+')
+Grade.create(french: '8a+',    uk: '-',        australia: '30',    uiaa: 'X-',     usa: '5.13c',   hueco: 'V9',    ukb: 'B9',  fontainebleau: '7c')
+Grade.create(french: '8b',     uk: 'E8 7a',    australia: '31',    uiaa: 'X',      usa: '5.13d',   hueco: 'V9',    ukb: 'B9',  fontainebleau: '7c')
+Grade.create(french: '8b+',    uk: '-',        australia: '32',    uiaa: 'X',      usa: '5.14a',   hueco: 'V10',   ukb: 'B10', fontainebleau: '7c+')
+Grade.create(french: '8b+',    uk: '-',        australia: '32',    uiaa: 'X+',     usa: '5.14a',   hueco: 'V10',   ukb: 'B10', fontainebleau: '7c+')
+Grade.create(french: '8c',     uk: 'E9 7b',    australia: '33',    uiaa: 'X+',     usa: '5.14b',   hueco: 'V11',   ukb: 'B11', fontainebleau: '8a')
+Grade.create(french: '8c+',    uk: '-',        australia: '34',    uiaa: 'XI-',    usa: '5.14c',   hueco: 'V12',   ukb: 'B12', fontainebleau: '8a+')
+Grade.create(french: '9a',     uk: 'E10 7c',   australia: '35',    uiaa: 'XI',     usa: '5.14d',   hueco: 'V13',   ukb: 'B12', fontainebleau: '8a+')
+Grade.create(french: '9a',     uk: 'E10 7c',   australia: '35',    uiaa: 'XI',     usa: '5.15',    hueco: 'V13',   ukb: 'B12', fontainebleau: '8a+')
+

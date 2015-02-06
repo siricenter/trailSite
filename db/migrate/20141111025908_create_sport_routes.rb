@@ -12,7 +12,7 @@ class CreateSportRoutes < ActiveRecord::Migration
       t.integer :bolts
       t.integer :stars
       t.integer :pitches
-      t.string :yds_grade
+      t.string :
       t.string :anchor
 
       t.timestamps

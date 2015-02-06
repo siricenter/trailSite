@@ -14,7 +14,7 @@ RSpec.describe "sport_routes/new", :type => :view do
       :bolts => 1,
       :stars => 1,
       :pitches => 1,
-      :yds_grade => "MyString",
+      : => "MyString",
       :anchor => "MyString"
     ))
   end
@@ -46,7 +46,7 @@ RSpec.describe "sport_routes/new", :type => :view do
 
       assert_select "input#sport_route_pitches[name=?]", "sport_route[pitches]"
 
-      assert_select "input#sport_route_yds_grade[name=?]", "sport_route[yds_grade]"
+      assert_select "input#sport_route_[name=?]", "sport_route[]"
 
       assert_select "input#sport_route_anchor[name=?]", "sport_route[anchor]"
     end

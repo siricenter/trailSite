@@ -115,7 +115,7 @@ var GoogleMapController = function(data) {
   		if(typeof zoomValue === typeof "String") {
       	zoomValue = parseInt(zoomValue);
     	}
-    	if(zoomValue > 16 || zoomValue < 0 || zoomValue == null || zoomValue === "undefined" || isNaN(zoomValue)) {
+    	if(zoomValue > 20 || zoomValue < 0 || zoomValue == null || zoomValue === "undefined" || isNaN(zoomValue)) {
     		zoomValue = 2;
     	}
     	console.log("input Zoom listener: " + zoomValue);

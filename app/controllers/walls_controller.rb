@@ -11,6 +11,8 @@ class WallsController < ApplicationController
   # GET /walls/1
   # GET /walls/1.json
   def show
+    @mapData = getData()
+    @routes = @mapData["children"]
     @sport_routes = SportRoute.where( wall_id: params[:id] )
     @traditional_routes = TraditionalRoute.where( wall_id: params[:id] )
     @boulder_routes = BoulderRoute.where( wall_id: params[:id] )
@@ -26,6 +28,7 @@ class WallsController < ApplicationController
 
   # GET /walls/1/edit
   def edit
+    @mapData = getData()
   end
 
   # POST /walls
@@ -70,23 +73,10 @@ class WallsController < ApplicationController
 
   # get a json array
   def getJson
-    if params[:id].present?
-      hash = Hash.new
-      routeArray = []
-      hash["parent"] = Wall.find(params[:id])
-      routeArray.push SportRoute.where(wall_id: params[:id])
-      routeArray.push TraditionalRoute.where(wall_id: params[:id])
-      routeArray.push BoulderRoute.where(wall_id: params[:id])
-      hash["children"] = routeArray
-      hash["child_url"] = [sport_routes_path, traditional_routes_path, boulder_routes_path]
-      render json: hash
-    else
-      # all parents
-      render json: (Area.all)
-    end
+      render json: getData()
   end
-
-  private
+      
+    private
     # Use callbacks to share common setup or constraints between actions.
     def set_wall
       @wall = Wall.find(params[:id])
@@ -96,4 +86,21 @@ class WallsController < ApplicationController
     def wall_params
       params.require(:wall).permit(:crag_id, :name, :longitude, :latitude, :zoom, :directions, :description, :history)
     end
-end
+
+    def getData
+      if params[:id].present?
+        hash = Hash.new
+      routeArray = []
+      hash["parent"] = Wall.find(params[:id])
+      routeArray.push SportRoute.where(wall_id: params[:id])
+      routeArray.push TraditionalRoute.where(wall_id: params[:id])
+      routeArray.push BoulderRoute.where(wall_id: params[:id])
+      hash["children"] = routeArray
+      hash["child_url"] = [sport_routes_path, traditional_routes_path, boulder_routes_path]
+        return hash
+      else
+        # all parents
+          return (Area.all)
+      end
+    end
+  end

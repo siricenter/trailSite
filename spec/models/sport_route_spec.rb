@@ -108,14 +108,14 @@ RSpec.describe SportRoute, :type => :model do
     expect(subject).to_not be_valid
   end
   
-  # yds_grade
-  it "is invalid without yds_grade" do
-    subject = FactoryGirl.build(:sport_route, yds_grade: nil)
+  # 
+  it "is invalid without " do
+    subject = FactoryGirl.build(:sport_route, : nil)
     expect(subject).to_not be_valid
   end
   
-  it "is invalid without valid yds_grade" do
-    subject = FactoryGirl.build(:sport_route, yds_grade: Faker::Name.name)
+  it "is invalid without valid " do
+    subject = FactoryGirl.build(:sport_route, : Faker::Name.name)
     expect(subject).to_not be_valid
   end
 

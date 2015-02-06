@@ -11,7 +11,7 @@
       <th>Bolts</th>
       <th>Stars</th>
       <th>Pitches</th>
-      <th>Yds grade</th>
+      <th>Grade</th>
       <th>Anchor</th>
       <th>Description</th>
       <th>Directions</th>
@@ -32,7 +32,7 @@
         <td><%= sport_route.bolts %></td>
         <td><%= sport_route.stars %></td>
         <td><%= sport_route.pitches %></td>
-        <td><%= sport_route.yds_grade %></td>
+        <td><%= if sport_route.grade != nil then sport_route.grade.usa else "Grade deleted, please re-select a grade" end %></td>
         <td><%= sport_route.anchor %></td>
         <td><%= sport_route.description %></td>
         <td><%= sport_route.directions %></td>

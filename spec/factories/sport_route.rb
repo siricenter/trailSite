@@ -1,5 +1,4 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
-require 'yds_grade'
 require 'danger_rating'
 require 'anchor_type'
 
@@ -16,7 +15,6 @@ FactoryGirl.define do
     bolts {1 + rand(5)}
     stars {1 + rand(5)}
     pitches {1 + rand(5)}
-    yds_grade {YdsGrade.getRand()}
     anchor {AnchorType.getRand()}
     length {1 + rand(5000)}
   end

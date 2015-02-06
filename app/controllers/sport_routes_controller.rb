@@ -1,6 +1,5 @@
 require "anchor_type";
 require "danger_rating";
-require "yds_grade";
 
 class SportRoutesController < ApplicationController
   before_action :set_sport_route, only: [:show, :edit, :update, :destroy]
@@ -15,6 +14,7 @@ class SportRoutesController < ApplicationController
   # GET /sport_routes/1
   # GET /sport_routes/1.json
   def show
+      @mapData = getData()
     @sport_route_photos = SportRoutePhoto.where(sport_route_id: params[:id])
   end
 
@@ -70,14 +70,11 @@ class SportRoutesController < ApplicationController
 
   # get a json array
   def getJson
-    if params[:id].present?
-      render json: (SportRoute.where(wall_id: params[:id]))
-    else
-      render json: (SportRoute.all)
-    end
+      render json: getData()
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_sport_route
       @sport_route = SportRoute.find(params[:id])
@@ -85,6 +82,19 @@ class SportRoutesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sport_route_params
-      params.require(:sport_route).permit(:name, :latitude, :longitude, :zoom, :description, :directions, :wall_id, :danger_rating, :bolts, :stars, :pitches, :yds_grade, :anchor, :length)
+      params.require(:sport_route).permit(:name, :latitude, :longitude, :zoom, :description, :directions, :wall_id, :grade_id, :danger_rating, :bolts, :stars, :pitches, :anchor, :length, :next_route, :prev_route)
+    end
+    
+    def getData
+      if params[:id].present?
+          
+        hash = Hash.new
+        hash["parent"] = SportRoute.find(params[:id])
+        hash["children"] = nil
+        hash["child_url"] = nil
+        return hash
+      else
+        return SportRoute.all
+      end
     end
 end

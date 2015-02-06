@@ -1,5 +1,4 @@
 require "danger_rating";
-require "yds_grade";
 
 class TraditionalRoutesController < ApplicationController
   before_action :set_traditional_route, only: [:show, :edit, :update, :destroy]
@@ -84,6 +83,6 @@ class TraditionalRoutesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def traditional_route_params
-      params.require(:traditional_route).permit(:name, :latitude, :longitude, :zoom, :description, :directions, :wall_id, :danger_rating, :gear_needed, :stars, :pitches, :yds_grade, :length, :anchor)
+      params.require(:traditional_route).permit(:name, :latitude, :longitude, :zoom, :description, :directions, :wall_id, :danger_rating, :gear_needed, :stars, :pitches, :length, :anchor)
     end
 end

@@ -14,7 +14,7 @@ RSpec.describe "traditional_routes/show", :type => :view do
       :gear_needed => "MyText",
       :stars => 2,
       :pitches => 3,
-      :yds_grade => "Yds Grade",
+      : => "Yds Grade",
       :length => "9.99",
       :anchor => "MyText"
     ))

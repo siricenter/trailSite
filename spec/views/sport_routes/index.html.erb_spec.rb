@@ -15,7 +15,7 @@ RSpec.describe "sport_routes/index", :type => :view do
         :bolts => 2,
         :stars => 3,
         :pitches => 4,
-        :yds_grade => "Yds Grade",
+        : => "Yds Grade",
         :anchor => "Anchor"
       ),
       SportRoute.create!(
@@ -30,7 +30,7 @@ RSpec.describe "sport_routes/index", :type => :view do
         :bolts => 2,
         :stars => 3,
         :pitches => 4,
-        :yds_grade => "Yds Grade",
+        : => "Yds Grade",
         :anchor => "Anchor"
       )
     ])
