@@ -46,14 +46,11 @@
 
       <div class="row">
 
-        <div class="form-field <%=if @traditional_route.errors[:].present? then 'has-error' else 'has-success' end %> ">
-        <%= f.label : %><br>
-          <select id="traditional_route_" name="traditional_route[]", class="form-control">
-            <%- YdsGrade.getArray().each do |grade| %>
-              <option value="<%= grade %>" ><%= grade %> </option>
-            <%- end %>
-          </select>
-        </div>
+    <div class="form-field <%=if @traditional_route.errors[:grade].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label "Grade Fr|UK|Au|UIAA|USA" %><br>
+      <%= f.select("grade_id", Grade.all.collect {|r| [ r.french + "\t | \t" + r.uk + "\t | \t" + r.australia + "\t | \t" + r.uiaa + "\t | \t" + r.usa, r.id ] }, {include_blank: true},
+       class: "form-control" )  %>
+    </div>
 
         <div class="form-field">
           <%= f.label :danger_rating %><br>

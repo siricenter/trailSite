@@ -33,7 +33,7 @@
         <td><%= traditional_route.gear_needed %></td>
         <td><%= traditional_route.stars %></td>
         <td><%= traditional_route.pitches %></td>
-        <td><%= traditional_route.grade %></td>
+        <td><%= if traditional_route.grade != nil then traditional_route.grade.usa else "Grade deleted, please re-select a grade" end %></td>
         <td><%= traditional_route.length %></td>
         <td><%= traditional_route.anchor %></td>
         <td class="index-action"><%= link_to 'Show', traditional_route %></td>

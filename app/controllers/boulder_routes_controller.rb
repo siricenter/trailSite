@@ -84,6 +84,6 @@ class BoulderRoutesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def boulder_route_params
-      params.require(:boulder_route).permit(:name, :latitude, :longitude, :zoom, :description, :directions, :wall_id, :danger_rating, :stars, :pads, :hueco_grade, :length)
+        params.require(:boulder_route).permit(:name, :grade_id, :latitude, :longitude, :zoom, :description, :directions, :wall_id, :danger_rating, :stars, :pads, :hueco_grade, :length)
     end
 end

@@ -83,6 +83,6 @@ class TraditionalRoutesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def traditional_route_params
-      params.require(:traditional_route).permit(:name, :latitude, :longitude, :zoom, :description, :directions, :wall_id, :danger_rating, :gear_needed, :stars, :pitches, :length, :anchor)
+        params.require(:traditional_route).permit(:name, :grade_id, :latitude, :longitude, :zoom, :description, :directions, :wall_id, :danger_rating, :gear_needed, :stars, :pitches, :length, :anchor)
     end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203211955) do
+ActiveRecord::Schema.define(version: 20150209201560) do
 
   create_table "areas", force: true do |t|
     t.string   "name"
@@ -53,8 +53,12 @@ ActiveRecord::Schema.define(version: 20150203211955) do
     t.decimal  "length"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "grade_id"
+    t.integer  "next_route"
+    t.integer  "prev_route"
   end
 
+  add_index "boulder_routes", ["grade_id"], name: "index_boulder_routes_on_grade_id"
   add_index "boulder_routes", ["wall_id"], name: "index_boulder_routes_on_wall_id"
 
   create_table "crags", force: true do |t|
@@ -183,8 +187,12 @@ ActiveRecord::Schema.define(version: 20150203211955) do
     t.text     "anchor"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "grade_id"
+    t.integer  "next_route"
+    t.integer  "prev_route"
   end
 
+  add_index "traditional_routes", ["grade_id"], name: "index_traditional_routes_on_grade_id"
   add_index "traditional_routes", ["wall_id"], name: "index_traditional_routes_on_wall_id"
 
   create_table "users", force: true do |t|
