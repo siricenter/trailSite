@@ -179,7 +179,6 @@ ActiveRecord::Schema.define(version: 20150203211955) do
     t.text     "gear_needed"
     t.integer  "stars"
     t.integer  "pitches"
-    t.string   ""
     t.decimal  "length"
     t.text     "anchor"
     t.datetime "created_at"

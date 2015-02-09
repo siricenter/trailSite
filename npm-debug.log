@@ -1,0 +1,95 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/codio/.nvm/v0.10.33/bin/node',
+1 verbose cli   '/home/codio/.nvm/v0.10.33/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'rails' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose cache add [ 'rails', null ]
+5 verbose cache add name=undefined spec="rails" args=["rails",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'rails',
+6 verbose parsed url   path: 'rails',
+6 verbose parsed url   href: 'rails' }
+7 silly lockFile 79fdb82a-rails rails
+8 verbose lock rails /home/codio/.npm/79fdb82a-rails.lock
+9 silly lockFile 79fdb82a-rails rails
+10 silly lockFile 79fdb82a-rails rails
+11 verbose addNamed [ 'rails', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile 39038075-rails rails@
+14 verbose lock rails@ /home/codio/.npm/39038075-rails.lock
+15 silly addNameRange { name: 'rails', range: '*', hasData: false }
+16 verbose request where is /rails
+17 verbose request registry https://registry.npmjs.org/
+18 verbose request id 83298c31e677b645
+19 verbose url raw /rails
+20 verbose url resolving [ 'https://registry.npmjs.org/', './rails' ]
+21 verbose url resolved https://registry.npmjs.org/rails
+22 verbose request where is https://registry.npmjs.org/rails
+23 info trying registry request attempt 1 at 17:24:57
+24 http GET https://registry.npmjs.org/rails
+25 http 200 https://registry.npmjs.org/rails
+26 silly registry.get cb [ 200,
+26 silly registry.get   { date: 'Mon, 09 Feb 2015 17:24:57 GMT',
+26 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+26 silly registry.get     etag: '"I7PO4K47U5K0RAA8R5V5XUUZ"',
+26 silly registry.get     'content-type': 'application/json',
+26 silly registry.get     'cache-control': 'max-age=60',
+26 silly registry.get     'content-length': '10423',
+26 silly registry.get     'accept-ranges': 'bytes',
+26 silly registry.get     via: '1.1 varnish',
+26 silly registry.get     age: '0',
+26 silly registry.get     'x-served-by': 'cache-jfk1020-JFK',
+26 silly registry.get     'x-cache': 'MISS',
+26 silly registry.get     'x-cache-hits': '0',
+26 silly registry.get     'x-timer': 'S1423502697.732407,VS0,VE16',
+26 silly registry.get     vary: 'Accept',
+26 silly registry.get     'keep-alive': 'timeout=10, max=50',
+26 silly registry.get     connection: 'Keep-Alive' } ]
+27 silly addNameRange number 2 { name: 'rails', range: '*', hasData: true }
+28 silly addNameRange versions [ 'rails', [ '4.1.0-beta' ] ]
+29 verbose addNamed [ 'rails', '4.1.0-beta' ]
+30 verbose addNamed [ '4.1.0-beta', '4.1.0-beta' ]
+31 silly lockFile cad553ee-rails-4-1-0-beta rails@4.1.0-beta
+32 verbose lock rails@4.1.0-beta /home/codio/.npm/cad553ee-rails-4-1-0-beta.lock
+33 silly lockFile 2f8e42f3-s-org-rails-rails-4-1-0-beta-tgz https://registry.npmjs.org/rails/-/rails-4.1.0-beta.tgz
+34 verbose lock https://registry.npmjs.org/rails/-/rails-4.1.0-beta.tgz /home/codio/.npm/2f8e42f3-s-org-rails-rails-4-1-0-beta-tgz.lock
+35 verbose addRemoteTarball [ 'https://registry.npmjs.org/rails/-/rails-4.1.0-beta.tgz',
+35 verbose addRemoteTarball   '9eb5552e380e7ad3aaacd1e453e80bdc2566adc4' ]
+36 info retry fetch attempt 1 at 17:24:57
+37 verbose fetch to= /tmp/npm-431-_RH0t3_c/registry.npmjs.org/rails/-/rails-4.1.0-beta.tgz
+38 http GET https://registry.npmjs.org/rails/-/rails-4.1.0-beta.tgz
+39 http 200 https://registry.npmjs.org/rails/-/rails-4.1.0-beta.tgz
+40 silly lockFile 2f8e42f3-s-org-rails-rails-4-1-0-beta-tgz https://registry.npmjs.org/rails/-/rails-4.1.0-beta.tgz
+41 silly lockFile 2f8e42f3-s-org-rails-rails-4-1-0-beta-tgz https://registry.npmjs.org/rails/-/rails-4.1.0-beta.tgz
+42 silly lockFile cad553ee-rails-4-1-0-beta rails@4.1.0-beta
+43 silly lockFile cad553ee-rails-4-1-0-beta rails@4.1.0-beta
+44 silly lockFile 39038075-rails rails@
+45 silly lockFile 39038075-rails rails@
+46 error Error: shasum check failed for /tmp/npm-431-_RH0t3_c/registry.npmjs.org/rails/-/rails-4.1.0-beta.tgz
+46 error Expected: 9eb5552e380e7ad3aaacd1e453e80bdc2566adc4
+46 error Actual:   7c6781caa4c55e5ce1783c450b8d494c6093d5c0
+46 error From:     https://registry.npmjs.org/rails/-/rails-4.1.0-beta.tgz
+46 error     at /home/codio/.nvm/v0.10.33/lib/node_modules/npm/node_modules/sha/index.js:38:8
+46 error     at ReadStream.<anonymous> (/home/codio/.nvm/v0.10.33/lib/node_modules/npm/node_modules/sha/index.js:85:7)
+46 error     at ReadStream.emit (events.js:117:20)
+46 error     at _stream_readable.js:943:16
+46 error     at process._tickCallback (node.js:419:13)
+47 error If you need help, you may report this *entire* log,
+47 error including the npm and node versions, at:
+47 error     <http://github.com/npm/npm/issues>
+48 error System Linux 3.16.0-28-generic
+49 error command "/home/codio/.nvm/v0.10.33/bin/node" "/home/codio/.nvm/v0.10.33/bin/npm" "install" "rails"
+50 error cwd /home/codio/workspace
+51 error node -v v0.10.33
+52 error npm -v 1.4.28
+53 verbose exit [ 1, true ]

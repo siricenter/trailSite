@@ -12,7 +12,6 @@ class CreateTraditionalRoutes < ActiveRecord::Migration
       t.text :gear_needed
       t.integer :stars
       t.integer :pitches
-      t.string :
       t.decimal :length
       t.text :anchor
 
