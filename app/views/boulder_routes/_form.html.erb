@@ -26,13 +26,13 @@
            class: "form-control" )  %>
         </div>
 
-        <div class="form-stars">
-          <%= f.label :stars %><br>
-          <%-5.times do |i|%>
-            <input type="radio" name="boulder_route[stars]" value="<%=i+1%>", class: "form-control", 
-                checked: "<%= if boulder_route.stars == (i + 1) then 'true' else 'false' end %>"> <%=i+1%> 
-          <%-end%>
-        </div>
+     <div class="form-field">
+      <%= f.label :stars %><br>
+      <%-5.times do |i|%>
+				<%= f.radio_button :stars, i+1 %>
+				<%= f.label :stars, i+1 %>
+      <%-end%>
+    </div>
 
         <div class="form-field">
           <%= f.label :pads %><br>
@@ -56,14 +56,11 @@
         </div>
         
 
-        <div class="form-field">
-          <%= f.label :hueco_grade %><br>
-          <select id="boulder_route_hueco_grade" name="boulder_route[hueco_grade]", class="form-control">
-            <%- HuecoGrade.getArray().each do |grade| %>
-              <option value="<%= grade %>" ><%= grade %> </option>
-            <%- end %>
-          </select>
-        </div>
+     <div class="form-field <%=if @boulder_route.errors[:grade].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label "Grade Fr|UK|Au|UIAA|USA" %><br>
+      <%= f.select("grade_id", Grade.all.collect {|r| [ r.french + "\t | \t" + r.uk + "\t | \t" + r.australia + "\t | \t" + r.uiaa + "\t | \t" + r.usa, r.id ] }, {include_blank: true},
+       class: "form-control" )  %>
+    </div>
 
 
         <div class="form-field">
@@ -91,9 +88,19 @@
           <%= f.text_area :directions, class: "form-control" %>
         </div>
       </div>
+        
+        <div>
+          <%= f.label :previous_route %><br>
+          <%= f.select(:prev_route, BoulderRoute.all.collect {|r| [ r.name, r.id ] }, {include_blank: true}, class: "form-control" )  %>
+      </div>
+      
+      <div>
+          <%= f.label :next_route %><br>
+          <%= f.select(:next_route, BoulderRoute.all.collect {|r| [ r.name, r.id ] }, {include_blank: true}, class: "form-control" )  %>
+      </div>
 
         <div class="actions col-md-12">
-          <%= f.submit %>
+          <%= f.submit class: "form-button" %>
         </div>
       </div>
   </div>

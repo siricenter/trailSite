@@ -57,8 +57,12 @@
 </p>
 
 <p>
-  <strong>Hueco Grade:</strong>
-  <%= @boulder_route.hueco_grade %>
+  <strong>Grade:</strong>
+  <%= if @boulder_route.grade
+        link_to @boulder_route.wall.name, wall_path(@boulder_route.wall) 
+      else 
+        "Deleted, please re-select" 
+      end %>
 </p>
 
 <p>
