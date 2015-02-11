@@ -51,7 +51,7 @@ TraditionalRoute.delete_all
 TraditionalRoute.create(name: 'Easte Arete', wall: TA, danger_rating: 'none', latitude: 37.32829, longitude: -118.57478, zoom: 15, pitches: 1, anchor: 'none', length: 1)
 
 BoulderRoute.delete_all
-BoulderRoute.create(name: 'Procrastination', wall: TA, latitude: 1.0, longitude: 1.0, zoom: 1)
+BoulderRoute.create(name: 'Unnamed', wall: TA, latitude: 37.32829, longitude: -118.57478, zoom: 15, wall: TA, danger_rating: 'none', pads: 1, length: 1)
 
 Grade.delete_all
 Grade.create(french: '1',      uk: 'HVD',      australia: '8',     uiaa: 'I',      usa: '5.2',     hueco: '-',     ukb: '-',   fontainebleau: '-')

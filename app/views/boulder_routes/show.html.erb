@@ -67,6 +67,13 @@
 </p>
 
 <br>
+<%= render 'static/googleMap' %>
+<br>
+
+<button onclick="calcRoute()">
+    Get Directions
+</button>
+<br>
 
 <strong>Photos</strong> | <%= link_to 'Add Photo', new_boulder_route_photo_path(id: @boulder_route.id.to_s) %>
 <%= render 'boulder_route_photos/table' %>

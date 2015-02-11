@@ -14,6 +14,7 @@ class BoulderRoutesController < ApplicationController
   # GET /boulder_routes/1
   # GET /boulder_routes/1.json
   def show
+      @mapData = getData();
     @boulder_route_photos = BoulderRoutePhoto.where(boulder_route_id: params[:id])
   end
 
@@ -76,7 +77,8 @@ class BoulderRoutesController < ApplicationController
     end
   end
 
-  private
+    private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_boulder_route
       @boulder_route = BoulderRoute.find(params[:id])
@@ -85,5 +87,18 @@ class BoulderRoutesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def boulder_route_params
         params.require(:boulder_route).permit(:name, :grade_id, :latitude, :longitude, :zoom, :description, :directions, :wall_id, :danger_rating, :stars, :pads, :hueco_grade, :length)
+    end
+    
+    def getData
+      if params[:id].present?
+          
+        hash = Hash.new
+          hash["parent"] = BoulderRoute.find(params[:id])
+        hash["children"] = nil
+        hash["child_url"] = nil
+        return hash
+      else
+          return BoulderRoute.all
+      end
     end
 end
