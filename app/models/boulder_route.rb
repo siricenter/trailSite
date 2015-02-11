@@ -11,4 +11,6 @@ class BoulderRoute < ActiveRecord::Base
   validates :danger_rating, inclusion: { in: DangerRating.getArray() }
   belongs_to :wall
   has_many :boulder_route_photos
+    belongs_to :grade
+    has_many :boulder_routes
 end

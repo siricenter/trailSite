@@ -13,6 +13,7 @@ class TraditionalRoutesController < ApplicationController
   # GET /traditional_routes/1
   # GET /traditional_routes/1.json
   def show
+      @mapData = getData();
     @traditional_route_photos = TraditionalRoutePhoto.where(traditional_route_id: params[:id])
   end
 
@@ -66,23 +67,34 @@ class TraditionalRoutesController < ApplicationController
     end
   end
 
-  # get a json array
+    # get a json array
   def getJson
-    if params[:id].present?
-      render json: (TraditionalRoute.where(wall_id: params[:id]))
-    else
-      render json: (TraditionalRoute.all)
-    end
+      render json: getData()
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_traditional_route
-      @traditional_route = TraditionalRoute.find(params[:id])
+        @traditional_route = TraditionalRoute.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def traditional_route_params
         params.require(:traditional_route).permit(:name, :grade_id, :latitude, :longitude, :zoom, :description, :directions, :wall_id, :danger_rating, :gear_needed, :stars, :pitches, :length, :anchor)
     end
+    
+    def getData
+      if params[:id].present?
+          
+        hash = Hash.new
+        hash["parent"] = TraditionalRoute.find(params[:id])
+        hash["children"] = nil
+        hash["child_url"] = nil
+        return hash
+      else
+          return TraditionalRoute.all
+      end
+    end
 end
+

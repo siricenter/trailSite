@@ -9,4 +9,5 @@ class TraditionalRoute < ActiveRecord::Base
   belongs_to :wall
   has_many :traditional_route_photos
     belongs_to :grade
+    has_many :traditional_routes
 end

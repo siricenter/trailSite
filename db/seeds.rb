@@ -48,7 +48,7 @@ SportRoute.create(name: 'Procrastination', wall: TA, length: 1, latitude: 1.0, l
 SportRoute.create(name: 'Rock Canyon', wall: TA, length: 1, latitude: 40.2693045, longitude: -111.64208, zoom: 15, danger_rating: 'none', bolts: 15, stars: 3, pitches: 1, anchor: "Rings", description: "", directions: "")
 
 TraditionalRoute.delete_all
-TraditionalRoute.create(name: 'Easte Arete', wall: TA, danger_rating: 'none', latitude: 37.32829, longitude: -118.57478, zoom: 1, pitches: 1, anchor: 'none', length: 1)
+TraditionalRoute.create(name: 'Easte Arete', wall: TA, danger_rating: 'none', latitude: 37.32829, longitude: -118.57478, zoom: 15, pitches: 1, anchor: 'none', length: 1)
 
 BoulderRoute.delete_all
 BoulderRoute.create(name: 'Procrastination', wall: TA, latitude: 1.0, longitude: 1.0, zoom: 1)

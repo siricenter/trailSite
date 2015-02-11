@@ -39,7 +39,7 @@ function initializeMap() {
         zoom: 1,
         center: latlon
     }
-    map = new new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
     }
 }
 
