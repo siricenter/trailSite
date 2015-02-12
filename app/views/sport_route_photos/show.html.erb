@@ -14,7 +14,15 @@
 
 <p>
   <strong>Image:</strong></br>
-  <image class="image_thumbnail" src="<%= @sport_route_photo.url %>"/>
+    <div>
+        <image class="image_thumbnail" src="<%= @sport_route_photo.url %>"/>
+    </div>
+    <div>
+        <span class='zoom' id='ex1'>
+		    <img class="image_thumbnail" src="<%= @sport_route_photo.url %>"/>
+		    <p>Hover</p>
+        </span>
+    </div>
 </p>
 
 <%= link_to 'Edit', edit_sport_route_photo_path(@sport_route_photo) %> |
