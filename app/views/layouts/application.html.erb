@@ -8,16 +8,8 @@
   </script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-    <style>
-		/* styles unrelated to zoom */
-		* { border:0; margin:0; padding:0; }
-		p { position:absolute; top:3px; right:28px; color:#555; font:bold 13px/1 sans-serif;}
 
-		/* these styles are for the demo, but are not required for the plugin */
-		.zoom {
-			display:inline-block;
-			position: relative;
-		}
+  	<style>
 		
 		/* magnifying glass icon */
 		.zoom:after {
@@ -29,6 +21,7 @@
 			top:0;
 			right:0;
 			background:url(/assets/icon.png);
+
 		}
 
 		.zoom img {
@@ -36,7 +29,6 @@
 		}
 
 		.zoom img::selection { background-color: transparent; }
-
 		#ex2 img:hover { cursor: url(/assets/grab.cur), default; }
 		#ex2 img:active { cursor: url(/assets/grabbed.cur), default; }
 	</style>
@@ -50,7 +42,6 @@
 			$('#ex4').zoom({ on:'toggle' });
 		});
     </script>
-  	
 </head>
 <body>
 
