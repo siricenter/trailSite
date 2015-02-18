@@ -1,24 +1,3 @@
 // Place all the styles related to the sport_route_photos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-	/* magnifying glass icon */
-		.zoom:after {
-			content:'';
-			display:block; 
-			width:33px; 
-			height:33px; 
-			position:absolute; 
-			top:0;
-			right:0;
-			background:url(/assets/images/icon.png);
-		}
-
-		.zoom img {
-			display: block;
-		}
-
-		.zoom img::selection { background-color: transparent; }
-
-		#ex2 img:hover { cursor: url(/assets/javascripts/grab.cur), default; }
-		#ex2 img:active { cursor: url(/assets/javascripts/grabbed.cur), default; }
