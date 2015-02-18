@@ -31,7 +31,7 @@
         <td><%= traditional_route.directions %></td>
         <td><%= traditional_route.danger_rating %></td>
         <td><%= traditional_route.gear_needed %></td>
-        <td><%= traditional_route.stars %></td>
+        <td><%= if (traditional_route.stars && traditional_route.stars >= 1 && traditional_route.stars <= 5) then traditional_route.stars else "Not yet rated" end %></td>
         <td><%= traditional_route.pitches %></td>
         <td><%= if traditional_route.grade != nil then traditional_route.grade.usa else "Grade deleted, please re-select a grade" end %></td>
         <td><%= traditional_route.length %></td>

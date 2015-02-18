@@ -43,7 +43,11 @@
 
 <p>
   <strong>Stars:</strong>
-  <%= @traditional_route.stars %>
+  <%= if (@traditional_route.stars && @traditional_route.stars >= 1 && @traditional_route.stars <= 5)
+        @traditional_route.stars
+      else 
+        "Not yet rated" 
+      end %>
 </p>
 
 <p>

@@ -1,5 +1,5 @@
 class AnchorType
-    @@anchor = ["none", "Shuts", "Rings", "Chains", "Bolts", "Top Rope", "Project"];
+    @@anchor = ["none", "Shuts", "Rings", "Chains", "Bolts", "Top Rope"];
   
   def self.getArray
     return @@anchor;

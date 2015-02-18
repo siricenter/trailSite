@@ -30,7 +30,7 @@
         <td><%= sport_route.zoom %></td>
         <td><%= sport_route.danger_rating %></td>
         <td><%= sport_route.bolts %></td>
-        <td><%= sport_route.stars %></td>
+        <td><%= if (sport_route && sport_route.stars >= 1 && sport_route.stars <= 5) then sport_route.stars else "Not yet rated" end %></td>
         <td><%= sport_route.pitches %></td>
         <td><%= if sport_route.grade != nil then sport_route.grade.usa else "Grade deleted, please re-select a grade" end %></td>
         <td><%= sport_route.anchor %></td>
