@@ -11,10 +11,16 @@ function initializeMap() {
     if (markerData) {
         // make map acording to attributes (if any)
         var latlon = new google.maps.LatLng(markerData['parent'].latitude, markerData['parent'].longitude);
+        var mapType;
+        if (markerData.parent.zoom < 15) {
+            mapType = google.maps.MapTypeId.TERRAIN
+        } else {
+            mapType = google.maps.MapTypeId.SATELLITE
+        }
         var mapOptions = {
             zoom: markerData.parent.zoom,
             center: latlon,
-            mapTypeId: google.maps.MapTypeId.SATELLITE
+            mapTypeId: mapType
         };
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         //map = new GoogleMapController(markerData.parent /*contains latitude, longitude, and zoom data*/);
@@ -28,11 +34,17 @@ function initializeMap() {
         var children = markerData["children"];
         for(var i = 0; children != null && i < children.length; ++i) {
             var child = children[i];
-            var marker = map.addMarker(child.latitude, child.longitude, child.name);
-            // add function to each marker to call the next url (url + id)
-            map.addLink(marker, markerData["child_url"] + "/" + child.id);
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(child.latitude, child.longitude),
+                map: map,
+                url: markerData.child_url + '/' + child.id,
+                title: child.name
+            });
+            google.maps.event.addListener(marker, "click", function() {
+                window.location = marker.url;
+            });
         }
-    
+        
     } else {
     var latlon = new google.maps.LatLng(1.00, 1.00);
     var mapOptions = {
@@ -47,9 +59,8 @@ function parseMarkerData() {
     // get data-markers attribute 
     var markerData = document.getElementById("map-canvas").getAttribute("data-markers");
     
-    if(markerData !== "") {
+    if(markerData && markerData !== "") {
         markerData = JSON.parse(markerData);
-        console.dir(markerData);
     }
     return markerData;
 }
