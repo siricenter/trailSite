@@ -13,5 +13,4 @@ class SportRoute < ActiveRecord::Base
 	has_many :sport_route_photos
 	belongs_to :grade
 	has_many :sport_routes
-	belongs_to :sport_route
 end
