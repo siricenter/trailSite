@@ -40,9 +40,13 @@ function initializeMap() {
                 url: markerData.child_url + '/' + child.id,
                 title: child.name
             });
-            google.maps.event.addListener(marker, "click", function() {
-                window.location = marker.url;
-            });
+            
+            // Allow each marker to have an info window    
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    window.location = marker.url;
+                }
+            })(marker, i));
         }
         
     } else {
