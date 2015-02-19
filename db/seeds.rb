@@ -44,4 +44,3 @@ Grade.create(french: '8c+',    uk: '-',        australia: '34',    uiaa: 'XI-', 
 Grade.create(french: '9a',     uk: 'E10 7c',   australia: '35',    uiaa: 'XI',     usa: '5.14d',   hueco: 'V13',   ukb: 'B12', fontainebleau: '8a+')
 Grade.create(french: '9a',     uk: 'E10 7c',   australia: '35',    uiaa: 'XI',     usa: '5.15',    hueco: 'V13',   ukb: 'B12', fontainebleau: '8a+')
 Grade.create(french: 'Project', uk: 'Project', australia: 'Project', uiaa: 'Project', usa: 'Project', hueco: 'Project', ukb: 'Project', fontainebleau: 'Project')
-

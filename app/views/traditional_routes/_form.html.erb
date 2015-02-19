@@ -27,12 +27,12 @@
         </div>
 
         <div class="form-field">
-      <%= f.label :stars %><br>
-      <%-6.times do |i|%>
-				<%= f.radio_button :stars, i %>
-				<%= f.label :stars, if (i == 0) then "Not yet rated" else i end %>
-      <%-end%>
-    </div>
+          <%= f.label :stars %><br>
+          <%-6.times do |i|%>
+            <%= f.radio_button :stars, i %>
+						<%= f.label :stars, if (i == 0) then "Not yet rated" else i end %>
+          <%-end%>
+        </div>
         
 
         <div class="form-field">
