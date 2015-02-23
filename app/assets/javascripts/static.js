@@ -20,7 +20,14 @@ function initializeMap() {
         var mapOptions = {
             zoom: markerData.parent.zoom,
             center: latlon,
-            mapTypeId: mapType
+            mapTypeId: mapType,
+            zoomControl: false,
+            streetViewControl: false,
+            scrollwheel: false,
+            draggable: false,
+            disableDoubleClickZoom: true,
+            panControl: false
+            
         };
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         //map = new GoogleMapController(markerData.parent /*contains latitude, longitude, and zoom data*/);
