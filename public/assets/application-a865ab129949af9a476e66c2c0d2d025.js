@@ -13787,7 +13787,7 @@ var GoogleMapController = function(data) {
   		if(typeof zoomValue === typeof "String") {
       	zoomValue = parseInt(zoomValue);
     	}
-    	if(zoomValue > 16 || zoomValue < 0 || zoomValue == null || zoomValue === "undefined" || isNaN(zoomValue)) {
+    	if(zoomValue > 20 || zoomValue < 0 || zoomValue == null || zoomValue === "undefined" || isNaN(zoomValue)) {
     		zoomValue = 2;
     	}
     	console.log("input Zoom listener: " + zoomValue);
@@ -14018,6 +14018,249 @@ function getRegions() {
 	});
 }
 ;
+/*!
+	Zoom 1.7.13
+	license: MIT
+	http://www.jacklmoore.com/zoom
+*/
+
+(function ($) {
+	var defaults = {
+		url: false,
+		callback: false,
+		target: false,
+		duration: 120,
+		on: 'mouseover', // other options: grab, click, toggle
+		touch: true, // enables a touch fallback
+		onZoomIn: false,
+		onZoomOut: false,
+		magnify: 1
+	};
+
+	// Core Zoom Logic, independent of event listeners.
+	$.zoom = function(target, source, img, magnify) {
+		var targetHeight,
+			targetWidth,
+			sourceHeight,
+			sourceWidth,
+			xRatio,
+			yRatio,
+			offset,
+			position = $(target).css('position'),
+			$source = $(source);
+
+		// The parent element needs positioning so that the zoomed element can be correctly positioned within.
+		target.style.position = /(absolute|fixed)/.test(position) ? position : 'relative';
+		target.style.overflow = 'hidden';
+
+		img.style.width = img.style.height = '';
+
+		$(img)
+			.addClass('zoomImg')
+			.css({
+				position: 'absolute',
+				top: 0,
+				left: 0,
+				opacity: 0,
+				width: img.width * magnify,
+				height: img.height * magnify,
+				border: 'none',
+				maxWidth: 'none',
+				maxHeight: 'none'
+			})
+			.appendTo(target);
+
+		return {
+			init: function() {
+				targetWidth = $(target).outerWidth();
+				targetHeight = $(target).outerHeight();
+
+				if (source === target) {
+					sourceWidth = targetWidth;
+					sourceHeight = targetHeight;
+				} else {
+					sourceWidth = $source.outerWidth();
+					sourceHeight = $source.outerHeight();
+				}
+
+				xRatio = (img.width - targetWidth) / sourceWidth;
+				yRatio = (img.height - targetHeight) / sourceHeight;
+
+				offset = $source.offset();
+			},
+			move: function (e) {
+				var left = (e.pageX - offset.left),
+					top = (e.pageY - offset.top);
+
+				top = Math.max(Math.min(top, sourceHeight), 0);
+				left = Math.max(Math.min(left, sourceWidth), 0);
+
+				img.style.left = (left * -xRatio) + 'px';
+				img.style.top = (top * -yRatio) + 'px';
+			}
+		};
+	};
+
+	$.fn.zoom = function (options) {
+		return this.each(function () {
+			var
+			settings = $.extend({}, defaults, options || {}),
+			//target will display the zoomed image
+			target = settings.target || this,
+			//source will provide zoom location info (thumbnail)
+			source = this,
+			$source = $(source),
+			img = document.createElement('img'),
+			$img = $(img),
+			mousemove = 'mousemove.zoom',
+			clicked = false,
+			touched = false,
+			$urlElement;
+
+			// If a url wasn't specified, look for an image element.
+			if (!settings.url) {
+				$urlElement = $source.find('img');
+				if ($urlElement[0]) {
+					settings.url = $urlElement.data('src') || $urlElement.attr('src');
+				}
+				if (!settings.url) {
+					return;
+				}
+			}
+
+			(function(){
+				var position = target.style.position;
+				var overflow = target.style.overflow;
+
+				$source.one('zoom.destroy', function(){
+					$source.off(".zoom");
+					target.style.position = position;
+					target.style.overflow = overflow;
+					$img.remove();
+				});
+				
+			}());
+
+			img.onload = function () {
+				var zoom = $.zoom(target, source, img, settings.magnify);
+
+				function start(e) {
+					zoom.init();
+					zoom.move(e);
+
+					// Skip the fade-in for IE8 and lower since it chokes on fading-in
+					// and changing position based on mousemovement at the same time.
+					$img.stop()
+					.fadeTo($.support.opacity ? settings.duration : 0, 1, $.isFunction(settings.onZoomIn) ? settings.onZoomIn.call(img) : false);
+				}
+
+				function stop() {
+					$img.stop()
+					.fadeTo(settings.duration, 0, $.isFunction(settings.onZoomOut) ? settings.onZoomOut.call(img) : false);
+				}
+
+				// Mouse events
+				if (settings.on === 'grab') {
+					$source
+						.on('mousedown.zoom',
+							function (e) {
+								if (e.which === 1) {
+									$(document).one('mouseup.zoom',
+										function () {
+											stop();
+
+											$(document).off(mousemove, zoom.move);
+										}
+									);
+
+									start(e);
+
+									$(document).on(mousemove, zoom.move);
+
+									e.preventDefault();
+								}
+							}
+						);
+				} else if (settings.on === 'click') {
+					$source.on('click.zoom',
+						function (e) {
+							if (clicked) {
+								// bubble the event up to the document to trigger the unbind.
+								return;
+							} else {
+								clicked = true;
+								start(e);
+								$(document).on(mousemove, zoom.move);
+								$(document).one('click.zoom',
+									function () {
+										stop();
+										clicked = false;
+										$(document).off(mousemove, zoom.move);
+									}
+								);
+								return false;
+							}
+						}
+					);
+				} else if (settings.on === 'toggle') {
+					$source.on('click.zoom',
+						function (e) {
+							if (clicked) {
+								stop();
+							} else {
+								start(e);
+							}
+							clicked = !clicked;
+						}
+					);
+				} else if (settings.on === 'mouseover') {
+					zoom.init(); // Preemptively call init because IE7 will fire the mousemove handler before the hover handler.
+
+					$source
+						.on('mouseenter.zoom', start)
+						.on('mouseleave.zoom', stop)
+						.on(mousemove, zoom.move);
+				}
+
+				// Touch fallback
+				if (settings.touch) {
+					$source
+						.on('touchstart.zoom', function (e) {
+							e.preventDefault();
+							if (touched) {
+								touched = false;
+								stop();
+							} else {
+								touched = true;
+								start( e.originalEvent.touches[0] || e.originalEvent.changedTouches[0] );
+							}
+						})
+						.on('touchmove.zoom', function (e) {
+							e.preventDefault();
+							zoom.move( e.originalEvent.touches[0] || e.originalEvent.changedTouches[0] );
+						});
+				}
+				
+				if ($.isFunction(settings.callback)) {
+					settings.callback.call(img);
+				}
+			};
+
+			img.src = settings.url;
+		});
+	};
+
+	$.fn.zoom.defaults = defaults;
+}(window.jQuery));
+/*!
+	Zoom 1.7.13
+	license: MIT
+	http://www.jacklmoore.com/zoom
+*/
+
+
+(function(o){var t={url:!1,callback:!1,target:!1,duration:120,on:"mouseover",touch:!0,onZoomIn:!1,onZoomOut:!1,magnify:1};o.zoom=function(t,n,e,i){var u,c,a,m,l,r,s,f=o(t).css("position"),h=o(n);return t.style.position=/(absolute|fixed)/.test(f)?f:"relative",t.style.overflow="hidden",e.style.width=e.style.height="",o(e).addClass("zoomImg").css({position:"absolute",top:0,left:0,opacity:0,width:e.width*i,height:e.height*i,border:"none",maxWidth:"none",maxHeight:"none"}).appendTo(t),{init:function(){c=o(t).outerWidth(),u=o(t).outerHeight(),n===t?(m=c,a=u):(m=h.outerWidth(),a=h.outerHeight()),l=(e.width-c)/m,r=(e.height-u)/a,s=h.offset()},move:function(o){var t=o.pageX-s.left,n=o.pageY-s.top;n=Math.max(Math.min(n,a),0),t=Math.max(Math.min(t,m),0),e.style.left=t*-l+"px",e.style.top=n*-r+"px"}}},o.fn.zoom=function(n){return this.each(function(){var e,i=o.extend({},t,n||{}),u=i.target||this,c=this,a=o(c),m=document.createElement("img"),l=o(m),r="mousemove.zoom",s=!1,f=!1;(i.url||(e=a.find("img"),e[0]&&(i.url=e.data("src")||e.attr("src")),i.url))&&(function(){var o=u.style.position,t=u.style.overflow;a.one("zoom.destroy",function(){a.off(".zoom"),u.style.position=o,u.style.overflow=t,l.remove()})}(),m.onload=function(){function t(t){e.init(),e.move(t),l.stop().fadeTo(o.support.opacity?i.duration:0,1,o.isFunction(i.onZoomIn)?i.onZoomIn.call(m):!1)}function n(){l.stop().fadeTo(i.duration,0,o.isFunction(i.onZoomOut)?i.onZoomOut.call(m):!1)}var e=o.zoom(u,c,m,i.magnify);"grab"===i.on?a.on("mousedown.zoom",function(i){1===i.which&&(o(document).one("mouseup.zoom",function(){n(),o(document).off(r,e.move)}),t(i),o(document).on(r,e.move),i.preventDefault())}):"click"===i.on?a.on("click.zoom",function(i){return s?void 0:(s=!0,t(i),o(document).on(r,e.move),o(document).one("click.zoom",function(){n(),s=!1,o(document).off(r,e.move)}),!1)}):"toggle"===i.on?a.on("click.zoom",function(o){s?n():t(o),s=!s}):"mouseover"===i.on&&(e.init(),a.on("mouseenter.zoom",t).on("mouseleave.zoom",n).on(r,e.move)),i.touch&&a.on("touchstart.zoom",function(o){o.preventDefault(),f?(f=!1,n()):(f=!0,t(o.originalEvent.touches[0]||o.originalEvent.changedTouches[0]))}).on("touchmove.zoom",function(o){o.preventDefault(),e.move(o.originalEvent.touches[0]||o.originalEvent.changedTouches[0])}),o.isFunction(i.callback)&&i.callback.call(m)},m.src=i.url)})},o.fn.zoom.defaults=t})(window.jQuery);
+
 (function() {
 
 
@@ -14040,34 +14283,112 @@ function getRegions() {
 }).call(this);
 
 
+
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
+var map;
 
 function initializeMap() {
-  // get data-markers attribute
-  var markerData = document.getElementById("map-canvas").getAttribute("data-markers");
-  var map;
-  if(markerData !== "") {
-    markerData = JSON.parse(markerData);
-    console.dir(markerData);
+    directionsDisplay = new google.maps.DirectionsRenderer();
+    var markerData = parseMarkerData();
+    if (markerData) {
+        // make map acording to attributes (if any)
+        var latlon = new google.maps.LatLng(markerData['parent'].latitude, markerData['parent'].longitude);
+        var mapType;
+        if (markerData.parent.zoom < 15) {
+            mapType = google.maps.MapTypeId.TERRAIN
+        } else {
+            mapType = google.maps.MapTypeId.SATELLITE
+        }
+        var mapOptions = {
+            zoom: markerData.parent.zoom,
+            center: latlon,
+            mapTypeId: mapType,
+            zoomControl: false,
+            streetViewControl: false,
+            scrollwheel: false,
+            draggable: false,
+            disableDoubleClickZoom: true,
+            panControl: false
+            
+        };
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        //map = new GoogleMapController(markerData.parent /*contains latitude, longitude, and zoom data*/);
+        directionsDisplay.setMap(map);
+        directionsDisplay.setPanel(document.getElementById('directions-panel'));
+        
+        // get data-mapOptions attribute
+        // if options exist then change attributes
 
-    // make map acording to attributes (if any)
-    map = new GoogleMapController(markerData.parent /*contains latitude, longitude, and zoom data*/);
-    
-    // get data-mapOptions attribute
-    // if options exist then change attributes
-
-    // add markers to the map
-    var children = markerData["children"];
-    for(var i = 0; i < children.length; ++i) {
-      var child = children[i];
-      var marker = map.addMarker(child.latitude, child.longitude, child.name);
-      // add function to each marker to call the next url (url + id)
-      map.addLink(marker, markerData["child_url"] + "/" + child.id);
+        // add markers to the map
+        var children = markerData["children"];
+        for(var i = 0; children != null && i < children.length; ++i) {
+            var child = children[i];
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(child.latitude, child.longitude),
+                map: map,
+                url: markerData.child_url + '/' + child.id,
+                title: child.name
+            });
+            
+            // Allow each marker to have an info window    
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    window.location = marker.url;
+                }
+            })(marker, i));
+        }
+        
+    } else {
+    var latlon = new google.maps.LatLng(1.00, 1.00);
+    var mapOptions = {
+        zoom: 1,
+        center: latlon
     }
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    }
+}
+
+function parseMarkerData() {
+    // get data-markers attribute 
+    var markerData = document.getElementById("map-canvas").getAttribute("data-markers");
     
+    if(markerData && markerData !== "") {
+        markerData = JSON.parse(markerData);
+    }
+    return markerData;
+}
+      
+function calcRoute() {
+    // get geolocation
+    // // Try HTML5 geolocation
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = new google.maps.LatLng(position.coords.latitude,
+                                         position.coords.longitude);
+        var markerData = parseMarkerData();
+        if (markerData.parent.length) {
+            var end = new google.maps.LatLng(markerData['parent'].latitude, markerData['parent'].longitude);
+            var request = {
+                origin:pos,
+                destination:end,
+                travelMode: google.maps.TravelMode.DRIVING
+            };
+            directionsService.route(request, function(response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                }
+            });
+            map.setMapTypeId(google.maps.MapTypeId.HYBRID);
+        }
+    }, function() {
+        handleNoGeolocation(true);
+        
+    });
   } else {
-    map = new GoogleMapController();
+    // Browser doesn't support Geolocation
+    handleNoGeolocation(false);
   }
-  return map;
 }
 
 function initializeAdminMap() {
