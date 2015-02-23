@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   get '/', to: 'static#home'
+    get '/search', to: 'search#index'
 
   resources :users
   resources :boulder_route_photos

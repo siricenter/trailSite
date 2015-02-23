@@ -29,7 +29,7 @@
         <td><%= boulder_route.description %></td>
         <td><%= boulder_route.directions %></td>
         <td><%= boulder_route.danger_rating %></td>
-        <td><%= if (boulder_route && boulder_route.stars >= 1 && boulder_route.stars <= 5) then boulder_route.stars else "Not yet rated" end %></td>
+        <td><%= boulder_route.stars %></td>
         <td><%= boulder_route.pads %></td>
         <td><%= if boulder_route.grade != nil then boulder_route.wall.name else "boulder grade deleted, please re-select a grade" end %></td>
         <td><%= boulder_route.length %></td>

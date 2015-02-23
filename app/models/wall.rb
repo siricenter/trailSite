@@ -8,4 +8,12 @@ class Wall < ActiveRecord::Base
 	has_many :traditional_routes
   has_many :boulder_routes
   has_many :wall_photos
+    
+    def self.search(search)
+        if search
+            self.where("name like ?", "%#{search}%")
+        else
+            self.all
+        end
+    end
 end

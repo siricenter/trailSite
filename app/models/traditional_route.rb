@@ -10,4 +10,12 @@ class TraditionalRoute < ActiveRecord::Base
   has_many :traditional_route_photos
 	belongs_to :grade
 	has_many :traditional_routes
+    
+    def self.search(search)
+        if search
+            self.where("name like ?", "%#{search}%")
+        else
+            self.all
+        end
+    end
 end

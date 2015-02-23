@@ -48,6 +48,8 @@
 <%- if session[:user_type] == 'admin' || session[:user_type] == 'manager' %>
   <%= render "static/adminToolbar" %>
 <%- end %>
+    <br>
+    <%= render "search/search" %> 
 
 <%= yield %>
 

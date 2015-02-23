@@ -5,4 +5,12 @@ class Crag < ActiveRecord::Base
 	validates :longitude, :numericality => { :greater_than_or_equal_to => -180, :less_than_or_equal_to => 180 }
   belongs_to :territory
   has_many :walls
+    
+    def self.search(search)
+        if search
+            self.where("name like ?", "%#{search}%")
+        else
+            self.all
+        end
+    end
 end

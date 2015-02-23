@@ -1,0 +1,167 @@
+<% if (@regions.length && @regions.length > 0) %>
+<h2>Regions:</h2>
+
+<ul>
+    <% for region in @regions %>
+    <li>
+        <%= link_to region.name, region_path(region) %>
+    </li>
+    <% end %>
+</ul>
+
+<% end %>
+
+
+
+<% if @states.length > 0 %>
+<h2>States:</h2>
+
+<ul>
+    <% for state in @states %>
+    <li>
+        <%= link_to state.name, state_path(state) %>
+    </li>
+    <% end %>
+</ul>
+
+<% end %>
+
+
+<% if @areas.length > 0 %>
+<h2>Areas:</h2>
+
+<ul>
+    <% for area in @areas %>
+    <li>
+        <%= link_to area.name, area_path(area) %>
+    </li>
+    <% end %>
+</ul>
+
+<% end %>
+
+
+<% if @territories.length > 0 %>
+<h2>Territories:</h2>
+
+<ul>
+    <% for territory in @territories %>
+    <li>
+        <%= link_to territory.name, territory_path(territory) %>
+    </li>
+    <% end %>
+</ul>
+
+<% end %>
+
+
+<% if @crags.length > 0 %>
+<h2>Crags:</h2>
+
+<ul>
+    <% for crag in @crags %>
+    <li>
+        <%= link_to crag.name, crag_path(crag) %>
+    </li>
+    <% end %>
+</ul>
+
+<% end %>
+
+
+<% if @walls.length > 0 %>
+<h2>Walls:</h2>
+
+<ul>
+    <% for wall in @walls %>
+    <li>
+        <%= link_to wall.name, wall_path(wall) %>
+    </li>
+    <% end %>
+</ul>
+
+<% end %>
+
+
+<% if @sport_routes.length > 0 %>
+<h2>Sport Routes:</h2>
+
+<ul>
+    <% for sport_route in @sport_routes %>
+    <li>
+        <%= link_to sport_route.name, sport_route_path(sport_route) %>
+    </li>
+    <% end %>
+</ul>
+
+<% end %>
+
+
+<% if @traditional_routes.length > 0 %>
+<h2>Traditional Routes:</h2>
+
+<ul>
+    <% for traditional_route in @traditional_routes %>
+    <li>
+        <%= link_to traditional_route.name, traditional_route_path(traditional_route) %>
+    </li>
+    <% end %>
+</ul>
+
+<% end %>
+
+
+<% if @boulder_routes.length > 0 %>
+<h2>Boulder Routes:</h2>
+
+<ul>
+    <% for boulder_route in @boulder_routes %>
+    <li>
+        <%= link_to boulder_route.name, boulder_route_path(boulder_route) %>
+    </li>
+    <% end %>
+</ul>
+
+<% end %>
+
+
+<% if @boulder_route_photos.length > 0 %>
+<h2>Boulder Route Photos:</h2>
+
+<ul>
+    <% for boulder_route_photo in @boulder_route_photos %>
+    <li>
+        <%= link_to boulder_route_photo.title, boulder_route_photo_path(boulder_route_photo) %>
+    </li>
+    <% end %>
+</ul>
+
+<% end %>
+
+
+<% if @traditional_route_photos.length > 0 %>
+<h2>Traditional Route Photos:</h2>
+
+<ul>
+    <% for traditional_route_photo in @traditional_route_photos %>
+    <li>
+        <%= link_to traditional_route_photo.title, traditional_route_photo_path(traditional_route_photo) %>
+    </li>
+    <% end %>
+</ul>
+
+<% end %>
+
+
+<% if @sport_route_photos.length > 0 %>
+<h2>Sport Route Photos:</h2>
+
+<ul>
+    <% for sport_route_photo in @sport_route_photos %>
+    <li>
+        <%= link_to sport_route_photo.title, sport_route_photo_path(sport_route_photo) %>
+    </li>
+    <% end %>
+</ul>
+
+<% end %>
