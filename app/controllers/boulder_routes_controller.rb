@@ -16,6 +16,7 @@ class BoulderRoutesController < ApplicationController
   def show
       @mapData = getData();
     @boulder_route_photos = BoulderRoutePhoto.where(boulder_route_id: params[:id])
+      @boulder_route_videos = BoulderRouteVideo.where(boulder_route_id: params[:id])
   end
 
   # GET /boulder_routes/new

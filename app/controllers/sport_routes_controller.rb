@@ -16,6 +16,7 @@ class SportRoutesController < ApplicationController
   def show
       @mapData = getData()
     @sport_route_photos = SportRoutePhoto.where(sport_route_id: params[:id])
+      @sport_route_videos = SportRouteVideo.where(sport_route_id: params[:id])
   end
 
   # GET /sport_routes/new

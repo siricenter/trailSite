@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209201560) do
+ActiveRecord::Schema.define(version: 20150223190023) do
 
   create_table "areas", force: true do |t|
     t.string   "name"
@@ -34,9 +34,23 @@ ActiveRecord::Schema.define(version: 20150209201560) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "boulder_route_photos", ["boulder_route_id"], name: "index_boulder_route_photos_on_boulder_route_id"
+
+  create_table "boulder_route_videos", force: true do |t|
+    t.string   "title"
+    t.integer  "boulder_route_id"
+    t.string   "url"
+    t.string   "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "boulder_route_videos", ["boulder_route_id"], name: "index_boulder_route_videos_on_boulder_route_id"
+  add_index "boulder_route_videos", ["user_id"], name: "index_boulder_route_videos_on_user_id"
 
   create_table "boulder_routes", force: true do |t|
     t.string   "name"
@@ -106,9 +120,23 @@ ActiveRecord::Schema.define(version: 20150209201560) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "sport_route_photos", ["sport_route_id"], name: "index_sport_route_photos_on_sport_route_id"
+
+  create_table "sport_route_videos", force: true do |t|
+    t.string   "title"
+    t.integer  "sport_route_id"
+    t.string   "url"
+    t.string   "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sport_route_videos", ["sport_route_id"], name: "index_sport_route_videos_on_sport_route_id"
+  add_index "sport_route_videos", ["user_id"], name: "index_sport_route_videos_on_user_id"
 
   create_table "sport_routes", force: true do |t|
     t.string   "name"
@@ -168,9 +196,23 @@ ActiveRecord::Schema.define(version: 20150209201560) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "traditional_route_photos", ["traditional_route_id"], name: "index_traditional_route_photos_on_traditional_route_id"
+
+  create_table "traditional_route_videos", force: true do |t|
+    t.string   "title"
+    t.integer  "traditional_route_id"
+    t.string   "url"
+    t.string   "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "traditional_route_videos", ["traditional_route_id"], name: "index_traditional_route_videos_on_traditional_route_id"
+  add_index "traditional_route_videos", ["user_id"], name: "index_traditional_route_videos_on_user_id"
 
   create_table "traditional_routes", force: true do |t|
     t.string   "name"
@@ -215,6 +257,7 @@ ActiveRecord::Schema.define(version: 20150209201560) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "wall_photos", ["wall_id"], name: "index_wall_photos_on_wall_id"

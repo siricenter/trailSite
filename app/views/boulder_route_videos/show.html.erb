@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @boulder_route_video.title %>
+</p>
+
+<p>
+  <strong>Boulder Route:</strong>
+  <%= if @boulder_route_video.boulder_route != nil then @boulder_route_video.boulder_route.name else "Deleted, please re-select" end %>
+</p>
+
+<p>
+  <strong>Video:</strong><br>
+    <iframe class="video" src="<%= @boulder_route_video.url %>" frameborder="0" allowfullscreen></iframe>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @boulder_route_video.url %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @boulder_route_video.description %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @boulder_route_video.user %>
+</p>
+
+<%= link_to 'Edit', edit_boulder_route_video_path(@boulder_route_video) %> |
+<%= link_to 'Back', boulder_route_videos_path %>

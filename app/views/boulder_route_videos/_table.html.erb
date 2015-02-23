@@ -1,0 +1,25 @@
+<table class="index-table">
+  <thead>
+    <tr class="index-th">
+      <th>Title</th>
+      <th>Boulder route</th>
+      <th>Url</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @boulder_route_videos.each do |boulder_route_video| %>
+      <tr class="index-tr">
+        <td><%= boulder_route_video.title %></td>
+        <td><%= if boulder_route_video.boulder_route != nil then boulder_route_video.boulder_route.name else "Boulder route deleted" end %></td>
+        <td><iframe class="video" src="<%= boulder_route_video.url %>" frameborder="0" allowfullscreen></iframe></td>
+        <td><%= boulder_route_video.description %></td>
+        <td class="index-action"><%= link_to 'Show', boulder_route_video %></td>
+        <td class="index-action"><%= link_to 'Edit', edit_boulder_route_video_path(boulder_route_video) %></td>
+        <td class="index-action"><%= link_to 'Destroy', boulder_route_video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

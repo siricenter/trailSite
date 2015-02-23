@@ -95,6 +95,10 @@
 
 <strong>Photos</strong> | <%= link_to 'Add Photo', new_traditional_route_photo_path(id: @traditional_route.id.to_s) %>
 <%= render 'traditional_route_photos/table' %>
+<br>
+<strong>Videos</strong> | <%= link_to 'Add Video', new_traditional_route_video_path(id: @traditional_route.id.to_s) %>
+<%= render 'traditional_route_videos/table' %>
+<br>
 
 <%= link_to 'Edit', edit_traditional_route_path(@traditional_route) %> |
 <%= link_to 'Back', traditional_routes_path %>

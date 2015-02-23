@@ -15,6 +15,7 @@ class TraditionalRoutesController < ApplicationController
   def show
       @mapData = getData();
     @traditional_route_photos = TraditionalRoutePhoto.where(traditional_route_id: params[:id])
+      @traditional_route_videos = TraditionalRouteVideo.where(traditional_route_id: params[:id])
   end
 
   # GET /traditional_routes/new

@@ -1,0 +1,2 @@
+module BoulderRouteVideosHelper
+end

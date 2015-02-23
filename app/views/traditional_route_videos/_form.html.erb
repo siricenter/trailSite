@@ -1,0 +1,41 @@
+<%= form_for(@traditional_route_video) do |f| %>
+  <% if @traditional_route_video.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@traditional_route_video.errors.count, "error") %> prohibited this traditional_route_video from being saved:</h2>
+
+      <ul>
+      <% @traditional_route_video.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="form-group">
+    <div class="form-field <%=if @traditional_route_video.errors[:title].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :title %><br>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    
+    <div class="form-field <%=if @traditional_route_video.errors[:traditional_route_id].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :traditional_route_id %><br>
+      <%= select("traditional_route_video", "traditional_route_id", TraditionalRoute.all.collect {|r| [ r.name, r.id ] }, {include_blank: ''},
+       class: "form-control" )  %>
+    </div>
+
+    <div class="form-field <%=if @traditional_route_video.errors[:url].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :url %><br>
+      <%= f.text_field :url, class: "form-control" %>
+    </div>
+
+    <div class="form-field <%=if @traditional_route_video.errors[:url].present? then 'has-error' else 'has-success' end %>">
+      <%= f.label :description %><br>
+      <%= f.text_field :description, class: "form-control" %>
+    </div>
+    
+    <div class="actions col-md-12">
+      <%= f.submit class: "form-button" %>
+    </div>
+  </div>
+<% end %>
+

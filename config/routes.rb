@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   
+  resources :traditional_route_videos
+
+  resources :boulder_route_videos
+
+  resources :sport_route_videos
+
+  resources :grades
+
   get '/', to: 'static#home'
     get '/search', to: 'search#index'
 

@@ -60,7 +60,13 @@ function initializeMap() {
     var latlon = new google.maps.LatLng(1.00, 1.00);
     var mapOptions = {
         zoom: 1,
-        center: latlon
+        center: latlon,
+            zoomControl: false,
+            streetViewControl: false,
+            scrollwheel: false,
+            draggable: false,
+            disableDoubleClickZoom: true,
+            panControl: false
     }
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
     }
@@ -106,20 +112,4 @@ function calcRoute() {
     // Browser doesn't support Geolocation
     handleNoGeolocation(false);
   }
-}
-
-function initializeAdminMap() {
-
-  // start a basic map
-  var map = initializeMap();
-
-  // bind input value to map
-  map.zoomBind(document.getElementById("zoom"));  
-    
-  // bind latitude and longitude to map movements
-  map.moveBind(document.getElementById('latitude'), document.getElementById('longitude'));
-  // add possition bind to map
-    /*map.addMoveListener(function() {
-      
-    });*/
 }

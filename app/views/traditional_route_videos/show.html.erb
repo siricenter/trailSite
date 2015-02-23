@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @traditional_route_video.title %>
+</p>
+
+<p>
+  <strong>Traditional Route:</strong>
+  <%= if @traditional_route_video.traditional_route != nil then @traditional_route_video.traditional_route.name else "Deleted, please re-select" end %>
+</p>
+
+<p>
+  <strong>Video:</strong><br>
+    <iframe class="video" src="<%= @traditional_route_video.url %>" frameborder="0" allowfullscreen></iframe>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @traditional_route_video.url %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @traditional_route_video.description %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @traditional_route_video.user %>
+</p>
+
+<%= link_to 'Edit', edit_traditional_route_video_path(@traditional_route_video) %> |
+<%= link_to 'Back', traditional_route_videos_path %>

@@ -1,0 +1,33 @@
+<table class="index-table">
+  <thead>
+    <tr class="index-th">
+      <th>French</th>
+      <th>UK</th>
+      <th>Australia</th>
+      <th>UIAA</th>
+      <th>USA</th>
+      <th>Hueco</th>
+      <th>UKB</th>
+      <th>Fontainebleau</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @grades.each do |grade| %>
+      <tr class="index-tr">
+        <td><%= grade.french %></td>
+        <td><%= grade.uk %></td>
+        <td><%= grade.australia %></td>
+        <td><%= grade.uiaa %></td>
+        <td><%= grade.usa %></td>
+        <td><%= grade.hueco %></td>
+        <td><%= grade.ukb %></td>
+        <td><%= grade.fontainebleau %></td>
+        <td class="index-action"><%= link_to 'Show', grade %></td>
+        <td class="index-action"><%= link_to 'Edit', edit_grade_path(grade) %></td>
+        <td class="index-action"><%= link_to 'Destroy', grade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

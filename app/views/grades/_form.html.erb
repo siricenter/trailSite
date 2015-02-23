@@ -1,0 +1,52 @@
+<%= form_for(@grade) do |f| %>
+  <% if @grade.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@grade.errors.count, "error") %> prohibited this grade from being saved:</h2>
+
+      <ul>
+      <% @grade.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="form-group">
+    <div class="form-field <%=if @grade.errors[:name].present? then 'has-error' else 'has-success' end %>">
+        <%= f.label :french %><br>
+        <%= f.text_field :french, class: "form-control"%>
+    </div>
+    <div class="form-field <%=if @grade.errors[:name].present? then 'has-error' else 'has-success' end %>">
+        <%= f.label :uk %><br>
+        <%= f.text_field :uk, class: "form-control"%>
+    </div>
+    <div class="form-field <%=if @grade.errors[:name].present? then 'has-error' else 'has-success' end %>">
+        <%= f.label :australia %><br>
+        <%= f.text_field :australia, class: "form-control"%>
+    </div>
+    <div class="form-field <%=if @grade.errors[:name].present? then 'has-error' else 'has-success' end %>">
+        <%= f.label :uiaa %><br>
+        <%= f.text_field :uiaa, class: "form-control"%>
+    </div>
+    <div class="form-field <%=if @grade.errors[:name].present? then 'has-error' else 'has-success' end %>">
+        <%= f.label :usa %><br>
+        <%= f.text_field :usa, class: "form-control"%>
+    </div>
+    <div class="form-field <%=if @grade.errors[:name].present? then 'has-error' else 'has-success' end %>">
+        <%= f.label :hueco %><br>
+        <%= f.text_field :hueco, class: "form-control"%>
+    </div>
+    <div class="form-field <%=if @grade.errors[:name].present? then 'has-error' else 'has-success' end %>">
+        <%= f.label :ukb %><br>
+        <%= f.text_field :ukb, class: "form-control"%>
+    </div>
+    <div class="form-field <%=if @grade.errors[:name].present? then 'has-error' else 'has-success' end %>">
+        <%= f.label :fontainebleau %><br>
+        <%= f.text_field :fontainebleau, class: "form-control"%>
+    </div>
+</div>
+
+  <div class="actions col-md-12">
+    <%= f.submit class: "form-button" %>
+  </div>
+<% end %>

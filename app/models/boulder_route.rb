@@ -1,5 +1,4 @@
 require 'danger_rating'
-require 'hueco_grade'
 
 class BoulderRoute < ActiveRecord::Base
   validates :name, :wall, :danger_rating, :pads, :length, presence:true
