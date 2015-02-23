@@ -49,7 +49,10 @@
   <%= render "static/adminToolbar" %>
 <%- end %>
     <br>
+    <%- if session[:user_type] != nil %>
+
     <%= render "search/search" %> 
+    <% end %>
 
 <%= yield %>
 

@@ -3,7 +3,7 @@ require 'anchor_type'
 
 class SportRoute < ActiveRecord::Base
 	validates :name, :wall, :danger_rating, :bolts, :pitches, :length, presence:true
-	validates :zoom, :numericality => { :greater_than => 0, :less_than_or_equal_to => 16 }, allow_nil: true
+	validates :zoom, :numericality => { :greater_than => 0, :less_than_or_equal_to => 21 }, allow_nil: true
 	validates :bolts, numericality: { :greater_than_or_equal_to => 0 }
 # 	validates :latitude, :numericality => { :greater_than_or_equal_to => -90, :less_than_or_equal_to => 90 }, allow_nil: true
 # 	validates :longitude, :numericality => { :greater_than_or_equal_to => -180, :less_than_or_equal_to => 180 }, allow_nil: true
