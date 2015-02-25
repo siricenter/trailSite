@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :searches
+
   resources :traditional_route_videos
 
   resources :boulder_route_videos
