@@ -57,8 +57,8 @@
         
 
      <div class="form-field <%=if @boulder_route.errors[:grade].present? then 'has-error' else 'has-success' end %>">
-      <%= f.label "Grade Fr|UK|Au|UIAA|USA" %><br>
-      <%= f.select("grade_id", Grade.all.collect {|r| [ r.french + "\t | \t" + r.uk + "\t | \t" + r.australia + "\t | \t" + r.uiaa + "\t | \t" + r.usa, r.id ] }, {include_blank: true},
+      <%= f.label "Grade Hueco|UKB|Fontainebleau" %><br>
+      <%= f.select("grade_id", Grade.all.collect {|r| [ r.hueco + "\t | \t" + r.ukb + "\t | \t" + r.fontainebleau, r.id ] }, {include_blank: true},
        class: "form-control" )  %>
     </div>
 

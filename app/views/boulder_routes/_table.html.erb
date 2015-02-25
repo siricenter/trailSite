@@ -31,7 +31,7 @@
         <td><%= boulder_route.danger_rating %></td>
         <td><%= boulder_route.stars %></td>
         <td><%= boulder_route.pads %></td>
-        <td><%= if boulder_route.grade != nil then boulder_route.wall.name else "boulder grade deleted, please re-select a grade" end %></td>
+        <td><%= if boulder_route.grade != nil then boulder_route.grade.hueco else "boulder grade deleted, please re-select a grade" end %></td>
         <td><%= boulder_route.length %></td>
         <td class="index-action"><%= link_to 'Show', boulder_route %></td>
         <td class="index-action"><%= link_to 'Edit', edit_boulder_route_path(boulder_route) %></td>

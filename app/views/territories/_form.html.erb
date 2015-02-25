@@ -35,7 +35,7 @@
     </div>
 
     <br>
-    <%= render 'static/adminMap' %>
+    <%= render 'static/googleMap' %>
         <div class="form-field <%=if @territory.errors[:latitude].present? then 'has-error' else 'has-success' end %> ">
       <label for="latitude">Latitude</label>
       <input class="form-control" id="latitude" name="territory[latitude]" type="text" value="<%= if @territory.latitude then @territory.latitude else 0.0 end %>" />

@@ -61,9 +61,9 @@
 </p>
 
 <p>
-  <strong>Grade:</strong>
+  <strong>Hueco Grade:</strong>
   <%= if @boulder_route.grade
-        link_to @boulder_route.wall.name, wall_path(@boulder_route.wall) 
+        link_to @boulder_route.grade.hueco, grade_path(@boulder_route.grade) 
       else 
         "Deleted, please re-select" 
       end %>
