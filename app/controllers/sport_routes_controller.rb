@@ -27,6 +27,8 @@ class SportRoutesController < ApplicationController
 
   # GET /sport_routes/1/edit
   def edit
+      
+      
   end
 
   # POST /sport_routes
@@ -73,7 +75,9 @@ class SportRoutesController < ApplicationController
   def getJson
       render json: getData()
   end
-
+   def get_sport_routes_from_wall
+       render json: SportRoute.where(wall_id: params[:wall_id])
+   end
   private
 
     # Use callbacks to share common setup or constraints between actions.
@@ -98,4 +102,6 @@ class SportRoutesController < ApplicationController
         return SportRoute.all
       end
     end
+    
+   
 end

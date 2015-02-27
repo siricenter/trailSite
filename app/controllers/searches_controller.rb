@@ -10,6 +10,18 @@ class SearchesController < ApplicationController
   # GET /searches/1
   # GET /searches/1.json
   def show
+      @regions = Region.search(@search.keywords)
+      @states = State.search(@search.keywords)
+      @areas = Area.search(@search.keywords)
+      @territories = Territory.search(@search.keywords)
+      @crags = Crag.search(@search.keywords)
+      @walls = Wall.search(@search.keywords)
+      @sport_routes = SportRoute.search(@search.keywords)
+      @traditional_routes = TraditionalRoute.search(@search.keywords)
+      @boulder_routes = BoulderRoute.search(@search.keywords)
+      @sport_route_photos = SportRoutePhoto.search(@search.keywords)
+      @traditional_route_photos = TraditionalRoutePhoto.search(@search.keywords)
+      @boulder_route_photos = BoulderRoutePhoto.search(@search.keywords)
   end
 
   # GET /searches/new
@@ -69,6 +81,6 @@ class SearchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def search_params
-      params.require(:search).permit(:keywords, :new, :show)
+      params.require(:search).permit(:keywords)
     end
 end

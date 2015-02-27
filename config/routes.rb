@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   resources :grades
 
   get '/', to: 'static#home'
-    get '/search', to: 'search#index'
-
+  get 'sport_routes/get_sport_routes_from_wall/:wall_id', to: 'sport_routes#get_sport_routes_from_wall'
+    
   resources :users
   resources :boulder_route_photos
   resources :traditional_route_photos
@@ -52,6 +52,9 @@ Rails.application.routes.draw do
   get 'sport_route_photos/data/getJson', to: 'sport_route_photos#getJson'
   get 'boulder_route_photos/data/getJson', to: 'boulder_route_photos#getJson'
   get 'traditional_route_photos/data/getJson', to: 'traditional_route_photos#getJson'
+    
+    
+  
   
   get 'regions/data/getJson/:id', to: 'regions#getJson'
   get 'states/data/getJson/:id', to: 'states#getJson'
@@ -68,6 +71,8 @@ Rails.application.routes.draw do
   get 'sport_route_photos/data/getJson/:id', to: 'sport_route_photos#getJson'
   get 'boulder_route_photos/data/getJson/:id', to: 'boulder_route_photos#getJson'
   get 'traditional_route_photos/data/getJson/:id', to: 'traditional_route_photos#getJson'
+    
+    
 
   #admin
   scope :admin do

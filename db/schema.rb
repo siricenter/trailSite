@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225180945) do
+ActiveRecord::Schema.define(version: 20150225180960) do
 
   create_table "areas", force: true do |t|
     t.string   "name"
@@ -118,6 +118,18 @@ ActiveRecord::Schema.define(version: 20150225180945) do
     t.string   "keywords"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "max_rating"
+    t.integer  "min_rating"
+    t.boolean  "show_no_rating"
+    t.integer  "max_grade"
+    t.integer  "min_grade"
+    t.float    "max_length"
+    t.float    "min_length"
+    t.integer  "region_id"
+    t.integer  "state_id"
+    t.integer  "territory_id"
+    t.integer  "crag_id"
+    t.integer  "wall_id"
   end
 
   create_table "sport_route_photos", force: true do |t|

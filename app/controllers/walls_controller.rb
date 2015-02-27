@@ -103,4 +103,6 @@ class WallsController < ApplicationController
           return (Area.all)
       end
     end
+    
+    
   end

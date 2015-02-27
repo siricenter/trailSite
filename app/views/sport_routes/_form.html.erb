@@ -10,17 +10,16 @@
       </ul>
     </div>
   <% end %>
-
   <div class="form-group">
     <div class="form-field">
       <%= f.label :name %><br>
-      <%= f.text_field :name, class: "form-control" %>
+      <%= f.text_field :name, class: "form-control", id: "name" %>
     </div>
-
+<%=@message%>
     <div class="form-field <%=if @sport_route.errors[:wall].present? then 'has-error' else 'has-success' end %>">
       <%= f.label :wall_id %><br>
       <%= f.select("wall_id", Wall.all.collect {|r| [ r.name, r.id ] }, {include_blank: true},
-       class: "form-control" )  %>
+       class: "form-control", id: "wall_dropdown", onchange: "update()")  %>
     </div>
 
     <div class="form-field">
@@ -86,19 +85,22 @@
       <%= f.label :directions %><br>
       <%= f.text_area :directions, class: "form-control" %>
     </div>
+      <br>
       
-      <div>
-          <%= f.label :previous_route %><br>
-          <%= f.select(:prev_route, SportRoute.all.collect {|r| [ r.name, r.id ] }, {include_blank: true}, class: "form-control" )  %>
-      </div>
-      
-      <div>
+      <div class="col-xs-12">
           <%= f.label :next_route %><br>
-          <%= f.select(:next_route, SportRoute.all.collect {|r| [ r.name, r.id ] }, {include_blank: true}, class: "form-control" )  %>
+          <%= f.select(:next_route, '', {include_blank: false}, class: "form-control", id: "next_route_dropdown")  %>
       </div>
+      <br>
+      
+      <div class="col-xs-12">
+          <%= f.label :previous_route %><br>
+          <%= f.select(:prev_route, '', {include_blank: false}, class: "form-control", id: "prev_route_dropdown")  %>
+      </div>
+      <br>
       
     <div class="actions col-md-12">
-      <%= f.submit class: "form-button" %>
+      <%= f.submit class: "form-button"%>
     </div>
   </div>
 <% end %>

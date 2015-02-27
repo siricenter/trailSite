@@ -8,39 +8,6 @@
   </script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-
-  	<style>
-		
-		/* magnifying glass icon */
-		.zoom:after {
-			content:'';
-			display:block; 
-			width:33px; 
-			height:33px; 
-			position:absolute; 
-			top:0;
-			right:0;
-			background:url(/assets/icon.png);
-
-		}
-
-		.zoom img {
-			display: block;
-		}
-
-		.zoom img::selection { background-color: transparent; }
-		#ex2 img:hover { cursor: url(/assets/grab.cur), default; }
-		#ex2 img:active { cursor: url(/assets/grabbed.cur), default; }
-	</style>
-	<!-- script src='jquery.zoom.min.js'></script -->
-	<!--script>
-		$(document).ready(function(){
-			$('#ex1').zoom();
-			$('#ex2').zoom({ on:'grab' });
-			$('#ex3').zoom({ on:'click' });			 
-			$('#ex4').zoom({ on:'toggle' });
-		});
-    </script-->
 </head>
 <body>
 
@@ -51,7 +18,8 @@
     <br>
     <%- if session[:user_type] != nil %>
 
-    <%= render "search/search" %> 
+    <%= render "searches/basic_search" %>
+    
     <% end %>
 
 <%= yield %>

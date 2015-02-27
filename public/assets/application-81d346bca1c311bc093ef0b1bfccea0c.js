@@ -13669,6 +13669,10 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
 
 
 }).call(this);
+(function() {
+
+
+}).call(this);
 
 /**
 * GoogleMapController is used to controller the google map for the rockClimbing project
@@ -14018,6 +14022,10 @@ function getRegions() {
 	});
 }
 ;
+(function() {
+
+
+}).call(this);
 /*!
 	Zoom 1.7.13
 	license: MIT
@@ -14281,6 +14289,14 @@ function getRegions() {
 
 
 }).call(this);
+(function() {
+
+
+}).call(this);
+(function() {
+
+
+}).call(this);
 
 
 
@@ -14303,7 +14319,14 @@ function initializeMap() {
         var mapOptions = {
             zoom: markerData.parent.zoom,
             center: latlon,
-            mapTypeId: mapType
+            mapTypeId: mapType,
+            zoomControl: false,
+            streetViewControl: false,
+            scrollwheel: false,
+            draggable: false,
+            disableDoubleClickZoom: true,
+            panControl: false
+            
         };
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         //map = new GoogleMapController(markerData.parent /*contains latitude, longitude, and zoom data*/);
@@ -14336,7 +14359,13 @@ function initializeMap() {
     var latlon = new google.maps.LatLng(1.00, 1.00);
     var mapOptions = {
         zoom: 1,
-        center: latlon
+        center: latlon,
+            zoomControl: false,
+            streetViewControl: false,
+            scrollwheel: false,
+            draggable: false,
+            disableDoubleClickZoom: true,
+            panControl: false
     }
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
     }
@@ -14383,23 +14412,11 @@ function calcRoute() {
     handleNoGeolocation(false);
   }
 }
-
-function initializeAdminMap() {
-
-  // start a basic map
-  var map = initializeMap();
-
-  // bind input value to map
-  map.zoomBind(document.getElementById("zoom"));  
-    
-  // bind latitude and longitude to map movements
-  map.moveBind(document.getElementById('latitude'), document.getElementById('longitude'));
-  // add possition bind to map
-    /*map.addMoveListener(function() {
-      
-    });*/
-}
 ;
+(function() {
+
+
+}).call(this);
 (function() {
 
 
