@@ -3,9 +3,22 @@
 <head>
   <title>TrailSite</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+	<link rel="stylesheet" href="stylesheets/bigvideo.css">
   <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?v=3.18&key=AIzaSyAP0SRKqQYCvvBj0MuIfamTTky7iDw8pMw">
   </script>
+	<script type="text/javascript" 
+			src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js">
+	</script>
+    <!--[if lte IE 8]>
+    <style>
+        /* Rotation of the arrow element for IE < 9 */
+        .next-icon { /* IE Matrix Calculator - http: //www.boogdesign.com/examples/transforms/matrix-calculator.html */;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=-0.70710678, M21=0.70710678, M22=0.70710678,sizingMethod='auto expand')";
+            filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=-0.70710678, M21=0.70710678, M22=0.70710678,sizingMethod='auto expand');
+        }
+    </style>
+    <![endif]-->
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
