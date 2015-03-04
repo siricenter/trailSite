@@ -3,13 +3,9 @@
 <head>
   <title>TrailSite</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-	<link rel="stylesheet" href="assets/bigvideo.css">
-  <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?v=3.18&key=AIzaSyAP0SRKqQYCvvBj0MuIfamTTky7iDw8pMw">
-  </script>
-	<script type="text/javascript" 
-			src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js">
-	</script>
+    <%= stylesheet_link_tag "bigvideo", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?v=3.18&key=AIzaSyAP0SRKqQYCvvBj0MuIfamTTky7iDw8pMw', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', 'data-turbolinks-track' => true %>
     <!--[if lte IE 8]>
     <style>
         /* Rotation of the arrow element for IE < 9 */
