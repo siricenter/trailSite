@@ -1,29 +1,36 @@
 <header>
-	<h1>Fullscreen Video Slideshow <span>with BigVideo.js</span></h1>
-	<p>The videos in this demo are from <a href="http://beachfrontprod.blogspot.com" target="_blank">Beachfront B-Roll</a>, a great place to download unique HD stock video footage and animated backgrounds for any production purpose (for free!).</p>
-	<p><small>A demo for</small> <a href="http://dfcb.github.com/BigVideo.js/" target="_blank">BigVideo.js</a> <small>by <a href="http://twitter.com/johnpolacek" target="_blank" rel="author">@johnpolacek</a></small></p>
+	<div id="logo-container">
+		<%= image_tag("logo-J.png", :alt => "J Tree") %>
+	</div>
+	<div id="icon-container">
+		<div class="icon-btn">
+			<%= image_tag("profile_icon_f1f9fb.png", :alt => "rss feed") %>
+		</div>
+		<div class="icon-btn">
+			<%= image_tag("2 compass icon f1f9fb.png", :alt => "rss feed") %>
+		</div>
+		<div class="icon-btn">
+			<%= image_tag("guide_icon_f1f9fb.png", :alt => "rss feed") %>
+		</div>
+	</div>
 </header>
 
 <div class="wrapper">
-	<div class="screen" id="screen-1" data-video="vid/bird.mp4">
-		<img src="img/bird.jpg" class="big-image" />
-		<h1 class="video-title">#1 Bird</h1>
+	<div class="screen" id="screen-1" data-video="assets/img_1.jpg">
+		<%= image_tag("img_1.jpg", :alt => "rss feed") %>
+		<h1 class="video-title"></h1>
 	</div>
-	<div class="screen" id="screen-2" data-video="vid/satellite.mp4">
-		<img src="img/satellite.jpg" class="big-image" />
-		<h1 class="video-title">#2 Satellite</h1>
+	<div class="screen" id="screen-1" data-video="assets/img_2.jpg">
+		<%= image_tag("img_2.jpg", :alt => "rss feed") %>
+		<h1 class="video-title"></h1>
 	</div>
-	<div class="screen" id="screen-3" data-video="vid/camera.mp4">
-		<img src="img/camera.jpg" class="big-image" />
-		<h1 class="video-title">#3 Camera</h1>
+	<div class="screen" id="screen-1" data-video="assets/img_3.jpg">
+		<%= image_tag("img_3.jpg", :alt => "rss feed") %>
+		<h1 class="video-title"></h1>
 	</div>
-	<div class="screen" id="screen-4" data-video="vid/spider.mp4">
-		<img src="img/spider.jpg" class="big-image" />
-		<h1 class="video-title">#4 Spider</h1>
-	</div>
-	<div class="screen" id="screen-5" data-video="vid/dandelion.mp4">
-		<img src="img/dandelion.jpg" class="big-image" />
-		<h1 class="video-title">#5 Dandelion</h1>
+	<div class="screen" id="screen-1" data-video="assets/img_4.jpg">
+		<%= image_tag("img_4.jpg", :alt => "rss feed") %>
+		<h1 class="video-title"></h1>
 	</div>
 </div>
 
@@ -34,15 +41,15 @@
 <!-- BigVideo Dependencies -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/jquery-1.8.1.min.js"><\/script>')</script>
-<script src="javascripts/jquery-ui-1.8.22.custom.min.js"></script> <!-- I'm not sure I have the right paths -->
-<script src="javascripts/jquery.imagesloaded.min.js"></script>
+<script src="assets/jquery-ui-1.8.22.custom.min.js"></script>
+<script src="assets/jquery.imagesloaded.min.js"></script>
 <script src="http://vjs.zencdn.net/c/video.js"></script>
 
 <!-- BigVideo -->
-<script src="js/bigvideo.js"></script>
+<script src="assets/bigvideo.js"></script>
 
 <!-- Tutorial Demo -->
-<script src="js/jquery.transit.min.js"></script>
+<script src="assets/jquery.transit.min.js"></script>
 <script>
 	$(function() {
 
@@ -55,7 +62,7 @@
 				transitionDur = 1000,
 				BV,
 				videoPlayer,
-				isTouch = Modernizr.touch,
+				isTouch = false,
 				$bigImage = $('.big-image'),
 				$window = $(window);
 
@@ -100,7 +107,7 @@
 				screenIndex++;
 			}
 
-			if (!isTouch) {
+			if (true) {
 				$('#big-video-wrap').transit({'left':'-100%'},transitionDur)
 			}
 
@@ -118,10 +125,6 @@
 
 		function onTransitionComplete() {
 			isTransitioning = false;
-			if (!isTouch) {
-				$('#big-video-wrap').css('left',0);
-				showVideo();
-			}
 		}
 
 		function adjustImagePositioning() {
